@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeIngredientController;
+use App\Http\Controller\orderitemsController;
 
 
 
@@ -51,3 +52,8 @@ Route::get('orders', [OrderController::class, 'index']);
 Route::post('orders', [OrderController::class, 'store']);
 Route::get('orders/{order}', [OrderController::class, 'show']);
 Route::delete('orders/{order}', [OrderController::class, 'destroy']);
+
+Route::get('order_items', [OrderItemController::class, 'index']);
+Route::post('order_items', [OrderItemController::class, 'store']);
+Route::get('order_items/{id}', [OrderItemController::class, 'show']);
+Route::delete('order_items/{id}', [OrderItemController::class, 'destroy']);
