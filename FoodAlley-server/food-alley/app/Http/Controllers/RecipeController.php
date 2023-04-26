@@ -43,6 +43,14 @@ class RecipeController extends Controller
     }
 
 
+    public function destroy($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
+        return response()->json(null, 204);
+    }
+  
+   
 
 }
 
