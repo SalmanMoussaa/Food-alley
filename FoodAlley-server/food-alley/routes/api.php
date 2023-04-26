@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\RecipeIngredientController;
 
 
 
@@ -39,3 +40,9 @@ Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middlewar
 Route::get('/ingredients', [IngredientController::class, 'index']);
 Route::post('/ingredients', [IngredientController::class, 'store']);
 Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy']);
+
+Route::get('/recipe-ingredients', 'RecipeIngredientController@index');
+Route::post('/recipe-ingredients', 'RecipeIngredientController@store');
+Route::get('/recipe-ingredients/{id}', 'RecipeIngredientController@show');
+Route::put('/recipe-ingredients/{id}', 'RecipeIngredientController@update');
+Route::delete('/recipe-ingredients/{id}', 'RecipeIngredientController@destroy');
