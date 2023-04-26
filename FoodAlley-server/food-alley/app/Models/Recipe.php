@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     use HasFactory;
+    protected $table = 'recipes';
+    protected $fillable = ['name', 'description', 'preparation_time', 'price', 'kitchen_id'];
+    public function kitchen()
+    {
+        return $this->belongsTo(Kitchen::class);
+    }
 }
