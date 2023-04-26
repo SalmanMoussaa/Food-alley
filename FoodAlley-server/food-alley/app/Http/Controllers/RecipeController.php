@@ -49,7 +49,28 @@ class RecipeController extends Controller
         $recipe->delete();
         return response()->json(null, 204);
     }
-  
+    public function edit(Request $request, $id)
+{
+    $recipe = Recipe::find($id);
+
+    if(!$recipe) {
+        return response()->json([
+            'message' => 'Recipe not found'
+        ], 404);
+    }
+
+    $recipe->name = $request->input('name');
+    $recipe->description = $request->input('description');
+    $recipe->preparation_time = $request->input('preparation_time');
+    $recipe->price = $request->input('price');
+    $recipe->kitchen_id = $request->input('kitchen_id');
+    $recipe->save();
+
+    return response()->json([
+        'message' => 'Recipe updated successfully',
+        'recipe' => $recipe
+    ], 200);
+}
    
 
 }
