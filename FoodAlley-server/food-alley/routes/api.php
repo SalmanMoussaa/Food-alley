@@ -46,3 +46,8 @@ Route::post('/recipe-ingredients', 'RecipeIngredientController@store');
 Route::get('/recipe-ingredients/{id}', 'RecipeIngredientController@show');
 Route::put('/recipe-ingredients/{id}', 'RecipeIngredientController@update');
 Route::delete('/recipe-ingredients/{id}', 'RecipeIngredientController@destroy');
+
+Route::get('orders', [OrderController::class, 'index']);
+Route::post('orders', [OrderController::class, 'store']);
+Route::get('orders/{order}', [OrderController::class, 'show']);
+Route::delete('orders/{order}', [OrderController::class, 'destroy']);
