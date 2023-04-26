@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IngredientController;
+
 
 
 /*
@@ -33,3 +35,7 @@ Route::put('/recipes/{id}',  'update');
 Route::delete('/recipes/{id}',  'destroy');
 });
 Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middleware('auth:api');
+
+Route::get('/ingredients', [IngredientController::class, 'index']);
+Route::post('/ingredients', [IngredientController::class, 'store']);
+Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy']);
