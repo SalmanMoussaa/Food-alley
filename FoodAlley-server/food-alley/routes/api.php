@@ -32,3 +32,4 @@ Route::get('/recipes/{id}',  'show');
 Route::put('/recipes/{id}',  'update');
 Route::delete('/recipes/{id}',  'destroy');
 });
+Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middleware('auth:api');
