@@ -25,3 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
 });
+Route::controller(RecipeController::class)->group(function (){
+Route::get('/recipes',  'index');
+Route::post('/recipes',  'store');
+Route::get('/recipes/{id}',  'show');
+Route::put('/recipes/{id}',  'update');
+Route::delete('/recipes/{id}',  'destroy');
+});
