@@ -66,3 +66,9 @@ Route::post('/allergies', [AllergyController::class, 'store']);
 Route::get('/allergies/{allergy}', [AllergyController::class, 'show']);
 Route::put('/allergies/{allergy}', [AllergyController::class, 'update']);
 Route::delete('/allergies/{allergy}', [AllergyController::class,'destroy']);
+
+Route::get('/user_allergies', 'UserAllergyController@index');
+Route::post('/user_allergies', 'UserAllergyController@store');
+Route::get('/user_allergies/{id}', 'UserAllergyController@show');
+Route::delete('/user_allergies/{id}', 'UserAllergyController@destroy');
+
