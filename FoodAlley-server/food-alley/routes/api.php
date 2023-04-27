@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeIngredientController;
 use App\Http\Controller\orderitemsController;
+use App\Http\Controllers\AllergyController;
 
 
 
@@ -57,3 +58,11 @@ Route::get('order_items', [OrderItemController::class, 'index']);
 Route::post('order_items', [OrderItemController::class, 'store']);
 Route::get('order_items/{id}', [OrderItemController::class, 'show']);
 Route::delete('order_items/{id}', [OrderItemController::class, 'destroy']);
+
+
+
+Route::get('/allergies', [AllergyController::class, 'index']);
+Route::post('/allergies', [AllergyController::class, 'store']);
+Route::get('/allergies/{allergy}', [AllergyController::class, 'show']);
+Route::put('/allergies/{allergy}', [AllergyController::class, 'update']);
+Route::delete('/allergies/{allergy}', [AllergyController::class,'destroy']);
