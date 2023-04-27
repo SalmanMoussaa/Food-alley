@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Model\restrictedFoodController;
+use App\Model\restrictedFood;
 
 use Illuminate\Http\Request;
 

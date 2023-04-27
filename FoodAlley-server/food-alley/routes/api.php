@@ -72,3 +72,8 @@ Route::post('/user_allergies', 'UserAllergyController@store');
 Route::get('/user_allergies/{id}', 'UserAllergyController@show');
 Route::delete('/user_allergies/{id}', 'UserAllergyController@destroy');
 
+Route::get('/restricted-food', 'RestrictedFoodController@index');
+Route::get('/restricted-food/{id}', 'RestrictedFoodController@show');
+Route::post('/restricted-food', 'RestrictedFoodController@store');
+Route::put('/restricted-food/{id}', 'RestrictedFoodController@update');
+Route::delete('/restricted-food/{id}', 'RestrictedFoodController@destroy');
