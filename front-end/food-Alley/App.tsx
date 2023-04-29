@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native';
 import Buttons from "./src/screens/components/Button";
 import Input from './src/screens/components/Input';
+import Svg from './src/screens/components/Svgbottom';
 
 export default function App() {
   return (
@@ -13,14 +14,21 @@ export default function App() {
         label="Phone number"
         
        
-      /><Buttons title="Press me" onPress={() => console.log("salman  vcpressed")} /></>
+      /><Buttons title="Press me" onPress={() => console.log("salman  vcpressed")} />
+     
+     <Svg width={393} height={1455} />
+      </>
       } 
     </SafeAreaView>
+    
   );
 }
 
 const styles = StyleSheet.create({
+ 
+
   container: {
+    
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
