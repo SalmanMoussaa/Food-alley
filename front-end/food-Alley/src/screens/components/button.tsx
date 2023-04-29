@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   height: 46,
   left: 119,
   top: 597,
-borderradius: 8
+  borderRadius: 8
   },
   buttonText: {
     color: 'white',
