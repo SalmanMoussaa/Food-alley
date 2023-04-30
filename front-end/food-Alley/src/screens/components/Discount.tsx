@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Pressable, StyleSheet, View, Text, Image } from "react-native";
-import { FontFamily, FontSize, Border, Color } from "../GlobalStyles";
+import { FontFamily, FontSize, Border, Color } from "./GlobalStyles";
 
 interface DiscountProps {
   discount: string;
