@@ -9,12 +9,12 @@ import SvgBottom from '../components/Svgbottom';
 
 
 
-interface SigninProps {
+interface registerProps {
   style?: StyleProp<ViewStyle>;
 }
 
 
-const Signin: React.FC<SigninProps> = ({ style }) => {
+const register: React.FC<registerProps> = ({ style }) => {
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
         const [repassword, resetPassword] = useState('');
@@ -29,12 +29,37 @@ const Signin: React.FC<SigninProps> = ({ style }) => {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/logo.png")}
+          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/arrow.png")}
         />
-      </View>
-      <Text style={styles.loginText}>Login</Text>
+      
+      <Text style={styles.loginText}>create account</Text>
       {/* your login form inputs and submit button */}
+      </View>
       <View style={[styles.form]}>
+      <Input
+        label="username"
+        value={email}
+        onChangeText={setEmail}
+        placeholder="Enter your email"
+      />
+      <Input
+        label="Fiste Name"
+        value={email}
+        onChangeText={setEmail}
+        placeholder="Enter your email"
+      />
+      <Input
+        label="Last Name"
+        value={email}
+        onChangeText={setEmail}
+        placeholder="Enter your email"
+      />
+      <Input
+        label="Phone Number"
+        value={email}
+        onChangeText={setEmail}
+        placeholder="Enter your email"
+      />
       <Input
         label="Email"
         value={email}
@@ -55,16 +80,11 @@ const Signin: React.FC<SigninProps> = ({ style }) => {
         placeholder="Enter your email"
         secureTextEntry={true}
       />
-       <MyLink
-          title="Register instead"
-          onPress={() => navigation.navigate()}
-        />
-        <MyButton title="Sign in" onPress={() => navigation.navigate()} />
-         <View style={styles.buttons}>
-    
+       <MyButton title="Sign in" onPress={() => navigation.navigate()} style={[styles.buttons, style]} />
        
+         
       </View>
-      </View>
+      
       
     {/*<Image source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/Rectangle.jpg") }style={styles.Image}/>
     */}
@@ -76,6 +96,7 @@ const Signin: React.FC<SigninProps> = ({ style }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection:'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: "#FFFFFF",
@@ -90,31 +111,37 @@ const styles = StyleSheet.create({
   form: {
     marginBottom: 20,
     flexDirection: "column",
+    position:'relative',
    // borderRadius: 20,
    // overflow: 'hidden',
   },
   buttons: {
-    backgroundColor:"#fdfd",
-    width: 260,
-    alignSelf: "center",
+    backgroundColor: '#333333',
+    position: 'absolute',
+  width: 146,
+  height: 46,
+  left: 119,
+  top: 597,
+  borderRadius: 8,
+  alignItems:'center'
 
   },
   logoContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
+    flexDirection:'row',
+    alignItems: 'baseline',
+    justifyContent: 'flex-start',
+    
     // add any other styles for your logo container
   },
   logo: {
-    width: 100,
-    height: 100,
+    
     resizeMode:'stretch',
     // add any other styles for your logo image
   },
   loginText: {
     fontSize: 36,
     fontWeight: 'bold',
-    marginBottom: 20,
+
     alignSelf:'center'
     // add any other styles for your login text
   },
@@ -127,4 +154,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default Signin;
+export default register;

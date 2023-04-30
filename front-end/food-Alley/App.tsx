@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Login from "./src/screens/login/login";
+import Register from "./src/screens/Register/Register";
 import logo from "./assets/logo.png";
 
 
@@ -13,10 +13,10 @@ function App() {
       <Stack.Navigator >
         <Stack.Screen
           name="Login"
-          component={Login}
+          component={Register}
         
         />
-        <Stack.Screen name="Signin" component={Login} />
+        <Stack.Screen name="Signin" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );
