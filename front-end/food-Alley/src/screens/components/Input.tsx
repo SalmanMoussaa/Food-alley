@@ -1,20 +1,47 @@
-import * as React from 'react';
+
+import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
-interface Props {
+import {  Button, StyleSheet, View } from "react-native";
+
+
+type Props = {
+    label: string;
     value: string;
-    label:string;
-    onchangeText:string;
-  }
-const Input : React.FC<Props> = ({ value , label , onchangeText }) =>{
-  const [text, setText] = React.useState("");
-
-  return (
-    <TextInput
-      label={label}
-      value={value}
-      onChangeText={text => setText(onchangeText)}
-    />
-  );
-};
-
+    onChangeText: (text: string) => void;
+    placeHolder:string
+    secureTextEntry:boolean
+  };
+  
+  const Input: React.FC<Props> = ({ label, value, placeHolder ,onChangeText ,secureTextEntry }) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const [text, setText] = React.useState("");
+    const handleFocus = () => setIsFocused(true);
+    const handleBlur = () => setIsFocused(false);
+  
+    return (
+      <View style={styles.container}>
+        <TextInput
+          label={label}
+          value={value}
+          placeholder={placeHolder}
+          onChangeText={onChangeText}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          style={styles.input}
+          secureTextEntry={secureTextEntry}
+          left={<TextInput.Icon name="email" />}
+        />
+      </View>
+    );
+  };
+  
+  const styles = StyleSheet.create({
+    container: {
+      width: 352,
+      marginVertical: 12,
+    },
+    input: {
+      backgroundColor: '#D9D9D9',
+    },
+  });
 export default Input;

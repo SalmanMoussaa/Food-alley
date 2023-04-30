@@ -17,7 +17,7 @@ const Link: React.FC<LinkProps> = ({ title, onPress, style }) => {
 
 const styles = StyleSheet.create({
   link: {
-    color: "#D43325",
+    color: "#FE5932",
     fontSize: 18,
     textDecorationLine: "underline",
   },

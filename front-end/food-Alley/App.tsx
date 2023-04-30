@@ -1,39 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native';
-import Buttons from "./src/screens/components/Button";
-import Input from './src/screens/components/Input';
-import Svg from './src/screens/components/Svgbottom';
-import Search from "./src/screens/components/Searchbarcomp";
+import * as React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import Login from "./src/screens/login/login";
 
-export default function App() {
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {
-        <><Input
-        txt='salman'
-        label="Phone number"
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Register">
+        <Stack.Screen
+          name="Register"
+          component={Login}
         
-       
-      /><Search/>
-      <Buttons title="Press me" onPress={() => console.log("salman  vcpressed")} />
-     
-     <Svg width={393} height={1455} />
-      </>
-      } 
-    </SafeAreaView>
-    
+        />
+        <Stack.Screen name="Signin" component={Login} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
- 
-
-  container: {
-    
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
