@@ -5,6 +5,7 @@ import Input from "../components/Input";
 import MyButton from "../components/Button";
 import MyLink from "../components/Link";
 import SvgBottom from '../components/Svgbottom';
+import Items from '../components/FoodItem';
 
 
 
@@ -80,8 +81,14 @@ const register: React.FC<registerProps> = ({ style }) => {
         placeholder="Enter your email"
         secureTextEntry={true}
       />
-       <MyButton title="Sign in" onPress={() => navigation.navigate()} style={[styles.buttons, style]} />
+      <Items name={'salman'} image={undefined} onPress={function (): void {
+          throw new Error('Function not implemented.');
+        } } onHeartPress={function (): void {
+          throw new Error('Function not implemented.');
+        } } isFavorite={false}/>
        
+       
+
          
       </View>
       
