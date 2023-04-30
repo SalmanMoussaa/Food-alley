@@ -7,6 +7,9 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeIngredientController;
 use App\Http\Controller\orderitemsController;
 use App\Http\Controllers\AllergyController;
+use App\Http\Controllers\OpenAIController;
+
+
 
 
 
@@ -77,3 +80,6 @@ Route::get('/restricted-food/{id}', 'RestrictedFoodController@show');
 Route::post('/restricted-food', 'RestrictedFoodController@store');
 Route::put('/restricted-food/{id}', 'RestrictedFoodController@update');
 Route::delete('/restricted-food/{id}', 'RestrictedFoodController@destroy');
+
+Route::post('/generate-text-completion', [OpenAIController::class, 'generateTextCompletion'])->name('generate-text-completion');
+
