@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { TextInput } from 'react-native-paper';
 interface Props {
-    txt: string;
+    value: string;
     label:string;
+    onchangeText:string;
   }
-const Input : React.FC<Props> = ({ txt  }) =>{
+const Input : React.FC<Props> = ({ value , label , onchangeText }) =>{
   const [text, setText] = React.useState("");
 
   return (
     <TextInput
-      label={txt}
-      value={text}
-      onChangeText={text => setText(text)}
+      label={label}
+      value={value}
+      onChangeText={text => setText(onchangeText)}
     />
   );
 };
