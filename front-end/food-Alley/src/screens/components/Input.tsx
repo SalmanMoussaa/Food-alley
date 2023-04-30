@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
 import {  Button, StyleSheet, View } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 type Props = {
@@ -39,6 +40,8 @@ type Props = {
     container: {
       width: 352,
       marginVertical: 12,
+      borderRadius:10,
+      overflow: 'hidden'
     },
     input: {
       backgroundColor: '#D9D9D9',

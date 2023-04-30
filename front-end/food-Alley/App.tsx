@@ -2,6 +2,7 @@ import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Login from "./src/screens/login/login";
+import logo from "./assets/logo.png";
 
 
 const Stack = createStackNavigator();
@@ -9,9 +10,9 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator >
         <Stack.Screen
-          name="Register"
+          name="Login"
           component={Login}
         
         />
