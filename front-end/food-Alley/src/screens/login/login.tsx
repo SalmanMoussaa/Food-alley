@@ -59,9 +59,8 @@ const Signin: React.FC<SigninProps> = ({ style }) => {
           title="Register instead"
           onPress={() => navigation.navigate()}
         />
-        <MyButton title="Sign in" onPress={() => navigation.navigate()} />
          <View style={styles.buttons}>
-    
+    <MyButton title="Sign in" onPress={() => navigation.navigate()} />
        
       </View>
       </View>
