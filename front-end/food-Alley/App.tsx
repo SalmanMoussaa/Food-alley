@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Register from "./src/screens/Register/Register";
 import logo from "./assets/logo.png";
+import Kitchenscomponent from "./src/screens/components/Kitchenscomponent";
 
 
 const Stack = createStackNavigator();
@@ -13,11 +14,14 @@ function App() {
       <Stack.Navigator >
         <Stack.Screen
           name="Login"
-          component={Register}
+          component={Kitchenscomponent}
         
         />
-        <Stack.Screen name="Signin" component={Register} />
-      </Stack.Navigator>
+        <Stack.Screen name="Signin" getComponent={Kitchenscomponent} />
+  </Stack.Navigator>
+  
+       
+
     </NavigationContainer>
   );
 }

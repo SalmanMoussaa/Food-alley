@@ -5,7 +5,7 @@ import Input from "../components/Input";
 import MyButton from "../components/Button";
 import MyLink from "../components/Link";
 import SvgBottom from '../components/Svgbottom';
-import Discount from '../components/Discount';
+import Kitchenscomponent from '../components/Kitchenscomponent';
 
 
 
@@ -81,13 +81,12 @@ const register: React.FC<registerProps> = ({ style }) => {
         placeholder="Enter your email"
         secureTextEntry={true}
       />
-      <Discount discount={''} image={''}/>
+    
        
        
 
          
       </View>
-      
       
     {/*<Image source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/Rectangle.jpg") }style={styles.Image}/>
     */}
