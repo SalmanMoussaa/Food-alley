@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Register from "./src/screens/Register/Register";
 import logo from "./assets/logo.png";
-import Kitchenscomponent from "./src/screens/components/Kitchenscomponent";
+import Kitchenscomponent from "./src/screens/components/kitchenpagecomp";
 
 
 const Stack = createStackNavigator();
@@ -17,7 +17,7 @@ function App() {
           component={Kitchenscomponent}
         
         />
-        <Stack.Screen name="Signin" getComponent={Kitchenscomponent} />
+        <Stack.Screen name="Signin" component={Kitchenscomponent} />
   </Stack.Navigator>
   
        

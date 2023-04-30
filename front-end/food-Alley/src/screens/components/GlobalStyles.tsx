@@ -7,6 +7,7 @@ export const FontFamily = {
 /* font sizes */
 export const FontSize = {
   size_sm: 14,
+  size_base: 16,
 };
 /* Colors */
 export const Color = {
@@ -16,9 +17,10 @@ export const Color = {
 };
 /* border radiuses */
 export const Border = {
-  br_65xl: 84,
-  br_4xl: 23,
+  br_42xl: 61,
   br_7xs: 6,
   br_37xl: 56,
+  br_65xl: 84,
+  br_4xl: 23,
   
 };
