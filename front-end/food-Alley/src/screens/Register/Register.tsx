@@ -1,159 +1,198 @@
-import React, { useState } from 'react';
-import { Image, View, StyleSheet, StyleProp, ViewStyle ,Text} from "react-native";
+import * as React from "react";
+import { View, Image, StyleSheet, Pressable, Text } from "react-native";
+import { TextInput as RNPTextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import Input from "../components/Input";
-import MyButton from "../components/Button";
-import MyLink from "../components/Link";
-import SvgBottom from '../components/Svgbottom';
-import Kitchenscomponent from '../components/Kitchenscomponent';
+import { Border, FontFamily, FontSize, Color } from "../components/GlobalStyles";
 
-
-
-
-interface registerProps {
-  style?: StyleProp<ViewStyle>;
-}
-
-
-const register: React.FC<registerProps> = ({ style }) => {
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [repassword, resetPassword] = useState('');
-      
-    
+const Register = () => {
   const navigation = useNavigation();
-  
 
   return (
-    <View style={[styles.container, style]}>
-        
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/arrow.png")}
+    <View style={styles.register}>
+      <Image
+        style={styles.registerChild}
+        resizeMode="cover"
+        source={require("../assets/rectangle-13.png")}
+      />
+      <View style={styles.rectangleParent}>
+        <RNPTextInput
+          style={[styles.frameChild, styles.frameChildLayout]}
+          placeholder="username"
+          label="username"
+          error
+          mode="outlined"
+          left={
+            <RNPTextInput.Icon
+              style={{ marginTop: "50%" }}
+              name="account-box-outline"
+            />
+          }
+          theme={{ colors: { background: "#d9d9d9" } }}
         />
-      
-      <Text style={styles.loginText}>create account</Text>
-      {/* your login form inputs and submit button */}
+        <RNPTextInput
+          style={[styles.frameItem, styles.frameChildLayout]}
+          placeholder="FirstName"
+          label="FirstName"
+          error
+          mode="outlined"
+          left={
+            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="account" />
+          }
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.frameInner, styles.frameChildLayout]}
+          placeholder="LastName"
+          label="LastName"
+          error
+          mode="outlined"
+          left={
+            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="account" />
+          }
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.rectangleRnptextinput, styles.frameChildLayout]}
+          placeholder="Phone Number"
+          label="Phone Number"
+          error
+          mode="outlined"
+          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="phone" />}
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.frameChild1, styles.frameChildLayout]}
+          placeholder="Email"
+          label="Email"
+          error
+          mode="outlined"
+          left={
+            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="email-box" />
+          }
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.frameChild2, styles.frameChildLayout]}
+          placeholder="password"
+          label="Password"
+          error
+          mode="outlined"
+          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.frameChild3, styles.frameChildLayout]}
+          placeholder="Re-enter Password"
+          label="Re-enter Password"
+          error
+          mode="outlined"
+          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
       </View>
-      <View style={[styles.form]}>
-      <Input
-        label="username"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
-      />
-      <Input
-        label="Fiste Name"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
-      />
-      <Input
-        label="Last Name"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
-      />
-      <Input
-        label="Phone Number"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
-      />
-      <Input
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
-      />
-      <Input
-        label="password"
-        value={password}
-        onChangeText={setPassword}
-        placeholder="Enter your email"
-        secureTextEntry={true}
-      />
-      <Input
-        label="Re-enter password"
-        value={repassword}
-        onChangeText={resetPassword}
-        placeholder="Enter your email"
-        secureTextEntry={true}
-      />
-    
-       
-       
-
-         
-      </View>
-      
-    {/*<Image source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/Rectangle.jpg") }style={styles.Image}/>
-    */}
-     
+      <Pressable style={styles.registerItem} />
+      <Text style={[styles.register1, styles.register1Typo]}>register</Text>
+      <Text style={[styles.createAccount, styles.register1Typo]}>
+        create account
+      </Text>
+      <Pressable style={styles.arrowLeft3} onPress={() => navigation.goBack()}>
+        <Image
+          style={styles.icon}
+          resizeMode="cover"
+          source={require("../assets/arrowleft-3.png")}
+        />
+      </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  frameChildLayout: {
+    height: 53,
+    width: 336,
+    borderRadius: Border.br_3xs,
+    left: 0,
+    position: "absolute",
+  },
+  register1Typo: {
+    textAlign: "left",
+    fontFamily: FontFamily.interExtrabold,
+    fontWeight: "800",
+    fontSize: FontSize.size_5xl,
+    position: "absolute",
+  },
+  registerChild: {
+    top: 620,
+    width: 393,
+    height: 232,
+    left: 0,
+    position: "absolute",
+  },
+  frameChild: {
+    top: 4,
+  },
+  frameItem: {
+    top: 77,
+  },
+  frameInner: {
+    top: 150,
+  },
+  rectangleRnptextinput: {
+    top: 223,
+  },
+  frameChild1: {
+    top: 296,
+  },
+  frameChild2: {
+    top: 369,
+  },
+  frameChild3: {
+    top: 442,
+  },
+  rectangleParent: {
+    top: 183,
+    left: 24,
+    width: 346,
+    height: 333,
+    position: "absolute",
+  },
+  registerItem: {
+    top: 708,
+    left: 119,
+    borderRadius: Border.br_5xs,
+    backgroundColor: Color.darkGray,
+    width: 146,
+    height: 46,
+    position: "absolute",
+  },
+  register1: {
+    top: 716,
+    left: 145,
+    color: Color.wFBaseWhite,
+  },
+  createAccount: {
+    top: 49,
+    left: 107,
+    color: Color.black,
+  },
+  icon: {
+    height: "100%",
+    width: "100%",
+  },
+  arrowLeft3: {
+    left: 28,
+    top: 38,
+    width: 50,
+    height: 50,
+    position: "absolute",
+  },
+  register: {
+    backgroundColor: Color.wFBaseWhite,
     flex: 1,
-    flexDirection:'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: "#FFFFFF",
+    height: 852,
+    overflow: "hidden",
+    width: "100%",
   },
-  
-  heading: {
-    width: 260,
-    height: 30,
-    marginBottom: 40,
-    marginTop: 20,
-  },
-  form: {
-    marginBottom: 20,
-    flexDirection: "column",
-    position:'relative',
-   // borderRadius: 20,
-   // overflow: 'hidden',
-  },
-  buttons: {
-    backgroundColor: '#333333',
-    position: 'absolute',
-  width: 146,
-  height: 46,
-  left: 119,
-  top: 597,
-  borderRadius: 8,
-  alignItems:'center'
-
-  },
-  logoContainer: {
-    flexDirection:'row',
-    alignItems: 'baseline',
-    justifyContent: 'flex-start',
-    
-    // add any other styles for your logo container
-  },
-  logo: {
-    
-    resizeMode:'stretch',
-    // add any other styles for your logo image
-  },
-  loginText: {
-    fontSize: 36,
-    fontWeight: 'bold',
-
-    alignSelf:'center'
-    // add any other styles for your login text
-  },
-  Image:{
-    width: '100%',
-    
-    position: 'absolute',
-    bottom: 0,
-  }
-  
 });
 
-export default register;
+export default Register;
