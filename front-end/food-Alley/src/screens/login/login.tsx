@@ -7,18 +7,28 @@ import {
   Image,
   ImageSourcePropType,
   SafeAreaView,
+  TouchableOpacity
 } from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
 import logindesgin from "../../../assets/logindesgin.jpg";
 import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
-import axios from "axios";
+//import axios from "axios";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
-const API_BASE_URL = "http://127.0.0.1:8000"; 
+import { RouteProp } from '@react-navigation/native';
+
+
+
+
+//const API_BASE_URL = "http://127.0.0.1:8000"; 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  const navigation = useNavigation();
 
-  const handleLogin = async () => {
+
+  /*const handleLogin = async () => {
     try {
       const response = await axios.post(`${API_BASE_URL}/api/login`, {
         email,
@@ -30,10 +40,11 @@ const Login = () => {
       console.log(error);
       // Handle the error (e.g., show an error message)
     }
-  };
+  };*/
+
 
   return (
-    <SafeAreaView style={styles.login}>
+    <View >
       <View style={styles.rectangleParent}>
         <RNPTextInput
           style={[styles.frameChild, styles.frameLayout]}
@@ -72,22 +83,24 @@ const Login = () => {
           styles.rectangleLayout,
           pressed && { transform: [{ scale: 0.9 }] }
         ]}
-        onPress={handleLogin}
+        /*onPress={handleLogin}*/
       >
         <View style={[styles.rectangleView, styles.rectangleLayout]} />
         <Text style={[styles.login2, styles.loginFlexBox]}>Login</Text>
       </Pressable>
       <Text style={[styles.dontHaveAnContainer, styles.loginFlexBox]}>
         <Text style={styles.dontHaveAn}>Don't have an account?</Text>
-        <Text style={styles.loginTypo}> Signup</Text>
+        <Text style={styles.loginTypo} onPress={() => navigation.replace("Register")}> Signup</Text>
       </Text>
       <Image
         style={styles.appLogo1}
         resizeMode="cover"
         source={require("../../../assets/logo.png") as ImageSourcePropType}
       />
-    </SafeAreaView>
+    </View>
+
   );
+  
 };
 
 const styles = StyleSheet.create({

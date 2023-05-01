@@ -1,16 +1,25 @@
 import * as React from "react";
-import { View, Image, StyleSheet, Pressable, Text, Dimensions } from "react-native";
+import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView } from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { Border, FontFamily, FontSize, Color } from "../components/GlobalStyles";
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NativeRouter, Route, Link } from "react-router-native";
 
 const Register = () => {
-  const navigation = useNavigation();
+  
+ const {goBack} = useNavigation();
+  const Stack = createNativeStackNavigator();
+const navigation = useNavigation();
+
+ 
   const { width, height } = Dimensions.get('window');
 
   return (
     <View style={styles.register}>
+      
+        
       <Image
         style={styles.registerChild}
         resizeMode="cover"
@@ -72,7 +81,9 @@ const Register = () => {
           source={require("../../../assets/arrow.png")}
         />
       </Pressable>
-    </View>
+     
+    
+   </View>
   );
 };
 
