@@ -5,6 +5,8 @@ import FoodItem from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
 import Discount from "../components/Discount";
 import Bar from "../components/bar";
+import Kitchenscomponent from "../components/Kitchenscomponent";
+
 const Kitchens = () => {
   return (
     <View style={styles.kitchenPage}>
@@ -18,12 +20,21 @@ const Kitchens = () => {
         <Searchbarcomp />
         </View>
       </View>
-      <View >
+      <View>
       <Image
+
+          style={[styles.kitchensicon]}
           resizeMode="cover"
-          source={require("../../../assets/Kitchens.png")as ImageSourcePropType}
+          source={require("../../../assets/kitchens.png")as ImageSourcePropType}
         />
+        
       </View>
+      <View style={styles.kitchenpagecomp}>
+          <Kitchenscomponent kitchenName={"abir "} slang={"salman"} imageSource={undefined}   />
+
+        </View>
+        <Bar/>
+
       </View>
 
 
@@ -40,6 +51,17 @@ kitchenPage:{
     width: "100%",
     height: 852,
     overflow: "hidden",
+  },
+  kitchenpagecomp:{
+    top:"15%",
+    left:"1%"
+    
+  },
+  kitchensicon:{
+    top: "200%",
+    width:"40%",
+    left: "1%",
+
   },
   search:{
     top: 0,

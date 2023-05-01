@@ -17,7 +17,7 @@ export const FontSize = {
 export const Color = {
   wFBaseWhite: "#fff",
   darkGray: "#333",
-  d9D9D9: "#900a3d",
+  d9D9D9: "#FE5932",
   d9D9D91: "#fe5932",
   black: "#000",
   tomato: "#fe5932",

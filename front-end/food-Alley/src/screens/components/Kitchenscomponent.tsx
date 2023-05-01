@@ -1,82 +1,84 @@
 import * as React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable } from "react-native";
-import { Border, Color, FontFamily, FontSize } from "./GlobalStyles";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { Color, Border, FontSize, FontFamily } from "./GlobalStyles";
 
-interface kitchencompProps {
+interface Props {
   kitchenName: string;
-  kitchenImage: any;
+  slang: string;
+  imageSource: any;
 }
 
-const Kitchenscomponent: React.FC<kitchencompProps> = ({
-  kitchenName,
-  kitchenImage,
-}) => {
+const FrameScreen = ({ kitchenName, slang, imageSource }: Props) => {
   return (
-    <Pressable style={styles.groupParent}>
+    <View style={styles.groupParent}>
       <View style={styles.groupChildPosition}>
         <View style={[styles.groupChild, styles.groupChildPosition]} />
-        <Text style={[styles.discount, styles.discountTypo]}>10% discount</Text>
-        <Image style={styles.groupItem} resizeMode="cover" source={kitchenImage} />
-      </View>
-      <View style={styles.groupChildPosition}>
-        <View style={[styles.groupChild, styles.groupChildPosition]} />
-        <Text style={[styles.discount1, styles.discountTypo]}>
-          10% discount
+        <Text style={[styles.mammaMiaBuonissimo, styles.italianKitchenFlexBox]}>
+          {slang}
         </Text>
-        <Text style={[styles.kitchenName, styles.discountTypo]}>
+        <Text style={[styles.italianKitchen, styles.italianKitchenFlexBox]}>
           {kitchenName}
         </Text>
+        <Image
+          style={styles.istockphoto1220017909612x612Icon}
+          resizeMode="cover"
+          source={imageSource}
+        />
       </View>
-    </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   groupChildPosition: {
-    width: 152,
+    width: 354,
     left: 0,
     top: 0,
     position: "absolute",
-    height: 78,
+    height: 111,
   },
-  discountTypo: {
-    width: 101,
+  italianKitchenFlexBox: {
     textAlign: "left",
-    fontFamily: FontFamily.interExtrabold,
-    fontWeight: "800",
-    fontSize: FontSize.size_sm,
-    left: 29,
-    top: 56,
+    color: Color.wFBaseWhite,
     position: "absolute",
   },
   groupChild: {
-    borderRadius: Border.br_4xl,
-    backgroundColor: Color.d9D9D91,
+    borderTopLeftRadius: Border.br_7xs,
+    borderTopRightRadius: Border.br_37xl,
+    borderBottomRightRadius: Border.br_37xl,
+    borderBottomLeftRadius: Border.br_7xs,
+    backgroundColor: Color.d9D9D9,
   },
-  discount: {
-    color: "#000",
+  mammaMiaBuonissimo: {
+    top: 74,
+    left: 24,
+    fontSize: FontSize.size_base,
+    fontFamily: FontFamily.itimRegular,
+    width: 174,
+    height: 19,
   },
-  groupItem: {
-    top: 12,
-    left: 2,
-    borderRadius: Border.br_65xl,
-    width: 147,
-    height: 37,
+  italianKitchen: {
+    top: 33,
+    left: 23,
+    fontSize: FontSize.size_5xl,
+    fontWeight: "800",
+    fontFamily: FontFamily.interExtrabold,
+    width: 172,
+    height: 30,
+  },
+  istockphoto1220017909612x612Icon: {
+    top: 10,
+    left: 251,
+    borderRadius: Border.br_42xl,
+    width: 90,
+    height: 92,
     position: "absolute",
-  },
-  discount1: {
-    color: Color.wFBaseWhite,
-  },
-  kitchenName: {
-    color: Color.wFBaseWhite,
-    top: 56,
-    left: 29,
   },
   groupParent: {
     flex: 1,
     width: "100%",
-    height: 78,
+    height: 111,
   },
 });
 
-export default Kitchenscomponent;
+export default FrameScreen;

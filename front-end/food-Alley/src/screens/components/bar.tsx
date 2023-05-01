@@ -60,11 +60,9 @@ const styles = StyleSheet.create({
   iconLayout: {
     height: 40,
     width: 40,
-    top:"50%",
-    display:"flex",
-    flexDirection:"column",
-
+    top:"-5%",
   
+    position: "absolute",
   },
   barChild: {
     
@@ -72,14 +70,14 @@ const styles = StyleSheet.create({
     
     width: "100%",
     height: 75,
+    top:"-3%",
     position: "absolute",
   },
   homeIcon: {
-    left: "20%",
+    left: "10%",
     borderRadius: Border.br_20xl,
   },
   menuIcon:{
-    
     left: "30%",
     
   },
@@ -87,12 +85,12 @@ const styles = StyleSheet.create({
     left: "60%",
   },
   settingsIcon: {
-    left: "70%",
+    left: "75%",
   },
   bar: {
     flex: 1,
     width: "100%",
-    top:"90%",
+    top:"88%",
     height: 65,
   },
 });
