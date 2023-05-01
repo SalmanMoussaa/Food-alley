@@ -1,13 +1,39 @@
-import  React from "react";
-import { View, StyleSheet, Text, Pressable, Image, ImageSourcePropType } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Pressable,
+  Image,
+  ImageSourcePropType,
+  SafeAreaView,
+} from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
+import logindesgin from "../../../assets/logindesgin.jpg";
 import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
-import logindesgin from '../../../assets/logindesgin.jpg';
+import axios from "axios";
 
+const API_BASE_URL = "http://127.0.0.1:8000"; 
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const signin = () => {
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/api/login`, {
+        email,
+        password,
+      });
+      const { token, user } = response.data;
+      // Do something with the token and user data (e.g., save them to AsyncStorage)
+    } catch (error) {
+      console.log(error);
+      // Handle the error (e.g., show an error message)
+    }
+  };
+
   return (
-    <View style={styles.login}>
+    <SafeAreaView style={styles.login}>
       <View style={styles.rectangleParent}>
         <RNPTextInput
           style={[styles.frameChild, styles.frameLayout]}
@@ -18,44 +44,49 @@ const signin = () => {
             <RNPTextInput.Icon style={{ marginTop: "50%" }} name="email-box" />
           }
           theme={{ colors: { background: "#d9d9d9" } }}
+          value={email}
+          onChangeText={setEmail}
         />
         <RNPTextInput
           style={[styles.frameItem, styles.frameLayout]}
-          placeholder="password"
-          label="password"
+          placeholder="Password"
+          label="Password"
           mode="outlined"
           left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
           theme={{ colors: { background: "#d9d9d9" } }}
-        />
-        <RNPTextInput
-          style={[styles.frameInner, styles.frameLayout]}
-          placeholder="Re-enter password"
-          label="Re-enter password"
-          mode="outlined"
-          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
-          theme={{ colors: { background: "#d9d9d9" } }}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
         />
       </View>
-      <Text style={[styles.login1, styles.loginFlexBox]}>Login</Text>
-      <Pressable style={[styles.rectangleGroup, styles.rectangleLayout]}>
-        <View style={[styles.rectangleView, styles.rectangleLayout]} />
-        <Text style={[styles.login2, styles.loginFlexBox]}>login</Text>
-      </Pressable>
+
       <Image
         style={styles.loginChild}
         resizeMode="cover"
         source={logindesgin}
       />
+      <Text style={[styles.login1, styles.loginFlexBox]}>Login</Text>
+      <Pressable
+        style={({ pressed }) => [
+          styles.rectangleGroup,
+          styles.rectangleLayout,
+          pressed && { transform: [{ scale: 0.9 }] }
+        ]}
+        onPress={handleLogin}
+      >
+        <View style={[styles.rectangleView, styles.rectangleLayout]} />
+        <Text style={[styles.login2, styles.loginFlexBox]}>Login</Text>
+      </Pressable>
       <Text style={[styles.dontHaveAnContainer, styles.loginFlexBox]}>
-        <Text style={styles.dontHaveAn}>don’t have an account?</Text>
-        <Text style={styles.loginTypo}> signup</Text>
+        <Text style={styles.dontHaveAn}>Don't have an account?</Text>
+        <Text style={styles.loginTypo}> Signup</Text>
       </Text>
       <Image
         style={styles.appLogo1}
         resizeMode="cover"
         source={require("../../../assets/logo.png") as ImageSourcePropType}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -121,8 +152,8 @@ const styles = StyleSheet.create({
   },
   loginChild: {
     top: 620,
-    width: 393,
-    height: 232,
+    width: 430,
+    height: 202,
     left: 0,
     position: "absolute",
   },
@@ -156,4 +187,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default signin;
+export default Login;

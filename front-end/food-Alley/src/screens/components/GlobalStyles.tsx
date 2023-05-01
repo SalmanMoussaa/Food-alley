@@ -1,4 +1,6 @@
 /* fonts */
+import * as Font from 'expo-font';
+
 export const FontFamily = {
   interExtrabold: "Inter_extrabold",
   interRegular: "Inter_regular",
@@ -23,7 +25,7 @@ export const Color = {
 /* border radiuses */
 export const Border = {
   br_5xs: 8,
-  br_3xs: 10,
+  br_3xs: 1,
   br_20xl: 39,
   br_42xl: 61,
   br_7xs: 6,
