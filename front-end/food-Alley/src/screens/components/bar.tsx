@@ -22,34 +22,34 @@ const Bar = () => {
       <Image
         style={styles.barChild}
         resizeMode="cover"
-        source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/Rectangle.png")}
+        source={require("../../../assets/Rectangle.png")}
       />
       <Pressable onPress={handleHomePress}>
       <Image
         style={[styles.homeIcon, styles.iconLayout]}
         resizeMode="cover"
-        source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/home.png")}
+        source={require("../../../assets/home.png")}
       />
       </Pressable>
       <Pressable onPress={handleMenuPress}>
       <Image
         style={[styles.menuIcon , styles.iconLayout]}
         resizeMode="cover"
-        source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/menu.png")}
+        source={require("../../../assets/menu.png")}
       />
       </Pressable>
       <Pressable onPress={handleMoodtestPress}>
         <Image
           style={[styles.moodtestIcon, styles.iconLayout]}
           resizeMode="cover"
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/moodtest.png")}
+          source={require("../../../assets/moodtest.png")}
         />
       </Pressable>
       <Pressable onPress={handleSettingsPress}>
         <Image
           style={[styles.settingsIcon, styles.iconLayout]}
           resizeMode="cover"
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/settings.png")}
+          source={require("../../../assets/settings.png")}
         />
       </Pressable>
     </View>

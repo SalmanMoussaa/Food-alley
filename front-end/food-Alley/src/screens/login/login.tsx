@@ -1,7 +1,9 @@
 import  React from "react";
-import { View, StyleSheet, Text, Pressable, Image } from "react-native";
+import { View, StyleSheet, Text, Pressable, Image, ImageSourcePropType } from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
 import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
+import logindesgin from '../../../assets/logindesgin.jpg';
+
 
 const signin = () => {
   return (
@@ -42,7 +44,7 @@ const signin = () => {
       <Image
         style={styles.loginChild}
         resizeMode="cover"
-        source={require("")}
+        source={logindesgin}
       />
       <Text style={[styles.dontHaveAnContainer, styles.loginFlexBox]}>
         <Text style={styles.dontHaveAn}>don’t have an account?</Text>
@@ -51,7 +53,7 @@ const signin = () => {
       <Image
         style={styles.appLogo1}
         resizeMode="cover"
-        source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/logo.png")}
+        source={require("../../../assets/logo.png") as ImageSourcePropType}
       />
     </View>
   );
