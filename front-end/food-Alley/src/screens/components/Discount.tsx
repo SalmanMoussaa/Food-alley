@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Pressable, StyleSheet, View, Text, Image } from "react-native";
 import { FontFamily, FontSize, Border, Color } from "./GlobalStyles";
+import { green100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 
 interface DiscountProps {
   discount: string;
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: 78,
+    
   },
 });
 

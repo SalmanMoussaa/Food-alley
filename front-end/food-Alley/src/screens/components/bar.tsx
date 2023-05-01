@@ -58,34 +58,41 @@ const Bar = () => {
 
 const styles = StyleSheet.create({
   iconLayout: {
-    height: 30,
-    width: 30,
-    top: 21,
-    position: "absolute",
+    height: 40,
+    width: 40,
+    top:"50%",
+    display:"flex",
+    flexDirection:"column",
+
+  
   },
   barChild: {
-    top: -5,
-    left: -28,
-    width: 403,
+    
+    left: 0,
+    
+    width: "100%",
     height: 75,
     position: "absolute",
   },
   homeIcon: {
-    left: 55,
+    left: "20%",
     borderRadius: Border.br_20xl,
   },
   menuIcon:{
-    left: 111,
+    
+    left: "30%",
+    
   },
   moodtestIcon: {
-    left: 201,
+    left: "60%",
   },
   settingsIcon: {
-    left: 257,
+    left: "70%",
   },
   bar: {
     flex: 1,
     width: "100%",
+    top:"90%",
     height: 65,
   },
 });
