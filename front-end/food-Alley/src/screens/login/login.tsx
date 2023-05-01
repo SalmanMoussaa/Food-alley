@@ -1,129 +1,157 @@
-import React, { useState } from 'react';
-import { Image, View, StyleSheet, StyleProp, ViewStyle ,Text} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Input from "../components/Input";
-import MyButton from "../components/Button";
-import MyLink from "../components/Link";
-import SvgBottom from '../components/Svgbottom';
+import  React from "react";
+import { View, StyleSheet, Text, Pressable, Image } from "react-native";
+import { TextInput as RNPTextInput } from "react-native-paper";
+import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
 
-
-
-
-interface SigninProps {
-  style?: StyleProp<ViewStyle>;
-}
-
-
-const Signin: React.FC<SigninProps> = ({ style }) => {
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [repassword, resetPassword] = useState('');
-      
-    
-  const navigation = useNavigation();
-  
-
+const signin = () => {
   return (
-    <View style={[styles.container, style]}>
-        
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/logo.png")}
+    <View style={styles.login}>
+      <View style={styles.rectangleParent}>
+        <RNPTextInput
+          style={[styles.frameChild, styles.frameLayout]}
+          placeholder="Email"
+          label="  Email"
+          mode="outlined"
+          left={
+            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="email-box" />
+          }
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.frameItem, styles.frameLayout]}
+          placeholder="password"
+          label="password"
+          mode="outlined"
+          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
+          theme={{ colors: { background: "#d9d9d9" } }}
+        />
+        <RNPTextInput
+          style={[styles.frameInner, styles.frameLayout]}
+          placeholder="Re-enter password"
+          label="Re-enter password"
+          mode="outlined"
+          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
+          theme={{ colors: { background: "#d9d9d9" } }}
         />
       </View>
-      <Text style={styles.loginText}>Login</Text>
-      {/* your login form inputs and submit button */}
-      <View style={[styles.form]}>
-      <Input
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Enter your email"
+      <Text style={[styles.login1, styles.loginFlexBox]}>Login</Text>
+      <Pressable style={[styles.rectangleGroup, styles.rectangleLayout]}>
+        <View style={[styles.rectangleView, styles.rectangleLayout]} />
+        <Text style={[styles.login2, styles.loginFlexBox]}>login</Text>
+      </Pressable>
+      <Image
+        style={styles.loginChild}
+        resizeMode="cover"
+        source={require("")}
       />
-      <Input
-        label="password"
-        value={password}
-        onChangeText={setPassword}
-        placeholder="Enter your email"
-        secureTextEntry={true}
+      <Text style={[styles.dontHaveAnContainer, styles.loginFlexBox]}>
+        <Text style={styles.dontHaveAn}>don’t have an account?</Text>
+        <Text style={styles.loginTypo}> signup</Text>
+      </Text>
+      <Image
+        style={styles.appLogo1}
+        resizeMode="cover"
+        source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/logo.png")}
       />
-      <Input
-        label="Re-enter password"
-        value={repassword}
-        onChangeText={resetPassword}
-        placeholder="Enter your email"
-        secureTextEntry={true}
-      />
-       <MyLink
-          title="Register instead"
-          onPress={() => navigation.navigate()}
-        />
-         <View style={styles.buttons}>
-    <MyButton title="Sign in" onPress={() => navigation.navigate()} />
-       
-      </View>
-      </View>
-      
-    {/*<Image source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/Rectangle.jpg") }style={styles.Image}/>
-    */}
-     
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: "#FFFFFF",
+  frameLayout: {
+    height: 53,
+    width: 336,
+    borderRadius: Border.br_3xs,
+    left: 0,
+    position: "absolute",
   },
-  
-  heading: {
-    width: 260,
-    height: 30,
-    marginBottom: 40,
-    marginTop: 20,
+  loginFlexBox: {
+    textAlign: "left",
+    position: "absolute",
   },
-  form: {
-    marginBottom: 20,
-    flexDirection: "column",
-   // borderRadius: 20,
-   // overflow: 'hidden',
+  rectangleLayout: {
+    height: 46,
+    width: 146,
+    position: "absolute",
   },
-  buttons: {
-    backgroundColor:"#fdfd",
-    width: 260,
-    alignSelf: "center",
-
+  frameChild: {
+    top: 4,
   },
-  logoContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-    // add any other styles for your logo container
+  frameItem: {
+    top: 77,
   },
-  logo: {
-    width: 100,
-    height: 100,
-    resizeMode:'stretch',
-    // add any other styles for your logo image
+  frameInner: {
+    top: 150,
   },
-  loginText: {
+  rectangleParent: {
+    top: 366,
+    left: 24,
+    width: 346,
+    height: 230,
+    position: "absolute",
+  },
+  login1: {
+    top: 225,
+    left: 142,
     fontSize: 36,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    alignSelf:'center'
-    // add any other styles for your login text
+    color: Color.black,
+    textAlign: "left",
+    fontFamily: FontFamily.interExtrabold,
+    fontWeight: "800",
   },
-  Image:{
-    width: '100%',
-    
-    position: 'absolute',
-    bottom: 0,
-  }
-  
+  rectangleView: {
+    top: 0,
+    borderRadius: Border.br_5xs,
+    backgroundColor: Color.darkGray,
+    left: 0,
+  },
+  login2: {
+    top: 8,
+    left: 43,
+    fontSize: FontSize.size_5xl,
+    color: Color.wFBaseWhite,
+    fontFamily: FontFamily.interExtrabold,
+    fontWeight: "800",
+  },
+  rectangleGroup: {
+    top: 597,
+    left: 119,
+  },
+  loginChild: {
+    top: 620,
+    width: 393,
+    height: 232,
+    left: 0,
+    position: "absolute",
+  },
+  dontHaveAn: {
+    fontFamily: FontFamily.interRegular,
+  },
+  loginTypo: {
+    fontFamily: FontFamily.interExtrabold,
+    fontWeight: "800",
+  },
+  dontHaveAnContainer: {
+    top: 717,
+    left: 75,
+    fontSize: FontSize.size_base,
+    color: Color.black,
+    textAlign: "left",
+  },
+  appLogo1: {
+    top: 24,
+    left: 99,
+    width: 194,
+    height: 201,
+    position: "absolute",
+  },
+  login: {
+    backgroundColor: Color.wFBaseWhite,
+    flex: 1,
+    width: "100%",
+    height: 852,
+    overflow: "hidden",
+  },
 });
 
-export default Signin;
+export default signin;
