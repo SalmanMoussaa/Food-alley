@@ -17,12 +17,12 @@ const kitchenpagecomp = () => {
         <Image
           style={styles.resturantImgIcon}
           resizeMode="cover"
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/americanKitchen.png")}
+          source={require("../../../assets/americanKitchen.png")}
         />
         <Image
           style={styles.arrowIcon}
           resizeMode="cover"
-          source={require("C:/Users/abirm/OneDrive/Desktop/Food-Alley/front-end/food-Alley/assets/arrow.png")}
+          source={require("../../../assets/arrowwhite.png")}
         />
       </View>
     </View>
@@ -32,7 +32,7 @@ const kitchenpagecomp = () => {
 const styles = StyleSheet.create({
   groupChildPosition: {
     width: 354,
-    left: 0,
+    left: "1%",
     top: 0,
     position: "absolute",
   },
@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   arrowIcon: {
-    width: 50,
-    height: 50,
-    left: 0,
-    top: 0,
+    
+    
+    left: "3  %",
+    top: 10,
     position: "absolute",
   },
   rectangleParent: {

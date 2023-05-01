@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Register from "./src/screens/kitchens/Kitchens";
+import Register from "./src/screens/Kitchen/Kitchen";
 import Login from"./src/screens/login/Login";
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 //import logo from "./assets/logo.png";
