@@ -8,14 +8,31 @@ import Bar from "../components/bar";
 const Kitchens = () => {
   return (
     <View style={styles.kitchenPage}>
-
+      <View style={[styles.ellipseParent, styles.frameItemLayout]}>
+        <Image
+          style={styles.frameChild}
+          resizeMode="cover"
+          source={require("../../../assets/Ellipse 2.png")as ImageSourcePropType}
+        />
+        <View style={[styles.search]}>
+        <Searchbarcomp />
+        </View>
+      </View>
+      <View >
+      <Image
+          resizeMode="cover"
+          source={require("../../../assets/Kitchens.png")as ImageSourcePropType}
+        />
+      </View>
       </View>
 
 
 
   );
 };
+
 const styles = StyleSheet.create({
+
 kitchenPage:{
   
     backgroundColor: Color.wFBaseWhite,
@@ -24,8 +41,25 @@ kitchenPage:{
     height: 852,
     overflow: "hidden",
   },
+  search:{
+    top: 0,
+    width: 349,
+    left: 24,
+  },
+  ellipseParent: {
+    top: 0,
+    width: "100%",
+    left: 0,
+  },frameChild: {
+    top: 0,
+    left: 299,
+    width: 50,
+    height: 50,
+    position: "absolute",
+  },frameItemLayout: {
+    height: 40,
+    position: "absolute",
+  },
 
-}
-
-)
+});
 export default Kitchens;
