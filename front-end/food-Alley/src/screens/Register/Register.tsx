@@ -1,93 +1,63 @@
 import * as React from "react";
-import { View, Image, StyleSheet, Pressable, Text } from "react-native";
+import { View, Image, StyleSheet, Pressable, Text, Dimensions } from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Border, FontFamily, FontSize, Color } from "../components/GlobalStyles";
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 const Register = () => {
   const navigation = useNavigation();
+  const { width, height } = Dimensions.get('window');
 
   return (
     <View style={styles.register}>
       <Image
         style={styles.registerChild}
         resizeMode="cover"
-        source={require("../assets/rectangle-13.png")}
+        source={require("../../../assets/logindesgin.jpg")}
       />
       <View style={styles.rectangleParent}>
         <RNPTextInput
           style={[styles.frameChild, styles.frameChildLayout]}
           placeholder="username"
           label="username"
-          error
-          mode="outlined"
-          left={
-            <RNPTextInput.Icon
-              style={{ marginTop: "50%" }}
-              name="account-box-outline"
-            />
-          }
-          theme={{ colors: { background: "#d9d9d9" } }}
+        
         />
         <RNPTextInput
           style={[styles.frameItem, styles.frameChildLayout]}
           placeholder="FirstName"
           label="FirstName"
-          error
-          mode="outlined"
-          left={
-            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="account" />
-          }
-          theme={{ colors: { background: "#d9d9d9" } }}
+          
         />
         <RNPTextInput
           style={[styles.frameInner, styles.frameChildLayout]}
           placeholder="LastName"
           label="LastName"
-          error
-          mode="outlined"
-          left={
-            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="account" />
-          }
-          theme={{ colors: { background: "#d9d9d9" } }}
+          
         />
         <RNPTextInput
           style={[styles.rectangleRnptextinput, styles.frameChildLayout]}
           placeholder="Phone Number"
           label="Phone Number"
-          error
-          mode="outlined"
-          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="phone" />}
-          theme={{ colors: { background: "#d9d9d9" } }}
+          
         />
         <RNPTextInput
           style={[styles.frameChild1, styles.frameChildLayout]}
           placeholder="Email"
           label="Email"
-          error
-          mode="outlined"
-          left={
-            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="email-box" />
-          }
-          theme={{ colors: { background: "#d9d9d9" } }}
+          
         />
         <RNPTextInput
           style={[styles.frameChild2, styles.frameChildLayout]}
           placeholder="password"
           label="Password"
-          error
-          mode="outlined"
-          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
-          theme={{ colors: { background: "#d9d9d9" } }}
+          
         />
         <RNPTextInput
           style={[styles.frameChild3, styles.frameChildLayout]}
           placeholder="Re-enter Password"
           label="Re-enter Password"
-          error
-          mode="outlined"
-          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
-          theme={{ colors: { background: "#d9d9d9" } }}
+          
         />
       </View>
       <Pressable style={styles.registerItem} />
@@ -99,7 +69,7 @@ const Register = () => {
         <Image
           style={styles.icon}
           resizeMode="cover"
-          source={require("../assets/arrowleft-3.png")}
+          source={require("../../../assets/arrow.png")}
         />
       </Pressable>
     </View>
@@ -111,7 +81,7 @@ const styles = StyleSheet.create({
     height: 53,
     width: 336,
     borderRadius: Border.br_3xs,
-    left: 0,
+    left: 10,
     position: "absolute",
   },
   register1Typo: {
@@ -123,8 +93,8 @@ const styles = StyleSheet.create({
   },
   registerChild: {
     top: 620,
-    width: 393,
-    height: 232,
+    width: 430,
+    height: 279,
     left: 0,
     position: "absolute",
   },
@@ -151,7 +121,7 @@ const styles = StyleSheet.create({
   },
   rectangleParent: {
     top: 183,
-    left: 24,
+    left: 10,
     width: 346,
     height: 333,
     position: "absolute",
