@@ -10,9 +10,12 @@ export const FontFamily = {
 };
 /* font sizes */
 export const FontSize = {
+  size_mini: 15,
   size_sm: 14,
   size_base: 16,
   size_5xl: 24,
+  size_lg: 18,
+
 };
 /* Colors */
 export const Color = {
@@ -24,15 +27,18 @@ export const Color = {
   tomato: "#fe5932",
   wFBase300: "#e2e7f0",
   wFBase200: "#edf0f7"
+  ,  white: "#fff",
+
 };
 /* border radiuses */
 export const Border = {
-  br_5xs: 8,
-  br_3xs: 1,
-  br_20xl: 39,
+  br_3xs: 10,
   br_42xl: 61,
   br_7xs: 6,
   br_37xl: 56,
+  br_sm_3: 13,
+  br_5xs: 8,
+  br_20xl: 39,
   br_65xl: 84,
   br_4xl: 23,
   
