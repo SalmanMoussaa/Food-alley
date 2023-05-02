@@ -12,9 +12,33 @@ const Cart = () => {
     { value: "Beirut", label: "Beirut" },
     { value: "lebanon", label: "lebanon" },
 ]);
+const navigation = useNavigation();
     return(
 
-        <View><ProdcutinCart/></View>
+        <View style={styles.cart}>
+      <Image
+        style={styles.yourFoodCart}
+        resizeMode="cover"
+        source={require("../assets/your-food-cart.png")}
+      />
+      <Image
+        style={[styles.cartChild, styles.wrapperPosition]}
+        resizeMode="cover"
+        source={require("../assets/rectangle-52.png")}
+      />
+      <Image
+        style={[styles.line26Stroke, styles.wrapperPosition]}
+        resizeMode="cover"
+        source={require("../assets/line-26-stroke.png")}
+      />
+      <Pressable style={[styles.rectangleParent, styles.groupChildLayout]}>
+        <View style={[styles.groupChild, styles.groupChildLayout]} />
+        <Text style={[styles.placeOrder, styles.placeOrderTypo]}>
+          place order
+        </Text>
+      </Pressable>
+      
+      </View>
     );
 };
 export default Cart;
