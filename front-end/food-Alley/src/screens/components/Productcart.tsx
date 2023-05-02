@@ -76,6 +76,12 @@ productNameIcon: {
     height: 54,
     position: "absolute",
   },
+  prodcutincart: {
+    flex: 1,
+    width: "100%",
+    height: 69,
+  }
+
   
   
   });
