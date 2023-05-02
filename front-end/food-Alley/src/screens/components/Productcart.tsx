@@ -1,5 +1,14 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+  Text,
+  View,
+} from "react-native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Border } from "./GlobalStyles";
 const ProdcutinCart = () => {
     return (
