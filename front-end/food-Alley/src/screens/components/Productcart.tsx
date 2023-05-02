@@ -18,7 +18,7 @@ const ProdcutinCart = () => {
         <Image
           style={styles.prodcutincartChild}
           resizeMode="cover"
-          source={require("../assets/rectangle-49.png")}
+          source={require("../../../assets/Shapeprcart.png")}
         />
         <TouchableOpacity
           style={styles.x}
