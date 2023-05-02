@@ -36,3 +36,15 @@ const ProdcutinCart = () => {
       </View>
     );
   };
+  const styles = StyleSheet.create({
+    prodcutincartChild: {
+      top: 0,
+      left: 0,
+      width: 353,
+      position: "absolute",
+      height: 69,
+    
+    },
+  });
+  
+  export default ProdcutinCart;
