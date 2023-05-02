@@ -6,6 +6,7 @@ export const FontFamily = {
   interRegular: "Inter_regular",
   soraRegular: "Sora_regular",
   itimRegular: "Itim_regular",
+  indieFlowerRegular: "Indie Flower_regular"
 };
 /* font sizes */
 export const FontSize = {
@@ -21,6 +22,8 @@ export const Color = {
   d9D9D91: "#fe5932",
   black: "#000",
   tomato: "#fe5932",
+  wFBase300: "#e2e7f0",
+  wFBase200: "#edf0f7"
 };
 /* border radiuses */
 export const Border = {
