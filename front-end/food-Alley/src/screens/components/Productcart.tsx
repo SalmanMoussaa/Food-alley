@@ -10,6 +10,7 @@ import {
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "./GlobalStyles";
+import { Button } from "react-native-paper";
 const ProdcutinCart = () => {
     const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
@@ -25,16 +26,16 @@ const ProdcutinCart = () => {
           activeOpacity={0.2}
           onPress={() => navigation.toggleDrawer()}
         >
-          <Image
+          <Text
             style={styles.icon}
-            resizeMode="cover"
-            source={require("../assets/x.png")}
-          />
+          >
+            X
+            </Text>
         </TouchableOpacity>
         <Image
           style={styles.prodcutincartItem}
           resizeMode="cover"
-          source={require("../assets/rectangle-18.png")}
+          source={require("../../../assets/Shapeprcart.png")}
         />
         <Text style={[styles.productName, styles.priceTypo]}>Product name</Text>
         <Text style={[styles.price, styles.priceTypo]}>price</Text>
