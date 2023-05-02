@@ -16,10 +16,15 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
 const ProductPage = () => {
-    const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(undefined);
+    const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
     const [rectangleTextInput, setRectangleTextInput] = useState();
+    const [frameDropdownItems, setFrameDropdownItems] = useState([
+        { value: "Beirut", label: "Beirut" },
+        { value: "lebanon", label: "lebanon" },
+        { value: "Beirut", label: "Beirut" },
+    ]);
     const navigation = useNavigation();
   
     return (
@@ -90,12 +95,14 @@ const ProductPage = () => {
             <DropDownPicker
               style={styles.dropdownpicker}
               open={frameDropdownOpen}
+              items={frameDropdownItems}
               setOpen={setFrameDropdownOpen}
               value={frameDropdownValue}
               setValue={setFrameDropdownValue}
               placeholder="allergy  name  "
               labelStyle={styles.frameDropdownValue}
               dropDownContainerStyle={styles.frameDropdowndropDownContainer}
+              
             />
           </View>
           <RNKTextInput
