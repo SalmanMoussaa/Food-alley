@@ -11,6 +11,8 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Border } from "./GlobalStyles";
 const ProdcutinCart = () => {
+    const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
+
     return (
       <View style={styles.prodcutincart}>
         <Image
