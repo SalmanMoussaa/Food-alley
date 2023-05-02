@@ -68,8 +68,17 @@ productNameIcon: {
     height: 11,
     position: "absolute",
   },
+  prodcutincartItem: {
+    top: 7,
+    left: 9,
+    borderRadius: Border.br_3xs,
+    width: 59,
+    height: 54,
+    position: "absolute",
+  },
+  
   
   });
   
   export default ProdcutinCart;
-  
+
