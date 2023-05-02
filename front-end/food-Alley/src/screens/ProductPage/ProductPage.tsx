@@ -118,4 +118,173 @@ const ProductPage = () => {
       </ScrollView>
     );
   };
+  const styles = StyleSheet.create({
+    frameDropdownValue: {
+      color: "#e2e7f0",
+      fontSize: 16,
+      fontWeight: "800",
+      fontFamily: "Inter_extrabold",
+    },
+    frameDropdowndropDownContainer: {
+      backgroundColor: "#fe5932",
+    },
+    productPageScrollViewContent: {
+      flexDirection: "row",
+    },
+    frameChildPosition: {
+      left: 0,
+      position: "absolute",
+      width: 393,
+    },
+    americanFlexBox: {
+      textAlign: "left",
+      color: Color.darkGray,
+    },
+    vectorGroupLayout: {
+      width: 358,
+      position: "absolute",
+    },
+    rectangleLayout: {
+      width: 355,
+      position: "absolute",
+    },
+    addToCartTypo: {
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+      position: "absolute",
+    },
+    frameChild: {
+      top: 393,
+      height: 877,
+    },
+    filterByAllergy: {
+      top: 903,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+      position: "absolute",
+      fontSize: FontSize.size_lg,
+      color: Color.darkGray,
+      left: 20,
+    },
+    americanCheeseBurger: {
+      top: 409,
+      fontSize: FontSize.size_5xl,
+      width: 293,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+      position: "absolute",
+      left: 20,
+    },
+    text: {
+      top: 444,
+      fontFamily: FontFamily.interRegular,
+      opacity: 0.5,
+      fontSize: FontSize.size_base,
+      left: 20,
+      position: "absolute",
+    },
+    icon: {
+      height: "100%",
+      width: "100%",
+    },
+    arrowLeft5: {
+      left: 14,
+      top: 29,
+      width: 50,
+      height: 50,
+      position: "absolute",
+    },
+    arrowLeft5Wrapper: {
+      height: 393,
+      top: 0,
+    },
+    theAmericanCheeseburger: {
+      fontFamily: FontFamily.itimRegular,
+      fontSize: FontSize.size_base,
+      flex: 1,
+    },
+    theAmericanCheeseburgerIsAWrapper: {
+      top: 479,
+      backgroundColor: Color.wFBase400,
+      flexDirection: "row",
+      padding: 18,
+      borderRadius: Border.br_3xs,
+      left: 19,
+      overflow: "hidden",
+    },
+    frameItem: {
+      left: -7,
+      height: 220,
+      borderRadius: Border.br_3xs,
+      top: 0,
+    },
+    frameInner: {
+      top: 24,
+      left: 20,
+      position: "absolute",
+    },
+    vectorGroup: {
+      top: 660,
+      left: 21,
+      height: 220,
+    },
+    removeIngredient: {
+      top: 624,
+      left: 19,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+      position: "absolute",
+      fontSize: FontSize.size_lg,
+      color: Color.darkGray,
+    },
+    dropdownpicker: {
+      backgroundColor: Color.tomato,
+    },
+    wrapper: {
+      top: 941,
+      borderRadius: 14,
+      height: 45,
+      left: 19,
+    },
+    rectangleRnktextinput: {
+      top: 1041,
+      borderRadius: Border.br_3xs,
+      left: 19,
+      backgroundColor: Color.white,
+    },
+    specialInstructions: {
+      top: 1012,
+      left: 19,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+      position: "absolute",
+      fontSize: FontSize.size_lg,
+      color: Color.darkGray,
+    },
+    rectanglePressable: {
+      top: 1170,
+      backgroundColor: Color.darkGray,
+      borderRadius: Border.br_3xs,
+      left: 19,
+      height: 50,
+    },
+    addToCart: {
+      top: 1185,
+      left: 151,
+      color: Color.wFBase300,
+      textAlign: "center",
+      fontSize: FontSize.size_base,
+    },
+    vectorParent: {
+      height: 1270,
+      width: 393,
+    },
+    productPage: {
+      overflow: "hidden",
+      width: "100%",
+      flex: 1,
+      backgroundColor: Color.white,
+    },
+  });
+  
   export default ProductPage; 
