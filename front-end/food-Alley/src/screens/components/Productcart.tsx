@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
-import { Border } from "./GlobalStyles";
+import { Border, Color, FontFamily, FontSize } from "./GlobalStyles";
 const ProdcutinCart = () => {
     const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
