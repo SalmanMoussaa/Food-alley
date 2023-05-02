@@ -54,7 +54,14 @@ priceIcon: {
   opacity: 0.5,
   position: "absolute",
 },
-
+productNameIcon: {
+    top: 14,
+    left: 94,
+    width: 163,
+    height: 22,
+    position: "absolute",
+  },
+  
   });
   
   export default ProdcutinCart;
