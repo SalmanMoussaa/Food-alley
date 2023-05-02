@@ -61,7 +61,15 @@ productNameIcon: {
     height: 22,
     position: "absolute",
   },
+  xIcon: {
+    top: 8,
+    left: 334,
+    width: 10,
+    height: 11,
+    position: "absolute",
+  },
   
   });
   
   export default ProdcutinCart;
+  
