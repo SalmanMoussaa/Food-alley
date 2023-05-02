@@ -37,8 +37,37 @@ const navigation = useNavigation();
           place order
         </Text>
       </Pressable>
-      
+      <View style={[styles.wrapper, styles.wrapperPosition]}>
+        <DropDownPicker
+          open={frameDropdownOpen}
+          setOpen={setFrameDropdownOpen}
+          value={frameDropdownValue}
+          setValue={setFrameDropdownValue}
+          placeholder="location name"
+          items={frameDropdownItems}
+          labelStyle={styles.frameDropdownValue}
+          textStyle={styles.frameDropdownText}
+        />
       </View>
+      <Text style={[styles.chooseLocation, styles.placeOrderTypo]}>
+        choose location
+      </Text>
+      <Pressable style={styles.arrowLeft3} onPress={() => navigation.goBack()}>
+        <Image
+          style={styles.icon}
+          resizeMode="cover"
+          source={require("../assets/arrowleft-3.png")}
+        />
+      </Pressable>
+      <Text style={[styles.subTotal, styles.taxTypo]}>sub total:</Text>
+      <Text style={[styles.cartTotal, styles.text1Typo]}>Cart Total:</Text>
+      <Text style={[styles.delivery, styles.taxTypo]}>Delivery:</Text>
+      <Text style={[styles.tax, styles.taxTypo]}>Tax:</Text>
+      <Text style={[styles.text, styles.textTypo]}>52$</Text>
+      <Text style={[styles.text1, styles.text1Typo]}>52$</Text>
+      <Text style={[styles.text2, styles.textTypo]}>52$</Text>
+      <Text style={[styles.text3, styles.textTypo]}>52$</Text>
+    </View>
     );
 };
 export default Cart;
