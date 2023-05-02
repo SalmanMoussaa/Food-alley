@@ -112,6 +112,10 @@ productNameIcon: {
     fontSize: FontSize.size_base,
     opacity: 0.5,
   },
+  productName: {
+    top: 17,
+    fontSize: FontSize.size_5xl,
+  },
   
 
   
