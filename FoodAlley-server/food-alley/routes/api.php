@@ -45,6 +45,8 @@ Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middlewar
 Route::get('/ingredients', [IngredientController::class, 'index']);
 Route::post('/ingredients', [IngredientController::class, 'store']);
 Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy']);
+Route::get('/ingredients/generate-random', [IngredientController::class, 'generateRandomIngredients']);
+
 
 Route::get('/recipe-ingredients', 'RecipeIngredientController@index');
 Route::post('/recipe-ingredients', 'RecipeIngredientController@store');
