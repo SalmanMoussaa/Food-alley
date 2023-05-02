@@ -85,7 +85,34 @@ productNameIcon: {
     flex: 1,
     width: "100%",
     height: 69,
-  }
+  },priceTypo: {
+    textAlign: "left",
+    color: Color.black,
+    fontFamily: FontFamily.interExtrabold,
+    fontWeight: "800",
+    left: 93,
+    position: "absolute",
+  },
+  
+  icon: {
+    height: "100%",
+    width: "100%",
+  },
+  x: {
+    left: 334,
+    top: 8,
+    width: 10,
+    height: 11,
+    position: "absolute",
+  },
+ 
+  
+  price: {
+    top: 46,
+    fontSize: FontSize.size_base,
+    opacity: 0.5,
+  },
+  
 
   
   
