@@ -14,36 +14,30 @@ const ProdcutinCart = () => {
     const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
     return (
-      <View style={styles.prodcutincart}>
+        <View style={styles.prodcutincart}>
         <Image
           style={styles.prodcutincartChild}
           resizeMode="cover"
           source={require("../assets/rectangle-49.png")}
         />
-        <Text  style={styles.priceIcon}>
-           
-            20$
-            </Text>
-          
-        <Image
-          
-          resizeMode="cover"
-          source={require("../assets/product-name.png")}
-        />
-        <Text style={styles.productNameIcon}>
-        
-            20$
-            </Text>
-        <Image
-          style={styles.xIcon}
-          resizeMode="cover"
-          source={require("../assets/x.png")}
-        />
+        <TouchableOpacity
+          style={styles.x}
+          activeOpacity={0.2}
+          onPress={() => navigation.toggleDrawer()}
+        >
+          <Image
+            style={styles.icon}
+            resizeMode="cover"
+            source={require("../assets/x.png")}
+          />
+        </TouchableOpacity>
         <Image
           style={styles.prodcutincartItem}
           resizeMode="cover"
           source={require("../assets/rectangle-18.png")}
         />
+        <Text style={[styles.productName, styles.priceTypo]}>Product name</Text>
+        <Text style={[styles.price, styles.priceTypo]}>price</Text>
       </View>
     );
   };
