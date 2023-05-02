@@ -4,6 +4,8 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { useNavigation } from "@react-navigation/native";
 import { FontFamily, Color, FontSize, Border } from "../components/GlobalStyles";
 import ProdcutinCart from "../components/Productcart";
+import { black } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
+import { color } from "react-native-reanimated";
 
 const Cart = () => {
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
@@ -11,6 +13,7 @@ const Cart = () => {
   const [frameDropdownItems, setFrameDropdownItems] = useState([
     { value: "Beirut", label: "Beirut" },
     { value: "lebanon", label: "lebanon" },
+    { value: "Beirut", label: "Beirut" },
 ]);
 const navigation = useNavigation();
     return(
@@ -19,23 +22,26 @@ const navigation = useNavigation();
       <Image
         style={styles.yourFoodCart}
         resizeMode="cover"
-        source={require("../assets/your-food-cart.png")}
+        source={require("../../../assets/FoodCart.png")}
       />
       <Image
         style={[styles.cartChild, styles.wrapperPosition]}
         resizeMode="cover"
-        source={require("../assets/rectangle-52.png")}
+        source={require("../../../assets/cartShape.png")}
       />
+      
       <Image
         style={[styles.line26Stroke, styles.wrapperPosition]}
         resizeMode="cover"
         source={require("../../../assets/line.png")}
       />
+      
       <Pressable style={[styles.rectangleParent, styles.groupChildLayout]}>
         <View style={[styles.groupChild, styles.groupChildLayout]} />
         <Text style={[styles.placeOrder, styles.placeOrderTypo]}>
-          place order
+          Place order
         </Text>
+       
       </Pressable>
       <View style={[styles.wrapper, styles.wrapperPosition]}>
         <DropDownPicker
@@ -45,11 +51,14 @@ const navigation = useNavigation();
           setValue={setFrameDropdownValue}
           placeholder="location name"
           items={frameDropdownItems}
+          badgeColors={Color.black}
           labelStyle={styles.frameDropdownValue}
           textStyle={styles.frameDropdownText}
         />
       </View>
-      <Text style={[styles.chooseLocation, styles.placeOrderTypo]}>
+      <View style={[styles.productsContainer]}><ProdcutinCart/>
+      <ProdcutinCart/></View>
+      <Text style={[styles.chooseLocation]}>
         choose location
       </Text>
       <Pressable style={styles.arrowLeft3} onPress={() => navigation.goBack()}>
@@ -72,19 +81,35 @@ const navigation = useNavigation();
 };
 const styles = StyleSheet.create({
     frameDropdownValue: {
-      color: "#e2e7f0",
+      color: Color.d9D9D9,
       fontSize: 20,
       fontWeight: "800",
       fontFamily: "Inter_extrabold",
+      
     },
+    productsContainer:{
+        display:"flex",
+        
+        flexDirection:"column",
+        justifyContent:"space-between",
+        
+        alignContent:"flex-start",
+        top:"15%",
+        left:"3%"
+
+
+    },
+    
     frameDropdownText: {
+    
+    
       color: "#fe5932",
       fontSize: 14,
       fontWeight: "800",
       fontFamily: "Inter_extrabold",
     },
     wrapperPosition: {
-      width: 393,
+      width: "100%",
       left: 0,
       position: "absolute",
     },
@@ -94,7 +119,9 @@ const styles = StyleSheet.create({
       position: "absolute",
     },
     placeOrderTypo: {
-      textAlign: "left",
+      textAlign: "center",
+      left:"33%",
+      top:"30%",
       fontFamily: FontFamily.interExtrabold,
       fontWeight: "800",
       position: "absolute",
@@ -134,6 +161,7 @@ const styles = StyleSheet.create({
     },
     cartChild: {
       top: 557,
+      
       height: 295,
     },
     line26Stroke: {
@@ -161,12 +189,14 @@ const styles = StyleSheet.create({
       left: 84,
     },
     wrapper: {
-      top: 433,
-      height: 94,
+        
+      top: "53%",
+      width:"60%"
     },
     chooseLocation: {
-      top: 404,
-      left: 20,
+      top: "48%",
+      left: "3%",
+      fontFamily:FontFamily.soraRegular,
       fontSize: FontSize.size_lg,
       color: Color.black,
     },
