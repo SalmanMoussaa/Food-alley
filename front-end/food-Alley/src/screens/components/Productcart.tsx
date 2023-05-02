@@ -45,6 +45,16 @@ const ProdcutinCart = () => {
       height: 69,
     
     },
+
+priceIcon: {
+  top: 46,
+  left: 95,
+  width: 37,
+  height: 15,
+  opacity: 0.5,
+  position: "absolute",
+},
+
   });
   
   export default ProdcutinCart;
