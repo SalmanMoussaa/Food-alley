@@ -14,7 +14,7 @@ import {
 } from "@ui-kitten/components";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useNavigation } from "@react-navigation/native";
-import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
 const ProductPage = () => {
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(undefined);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);

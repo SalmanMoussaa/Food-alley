@@ -26,8 +26,10 @@ export const Color = {
   black: "#000",
   tomato: "#fe5932",
   wFBase300: "#e2e7f0",
-  wFBase200: "#edf0f7"
-  ,  white: "#fff",
+  wFBase200: "#edf0f7",
+  wFBase400: "#cbd2e0",
+
+    white: "#fff",
 
 };
 /* border radiuses */
