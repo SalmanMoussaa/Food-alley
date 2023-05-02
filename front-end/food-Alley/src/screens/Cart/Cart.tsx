@@ -29,7 +29,7 @@ const navigation = useNavigation();
       <Image
         style={[styles.line26Stroke, styles.wrapperPosition]}
         resizeMode="cover"
-        source={require("../assets/line-26-stroke.png")}
+        source={require("../../../assets/line.png")}
       />
       <Pressable style={[styles.rectangleParent, styles.groupChildLayout]}>
         <View style={[styles.groupChild, styles.groupChildLayout]} />
@@ -56,7 +56,7 @@ const navigation = useNavigation();
         <Image
           style={styles.icon}
           resizeMode="cover"
-          source={require("../assets/arrowleft-3.png")}
+          source={require("../../../assets/arrow.png")}
         />
       </Pressable>
       <Text style={[styles.subTotal, styles.taxTypo]}>sub total:</Text>
