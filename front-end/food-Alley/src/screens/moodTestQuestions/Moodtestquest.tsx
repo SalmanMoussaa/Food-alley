@@ -40,9 +40,8 @@ useEffect(() => {
 }, []);
 
   const handleNext = () => {
-    const handleNext = () => {
-      navigation.navigate('Result', { answer: selectedEmoji });
-    };  };
+      navigation.navigate('Result', { answer:selectedEmoji});
+     };
 
   return (
     <View style={styles.moodTest2}>
@@ -92,11 +91,8 @@ useEffect(() => {
   <View style={[styles.rectangleView, styles.rectangleLayout]} />
   <Text style={[styles.text3, styles.textTypo]}> 😠</Text>
 </TouchableOpacity>
-      <Image
-        style={styles.arrowLeft4Icon}
-        resizeMode="cover"
-        source={require("../../../assets/arrow.png")}
-      />
+     
+      
     </View>
   );
 }
