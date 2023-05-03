@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { NavigationProp } from '@react-navigation/native';
+  
 
-function MoodTestPage1({ navigation }) {
+
+function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -20,7 +23,7 @@ function MoodTestPage1({ navigation }) {
           },
         });
 
-        const generatedQuestions = response.data.choices.map((choice) => {
+        const generatedQuestions = response.data.choices.map((choice: { text: string; }) => {
           return choice.text.trim().replace(/\d+\./, '');
         });
 
@@ -34,7 +37,7 @@ function MoodTestPage1({ navigation }) {
   }, []);
 
   const handleNext = () => {
-    navigation.navigate('MoodTestPage2');
+    navigation.navigate('Login');
   };
 
   return (
@@ -111,6 +114,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-  },
+  }
 });
 export default MoodTestPage1;
