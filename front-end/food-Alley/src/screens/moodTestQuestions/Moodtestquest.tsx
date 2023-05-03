@@ -16,7 +16,7 @@ function MoodTestPage1({ navigation }) {
         }, {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${YOUR_OPENAI_API_KEY}`,
+            'Authorization': `Bearer ${'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'}`,
           },
         });
 
@@ -71,7 +71,7 @@ function MoodTestPage1({ navigation }) {
      </View>
   );
 }
-const styles = {
+const styles = StyleSheet.create({
   questionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -112,5 +112,5 @@ const styles = {
     fontSize: 16,
     fontWeight: 'bold',
   },
-};
+});
 export default MoodTestPage1;
