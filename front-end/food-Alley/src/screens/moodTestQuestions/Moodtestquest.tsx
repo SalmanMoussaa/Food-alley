@@ -41,7 +41,7 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
   };
 
   return (
-    <View>
+    <View style={styles.container}>
      <Text style={styles.questionTitle}>Answer these questions to determine your mood:</Text>
 
 {questions.map((question, index) => (
@@ -75,6 +75,11 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
   );
 }
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor:"#ff5",
+    height:"100%"
+
+  },
   questionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
