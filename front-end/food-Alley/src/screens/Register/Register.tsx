@@ -1,75 +1,130 @@
-import * as React from "react";
-import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Image,
+  StyleSheet,
+  Pressable,
+  Text,
+  Dimensions,
+} from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { Border, FontFamily, FontSize, Color } from "../components/GlobalStyles";
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NativeRouter, Route, Link } from "react-router-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Register = () => {
-  
- const {goBack} = useNavigation();
-  const Stack = createNativeStackNavigator();
-const navigation = useNavigation();
+  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
- 
+  const navigation = useNavigation();
+
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/register", {
+        username,
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        password,
+        confirmPassword,
+      });
+      const token = response.data.token;
+      await AsyncStorage.setItem("token", token);
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleUsernameChange = (text: React.SetStateAction<string>) => setUsername(text);
+  const handleFirstNameChange = (text: React.SetStateAction<string>) => setFirstName(text);
+  const handleLastNameChange = (text: React.SetStateAction<string>) => setLastName(text);
+  const handlePhoneNumberChange = (text: React.SetStateAction<string>) => setPhoneNumber(text);
+  const handleEmailChange = (text: React.SetStateAction<string>) => setEmail(text);
+  const handlePasswordChange = (text: React.SetStateAction<string>) => setPassword(text);
+  const handleConfirmPasswordChange = (text: React.SetStateAction<string>) => setConfirmPassword(text);
+
   const { width, height } = Dimensions.get('window');
-
   return (
     <View style={styles.register}>
       
         
-      <Image
-        style={styles.registerChild}
-        resizeMode="cover"
-        source={require("../../../assets/logindesgin.jpg")}
-      />
+      
       <View style={styles.rectangleParent}>
         <RNPTextInput
           style={[styles.frameChild, styles.frameChildLayout]}
           placeholder="username"
           label="username"
+          value={username}
+          onChangeText={handleUsernameChange}
         
         />
         <RNPTextInput
           style={[styles.frameItem, styles.frameChildLayout]}
           placeholder="FirstName"
           label="FirstName"
+          value={firstName}
+          onChangeText={handleFirstNameChange}
           
         />
         <RNPTextInput
           style={[styles.frameInner, styles.frameChildLayout]}
           placeholder="LastName"
           label="LastName"
+          value={lastName}
+          onChangeText={handleLastNameChange}
           
         />
         <RNPTextInput
           style={[styles.rectangleRnptextinput, styles.frameChildLayout]}
           placeholder="Phone Number"
           label="Phone Number"
+          value={phoneNumber}
+          onChangeText={handlePhoneNumberChange}
           
         />
         <RNPTextInput
           style={[styles.frameChild1, styles.frameChildLayout]}
           placeholder="Email"
           label="Email"
+          value={email}
+          onChangeText={handleEmailChange}
           
         />
         <RNPTextInput
           style={[styles.frameChild2, styles.frameChildLayout]}
           placeholder="password"
           label="Password"
+          value={password}
+          onChangeText={handlePasswordChange}
           
         />
         <RNPTextInput
           style={[styles.frameChild3, styles.frameChildLayout]}
           placeholder="Re-enter Password"
           label="Re-enter Password"
+          value={confirmPassword}
+          onChangeText={handleConfirmPasswordChange}
           
         />
       </View>
-      <Pressable style={styles.registerItem} />
+      <Pressable   style={({ pressed }) => [
+        styles.registerItem,
+          
+          pressed && { transform: [{ scale: 0.9 }] }
+        ]} 
+        onPress={handleRegister}
+        />
       <Text style={[styles.register1, styles.register1Typo]}>register</Text>
       <Text style={[styles.createAccount, styles.register1Typo]}>
         create account
@@ -90,9 +145,9 @@ const navigation = useNavigation();
 const styles = StyleSheet.create({
   frameChildLayout: {
     height: 53,
-    width: 336,
+    width: "100%",
     borderRadius: Border.br_3xs,
-    left: 10,
+    left: "6%",
     position: "absolute",
   },
   register1Typo: {
@@ -170,7 +225,7 @@ const styles = StyleSheet.create({
   register: {
     backgroundColor: Color.wFBaseWhite,
     flex: 1,
-    height: 852,
+    
     overflow: "hidden",
     width: "100%",
   },
