@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Searchbar } from 'react-native-paper';
 import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType } from "react-native";
 import { transparent } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
+import FoodItem from './FoodItem';
 
 const Searchbarcomp = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -34,7 +35,7 @@ const Searchbarcomp = () => {
       />
       <View style={styles.searchResults}>
         {searchResults.map((recipe) => (
-          <Text key={recipe.id}>{recipe.name}</Text>
+          <FoodItem foodname={recipe.name} imageUri={''} kitchenName={''}/>
         ))}
       </View>
     </View>
