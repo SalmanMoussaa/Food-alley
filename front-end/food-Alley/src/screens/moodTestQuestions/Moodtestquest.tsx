@@ -40,17 +40,18 @@ useEffect(() => {
 }, []);
 
   const handleNext = () => {
-    navigation.navigate('Login');
-  };
+    const handleNext = () => {
+      navigation.navigate('Result', { answer: selectedEmoji });
+    };  };
 
   return (
     <View style={styles.moodTest2}>
       <Text style={styles.howAreYouContainer}>{question} </Text>
       <Text style={styles.mood}>Mood ?</Text>
-      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]}>
-        <View style={[styles.frameChild, styles.frameChildBg]} />
-        <Text style={[styles.back, styles.backTypo]}>back</Text>
-      </Pressable>
+      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]} onPress={() => navigation.goBack()}>
+  <View style={[styles.frameChild, styles.frameChildBg]} />
+  <Text style={[styles.back, styles.backTypo]}>back</Text>
+</Pressable>
       <Pressable style={[styles.rectangleGroup, styles.rectangleLayout1]}>
         <View style={[styles.frameChild, styles.frameChildBg]} />
         <Text style={[styles.next, styles.backTypo]}>next</Text>
