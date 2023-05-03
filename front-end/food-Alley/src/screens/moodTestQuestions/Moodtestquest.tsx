@@ -42,19 +42,28 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
 
   return (
     <View style={styles.container}>
-     <Text style={styles.questionTitle}>Answer these questions to determine your mood:</Text>
-
+ <Text style={styles.howAreYouContainer}>How are you feeling today? </Text>
+      <Text style={styles.mood}>Mood ?</Text>
 {questions.map((question, index) => (
   <View key={index} style={styles.questionContainer}>
     <Text style={styles.questionText}>{question}</Text>
 
     <View style={styles.answerOptions}>
-      <TouchableOpacity style={styles.answerOption}>
-        <Text>😄</Text>
+    <TouchableOpacity
+        style={[styles.rectangleContainer, styles.rectangleLayout]}
+        activeOpacity={0.2}
+        onPress={() => navigation.toggleDrawer()}
+      >
+        <View style={[styles.rectangleView, styles.rectangleLayout]} />
+        <Text style={[styles.text1, styles.textTypo1]}> 😔</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={styles.answerOption}>
-        <Text>😊</Text>
+      <TouchableOpacity
+        style={[styles.rectangleParent1, styles.rectangleParent1Position]}
+        activeOpacity={0.2}
+        onPress={() => navigation.toggleDrawer()}
+      >
+        <View style={[styles.rectangleView, styles.rectangleLayout]} />
+        <Text style={[styles.text3, styles.textTypo]}> 😠</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.answerOption}>

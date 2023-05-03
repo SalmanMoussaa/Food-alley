@@ -228,7 +228,7 @@ const styles =  StyleSheet.create({
     
     overflow: "hidden",
     width: "100%",
-  },
+  }
 });
 
 export default Register;
