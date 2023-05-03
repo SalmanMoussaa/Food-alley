@@ -7,35 +7,37 @@ import { Border, Color, FontFamily, FontSize } from '../components/GlobalStyles'
 
 
 function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) {
-  const [questions, setQuestions] = useState([]);
+  const [question, setQuestion] = useState("");
+  const [selectedEmoji, setSelectedEmoji] = useState("");
+ 
 
-  useEffect(() => {
-    const generateQuestions = async () => {
-      try {
-        const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-          prompt: 'Generate 3 mood test questions',
-          max_tokens: 50,
-          n: 3,
-          stop: ['Q:'],
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${'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'}`,
-          },
-        });
+useEffect(() => {
+  const generateQuestions = async () => {
+    try {
+      const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
+        prompt: 'Generate 3 mood test questions',
+        max_tokens: 50,
+        n: 3,
+        stop: ['Q:'],
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${'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'}`,
+        },
+      });
 
-        const generatedQuestions = response.data.choices.map((choice: { text: string; }) => {
-          return choice.text.trim().replace(/\d+\./, '');
-        });
+      const generatedQuestions = response.data.choices.map((choice: { text: string; }) => {
+        return choice.text.trim().replace(/\d+\./, '');
+      });
 
-        setQuestions(generatedQuestions);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      setQuestion(generatedQuestions[0]); // set the first generated question as the current question
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    generateQuestions();
-  }, []);
+  generateQuestions();
+}, []);
 
   const handleNext = () => {
     navigation.navigate('Login');
@@ -43,7 +45,7 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
 
   return (
     <View style={styles.moodTest2}>
-      <Text style={styles.howAreYouContainer}>How are you feeling today? </Text>
+      <Text style={styles.howAreYouContainer}>{question} </Text>
       <Text style={styles.mood}>Mood ?</Text>
       <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]}>
         <View style={[styles.frameChild, styles.frameChildBg]} />
@@ -54,41 +56,41 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
         <Text style={[styles.next, styles.backTypo]}>next</Text>
       </Pressable>
       <TouchableOpacity
-        style={styles.vectorParent}
-        activeOpacity={0.2}
-        onPress={() => navigation.toggleDrawer()}
-      >
-        <Image
-          style={[styles.frameInner, styles.rectangleLayout]}
-          resizeMode="cover"              
-          source={require("../../../assets/emojibacground.png")}
-        />
-        <Text style={[styles.text, styles.textTypo1]}> 😊</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.rectangleContainer, styles.rectangleLayout]}
-        activeOpacity={0.2}
-        onPress={() => navigation.toggleDrawer()}
-      >
-        <View style={[styles.rectangleView, styles.rectangleLayout]} />
-        <Text style={[styles.text1, styles.textTypo1]}> 😔</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.frameTouchableopacity, styles.rectangleParent1Position]}
-        activeOpacity={0.2}
-        onPress={() => navigation.toggleDrawer()}
-      >
-        <View style={[styles.rectangleView, styles.rectangleLayout]} />
-        <Text style={[styles.text2, styles.textTypo]}> 😫</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.rectangleParent1, styles.rectangleParent1Position]}
-        activeOpacity={0.2}
-        onPress={() => navigation.toggleDrawer()}
-      >
-        <View style={[styles.rectangleView, styles.rectangleLayout]} />
-        <Text style={[styles.text3, styles.textTypo]}> 😠</Text>
-      </TouchableOpacity>
+  style={styles.vectorParent}
+  activeOpacity={0.2}
+  onPress={() => setSelectedEmoji("😊")}
+>
+  <Image
+    style={[styles.frameInner, styles.rectangleLayout]}
+    resizeMode="cover"              
+    source={require("../../../assets/emojibacground.png")}
+  />
+  <Text style={[styles.text, styles.textTypo1]}> 😊</Text>
+</TouchableOpacity>
+<TouchableOpacity
+  style={[styles.rectangleContainer, styles.rectangleLayout]}
+  activeOpacity={0.2}
+  onPress={() => setSelectedEmoji("😔")}
+>
+  <View style={[styles.rectangleView, styles.rectangleLayout]} />
+  <Text style={[styles.text1, styles.textTypo1]}> 😔</Text>
+</TouchableOpacity>
+<TouchableOpacity
+  style={[styles.frameTouchableopacity, styles.rectangleParent1Position]}
+  activeOpacity={0.2}
+  onPress={() => setSelectedEmoji("😫")}
+>
+  <View style={[styles.rectangleView, styles.rectangleLayout]} />
+  <Text style={[styles.text2, styles.textTypo]}> 😫</Text>
+</TouchableOpacity>
+<TouchableOpacity
+  style={[styles.rectangleParent1, styles.rectangleParent1Position]}
+  activeOpacity={0.2}
+  onPress={() => setSelectedEmoji("😠")}
+>
+  <View style={[styles.rectangleView, styles.rectangleLayout]} />
+  <Text style={[styles.text3, styles.textTypo]}> 😠</Text>
+</TouchableOpacity>
       <Image
         style={styles.arrowLeft4Icon}
         resizeMode="cover"
