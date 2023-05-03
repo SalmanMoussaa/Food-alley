@@ -2,38 +2,39 @@
 import * as Font from 'expo-font';
 
 export const FontFamily = {
+  indieFlowerRegular: "Indie Flower_regular",
   interExtrabold: "Inter_extrabold",
-  interRegular: "Inter_regular",
-  soraRegular: "Sora_regular",
   itimRegular: "Itim_regular",
-  indieFlowerRegular: "Indie Flower_regular"
+  interRegular: "Inter_regular",
+  interBold: "Inter_bold",
+  soraRegular: "Sora_regular",
 };
 /* font sizes */
 export const FontSize = {
+  size_45xl: 64,
+  size_13xl: 32,
+  size_5xl: 24,
+  size_base: 16,
+  size_lg: 18,
   size_mini: 15,
   size_sm: 14,
-  size_base: 16,
-  size_5xl: 24,
-  size_lg: 18,
-
 };
 /* Colors */
 export const Color = {
   wFBaseWhite: "#fff",
-  darkGray: "#333",
-  d9D9D9: "#FE5932",
-  d9D9D91: "#fe5932",
   black: "#000",
-  tomato: "#fe5932",
+  d9D9D9: "#fe5932",
+  darkGray: "#333",
+  wFBase900: "#1a202c",
+  aliceblue_100: "#edf0f7",
   wFBase300: "#e2e7f0",
-  wFBase200: "#edf0f7",
   wFBase400: "#cbd2e0",
-
-    white: "#fff",
-
+  d9D9D91: "#c70039",
+  d9D9D92: "#900a3d",
 };
 /* border radiuses */
 export const Border = {
+  br_15xl: 34,
   br_3xs: 10,
   br_42xl: 61,
   br_7xs: 6,
@@ -43,5 +44,4 @@ export const Border = {
   br_20xl: 39,
   br_65xl: 84,
   br_4xl: 23,
-  
 };
