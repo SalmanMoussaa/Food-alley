@@ -39,7 +39,29 @@ function MoodTestPage1({ navigation }) {
 
   return (
     <View>
-     
+     <Text style={styles.questionTitle}>Answer these questions to determine your mood:</Text>
+
+{questions.map((question, index) => (
+  <View key={index} style={styles.questionContainer}>
+    <Text style={styles.questionText}>{question}</Text>
+
+    <View style={styles.answerOptions}>
+      <TouchableOpacity style={styles.answerOption}>
+        <Text>😄</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.answerOption}>
+        <Text>😊</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.answerOption}>
+        <Text>😐</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.answerOption}>
+        <Text>😔</Text>
+      </TouchableOpacity>
+    </View>
     </View>
   );
 }
