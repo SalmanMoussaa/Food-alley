@@ -255,16 +255,17 @@ const styles = StyleSheet.create({
     top: 0,
   },
   text1: {
-    top: 31,
+    top: "-45%",
     width: 97,
-    left: 27,
-  },
+    left: "23%",  },
   rectangleContainer: {
     top: 294,
     left: 207,
   },
   text2: {
-    left: 28,
+    top: "75%",
+    width: 97,
+    left: "13%",
   },
   frameTouchableopacity: {
     left: 36,
