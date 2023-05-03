@@ -71,5 +71,46 @@ function MoodTestPage1({ navigation }) {
      </View>
   );
 }
-
+const styles = {
+  questionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  questionContainer: {
+    marginBottom: 24,
+  },
+  questionText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  answerOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  answerOption: {
+    backgroundColor: '#ccc',
+    borderRadius: 24,
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  nextButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 24,
+    width: 120,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+    marginTop: 16,
+  },
+  nextButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+};
 export default MoodTestPage1;

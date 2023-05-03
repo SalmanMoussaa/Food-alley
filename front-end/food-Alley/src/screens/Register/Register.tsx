@@ -142,7 +142,7 @@ const Register = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles =  StyleSheet.create({
   frameChildLayout: {
     height: 53,
     width: "100%",
