@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -12,37 +12,51 @@ import {
 import { TextInput as RNPTextInput } from "react-native-paper";
 import logindesgin from "../../../assets/logindesgin.jpg";
 import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
-//import axios from "axios";
+import axios from "axios";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useMutation } from 'react-query';
+import Toast from 'react-native-root-toast';
+import * as SecureStore from 'expo-secure-store';
 
-
-
-
-//const API_BASE_URL = "http://127.0.0.1:8000"; 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [error, setError] = useState("");
   const navigation = useNavigation();
 
-
-  /*const handleLogin = async () => {
+  const handleLogin = async () => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/login`, {
+      const response = await axios.post("http://127.0.0.1:8000/api/auth/login", {
         email,
         password,
       });
-      const { token, user } = response.data;
-      // Do something with the token and user data (e.g., save them to AsyncStorage)
+      const token = response.data.token;
+      navigation.navigate("Home");
     } catch (error) {
-      console.log(error);
-      // Handle the error (e.g., show an error message)
+      /*if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        setError(error.response.data.message);
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        setError("Network Error");
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        setError("Something Went Wrong");
+        console.log("Error", error.message);
+      }
+    */
     }
-  };*/
-
-
+  };
   return (
     <View >
       <View style={styles.rectangleParent}>
@@ -83,7 +97,7 @@ const Login = () => {
           styles.rectangleLayout,
           pressed && { transform: [{ scale: 0.9 }] }
         ]}
-        /*onPress={handleLogin}*/
+        onPress={handleLogin}
       >
         <View style={[styles.rectangleView, styles.rectangleLayout]} />
         <Text style={[styles.login2, styles.loginFlexBox]}>Login</Text>
@@ -201,3 +215,5 @@ const styles = StyleSheet.create({
 });
 
 export default Login;
+
+

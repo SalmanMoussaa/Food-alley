@@ -10,17 +10,18 @@ import {
 } from "react-native";
 import {
   CheckBox as RNKCheckBox,
-  Input as RNKTextInput,
 } from "@ui-kitten/components";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
-const ProductPage = () => {
+import { TextInput as RNKTextInput } from 'react-native-paper';
+
+const Productpage = () => {
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
-    const [rectangleTextInput, setRectangleTextInput] = useState();
-    const [frameDropdownItems, setFrameDropdownItems] = useState([
+    const [rectangleTextInput, setRectangleTextInput] = useState<string | undefined>(undefined);
+     const [frameDropdownItems, setFrameDropdownItems] = useState([
         { value: "Beirut", label: "Beirut" },
         { value: "lebanon", label: "lebanon" },
         { value: "Beirut", label: "Beirut" },
@@ -34,11 +35,7 @@ const ProductPage = () => {
         contentContainerStyle={styles.productPageScrollViewContent}
       >
         <View style={styles.vectorParent}>
-          <Image
-            style={[styles.frameChild, styles.frameChildPosition]}
-            resizeMode="cover"
-            source={require("../assets/rectangle-32.png")}
-          />
+          
           <Text style={[styles.filterByAllergy, styles.americanFlexBox]}>
             filter by allergy
           </Text>
@@ -49,7 +46,7 @@ const ProductPage = () => {
           <ImageBackground
             style={[styles.arrowLeft5Wrapper, styles.frameChildPosition]}
             resizeMode="cover"
-            source={require("../assets/frame26.png")}
+            source={require("../../../assets/Frame26.png")}
           >
             <Pressable
               style={styles.arrowLeft5}
@@ -58,7 +55,7 @@ const ProductPage = () => {
               <Image
                 style={styles.icon}
                 resizeMode="cover"
-                source={require("../assets/arrowleft-5.png")}
+                source={require("../../../assets/arrow.png")}
               />
             </Pressable>
           </ImageBackground>
@@ -80,7 +77,7 @@ const ProductPage = () => {
             <Image
               style={[styles.frameItem, styles.rectangleLayout]}
               resizeMode="cover"
-              source={require("../assets/rectangle-35.png")}
+              source={require("../../../assets/Rectangle35.png")}
             />
             <RNKCheckBox
               style={styles.frameInner}
@@ -105,12 +102,13 @@ const ProductPage = () => {
               
             />
           </View>
-          <RNKTextInput
-            style={[styles.rectangleRnktextinput, styles.rectangleLayout]}
-            placeholder="Place your text"
-            value={rectangleTextInput}
-            onChangeText={setRectangleTextInput}
-          />
+          
+<RNKTextInput
+  style={[styles.rectangleRnktextinput, styles.rectangleLayout]}
+  placeholder="Place your text"
+  value={rectangleTextInput}
+  onChangeText={(text) => setRectangleTextInput(text)}
+/>
           <Text style={[styles.specialInstructions, styles.americanFlexBox]}>
             special instructions
           </Text>
@@ -294,4 +292,4 @@ const ProductPage = () => {
     },
   });
   
-  export default ProductPage; 
+  export default Productpage; 
