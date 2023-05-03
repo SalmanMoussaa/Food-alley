@@ -63,6 +63,12 @@ function MoodTestPage1({ navigation }) {
       </TouchableOpacity>
     </View>
     </View>
+     ))}
+
+     <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
+       <Text style={styles.nextButtonText}>Next</Text>
+     </TouchableOpacity>
+     </View>
   );
 }
 
