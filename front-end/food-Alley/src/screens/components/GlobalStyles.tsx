@@ -31,6 +31,8 @@ export const Color = {
   wFBase400: "#cbd2e0",
   d9D9D91: "#c70039",
   d9D9D92: "#900a3d",
+  gainsboro: "#e1e1e1",
+
 };
 export const Padding = {
   p_lg: 18,
