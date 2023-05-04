@@ -14,6 +14,7 @@ import HomeScreen from "./src/screens/home/home";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
 import React, { useEffect, useState } from "react";
+import StackSwitcher from "./src/navigation/StackSwitcher";
 
 export default function App() {
   const [flag, setFlag] = useState(false);

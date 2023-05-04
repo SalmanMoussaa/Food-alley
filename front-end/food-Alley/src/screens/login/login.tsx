@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from "react";
+import React, { FC, useState } from 'react'
 import {
   View,
   StyleSheet,
@@ -20,12 +20,15 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useMutation } from 'react-query';
 import Toast from 'react-native-root-toast';
 import * as SecureStore from 'expo-secure-store';
+import { useSelector, useDispatch } from 'react-redux';
+interface Screen4Props  {}
 
-const Login = () => {
+const Login: FC<Screen4Props> = (props) => {
+  const navigation = useNavigation()
+  const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigation = useNavigation();
 
   const handleLogin = async () => {
     try {
@@ -34,7 +37,7 @@ const Login = () => {
         password,
       });
       const token = response.data.token;
-      navigation.navigate("Home");
+      navigation.navigate("SignupScreen");
     } catch (error) {
       /*if (error.response) {
         // The request was made and the server responded with a status code
@@ -104,7 +107,7 @@ const Login = () => {
       </Pressable>
       <Text style={[styles.dontHaveAnContainer, styles.loginFlexBox]}>
         <Text style={styles.dontHaveAn}>Don't have an account?</Text>
-        <Text style={styles.loginTypo} onPress={() => navigation.replace("Register")}> Signup</Text>
+        <Text style={styles.loginTypo} onPress={() =>   navigation.navigate("SignupScreen")}> Signup</Text>
       </Text>
       <Image
         style={styles.appLogo1}

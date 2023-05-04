@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Screen4 from "../screens/screen4";
+import Screen4 from "../screens/home/home";
 
 
 
