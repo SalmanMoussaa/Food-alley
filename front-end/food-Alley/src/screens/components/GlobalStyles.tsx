@@ -32,6 +32,9 @@ export const Color = {
   d9D9D91: "#c70039",
   d9D9D92: "#900a3d",
 };
+export const Padding = {
+  p_lg: 18,
+};
 /* border radiuses */
 export const Border = {
   br_15xl: 34,
