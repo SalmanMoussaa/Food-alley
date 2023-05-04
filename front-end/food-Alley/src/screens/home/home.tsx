@@ -5,6 +5,10 @@ import FoodItem from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
 import Discount from "../components/Discount";
 import Bar from "../components/bar";
+import { useNavigation } from "@react-navigation/native";
+import { NativeRouter } from "react-router-native";
+
+
 const HomePage = () => {
   return (
     <View style={styles.homePage}>

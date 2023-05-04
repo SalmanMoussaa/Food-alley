@@ -47,7 +47,7 @@ public function register(Request $request)
     $user->save();
 
    
-    $token = Auth::login($user);
+    $token = $user->createToken('auth_token')->plainTextToken;
     return response()->json([
         'status' => 'success',
         'message' => 'User created successfully',

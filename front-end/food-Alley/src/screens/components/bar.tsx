@@ -1,8 +1,11 @@
 import * as React from "react";
 import { View, Image, StyleSheet, Pressable } from "react-native";
 import { Border } from "./GlobalStyles";
+import { useNavigation } from "react-router-native";
 
 const Bar = () => {
+  const navigation = useNavigation();
+
   const handleMoodtestPress = () => {
     // Handle moodtest button press here
   };
@@ -24,21 +27,21 @@ const Bar = () => {
         resizeMode="cover"
         source={require("../../../assets/Rectangle.png")}
       />
-      <Pressable onPress={handleHomePress}>
+      <Pressable onPress={navigation.replace("Home")}>
       <Image
         style={[styles.homeIcon, styles.iconLayout]}
         resizeMode="cover"
         source={require("../../../assets/home.png")}
       />
       </Pressable>
-      <Pressable onPress={handleMenuPress}>
+      <Pressable onPress={navigation.replace("Menu")}>
       <Image
         style={[styles.menuIcon , styles.iconLayout]}
         resizeMode="cover"
         source={require("../../../assets/menu.png")}
       />
       </Pressable>
-      <Pressable onPress={handleMoodtestPress}>
+      <Pressable onPress={navigation.replace("MoodTest")}>
         <Image
           style={[styles.moodtestIcon, styles.iconLayout]}
           resizeMode="cover"

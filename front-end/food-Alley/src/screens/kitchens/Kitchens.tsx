@@ -7,7 +7,7 @@ import Discount from "../components/Discount";
 import Bar from "../components/bar";
 import Kitchenscomponent from "../components/Kitchenscomponent";
 
-const Kitchens = () => {
+const Kitchens = (navigation) => {
   return (
     <View style={styles.kitchenPage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
