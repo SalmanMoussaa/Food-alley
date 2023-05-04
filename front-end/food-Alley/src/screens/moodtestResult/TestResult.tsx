@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
+import { Color, FontFamily, FontSize, Padding, Border } from "../components/GlobalStyles";
 import FoodItem from "../components/FoodItem";
 
 const MoodTest3 = () => {
@@ -30,7 +30,7 @@ const MoodTest3 = () => {
       <Image
         style={styles.arrowLeft3Icon}
         resizeMode="cover"
-        source={require("../assets/arrowleft-3.png")}
+        source={require("../../../assets/arrow.png")}
       />
     </View>
   );
