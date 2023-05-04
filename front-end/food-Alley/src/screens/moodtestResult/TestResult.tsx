@@ -51,5 +51,148 @@ const MoodTest3 = () => {
   );
 };
 
+const styles = StyleSheet.create({
+    productClr: {
+      color: Color.black,
+      textAlign: "left",
+    },
+    finishTypo: {
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+    },
+    groupChildLayout: {
+      height: 55,
+      width: 216,
+      position: "absolute",
+    },
+    groupPosition: {
+      backgroundColor: Color.d9D9D9,
+      left: 0,
+      top: 0,
+    },
+    stakeClr: {
+      color: Color.wFBase300,
+      textAlign: "left",
+      position: "absolute",
+    },
+    groupLayout: {
+      height: 164,
+      width: 162,
+      position: "absolute",
+    },
+    productDescriptionProduct: {
+      fontFamily: FontFamily.interRegular,
+      textAlign: "left",
+      fontSize: FontSize.size_sm,
+      color: Color.black,
+      flex: 1,
+    },
+    productDescriptionProductDeWrapper: {
+      top: 382,
+      left: 30,
+      backgroundColor: Color.gainsboro,
+      width: 322,
+      flexDirection: "row",
+      padding: Padding.p_lg,
+      borderRadius: Border.br_3xs,
+      position: "absolute",
+      overflow: "hidden",
+    },
+    basedOnYour: {
+      fontFamily: FontFamily.itimRegular,
+      textAlign: "left",
+      fontSize: FontSize.size_sm,
+      color: Color.black,
+      flex: 1,
+    },
+    moodResult: {
+      top: 345,
+      left: 143,
+      fontSize: FontSize.size_lg,
+      color: Color.darkGray,
+      textAlign: "left",
+      position: "absolute",
+    },
+    groupChild: {
+      height: 55,
+      width: 216,
+      position: "absolute",
+      borderRadius: Border.br_3xs,
+    },
+    finish: {
+      top: 19,
+      left: 86,
+      fontSize: FontSize.size_mini,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+    },
+    rectangleParent: {
+      top: 743,
+      left: 84,
+    },
+    text: {
+      top: 160,
+      left: 36,
+      fontSize: 128,
+      fontFamily: FontFamily.indieFlowerRegular,
+      width: 160,
+      height: 119,
+      textAlign: "left",
+      position: "absolute",
+    },
+    groupItem: {
+      borderRadius: 13,
+      backgroundColor: Color.d9D9D9,
+      left: 0,
+      top: 0,
+    },
+    groupInner: {
+      top: 47,
+      left: 29,
+      width: 99,
+      height: 70,
+      borderRadius: Border.br_3xs,
+      position: "absolute",
+    },
+    stake: {
+      top: 14,
+      left: 41,
+      fontSize: FontSize.size_5xl,
+      fontWeight: "700",
+      fontFamily: FontFamily.interBold,
+    },
+    americanFood: {
+      top: 121,
+      left: 11,
+      fontSize: FontSize.size_base,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "800",
+    },
+    love1Icon: {
+      top: 133,
+      left: 130,
+      width: 24,
+      height: 24,
+      position: "absolute",
+    },
+    rectangleGroup: {
+      top: 143,
+      left: 193,
+    },
+    arrowLeft3Icon: {
+      top: 32,
+      left: 23,
+      width: 50,
+      height: 50,
+      position: "absolute",
+    },
+    moodTest3: {
+      backgroundColor: Color.wFBaseWhite,
+      width: "100%",
+      height: 852,
+      overflow: "hidden",
+      flex: 1,
+    },
+  });
 
 export default MoodTest3;
