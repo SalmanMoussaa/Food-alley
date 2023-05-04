@@ -32,7 +32,7 @@ const MoodTest3 = () => {
     };
 
     fetchData();
-  }, []);
+  }, [responseText]);
 
        
   return (

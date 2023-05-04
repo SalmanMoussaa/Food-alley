@@ -29,7 +29,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/register", {
+      const response = await axios.post("https://social-bananas-relate-185-40-211-13.loca.lt/api/register", {
         firstName,
       
         

@@ -14,7 +14,8 @@ import HomeScreen from "./src/screens/home/home";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
 import React, { useEffect, useState } from "react";
-import StackSwitcher from "./src/navigation/StackSwitcher";
+import StackSwitcher from "./src/navigation/OnboardingStack";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [flag, setFlag] = useState(false);
@@ -38,9 +39,11 @@ export default function App() {
 
   return (
     // <HomeScreen />
+    <NavigationContainer>
     <Provider store={store}>
       <StackSwitcher />
     </Provider>
+    </NavigationContainer>
   );
 }
 

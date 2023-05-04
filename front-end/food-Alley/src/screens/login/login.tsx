@@ -32,7 +32,7 @@ const Login: FC<Screen4Props> = (props) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login", {
+      const response = await axios.post("https://public-jokes-trade-185-40-211-13.loca.lt/api/login", {
         email,
         password,
       });
