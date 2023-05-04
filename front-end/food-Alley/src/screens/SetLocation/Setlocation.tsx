@@ -7,23 +7,25 @@ export default function SelectLocation() {
   const[selectedLong,setLongitude]=useState<number | null>(null);
   const[selectedLat,setLatitude]=useState<number | null>(null);
 
-  const handleSubmitChange = () => {
-    console.log(selectedLong);
-    console.log(selectedLat);
-    const data = {
-      longitude:`${selectedLong}`,
-      latitude:`${selectedLat}`
-    };
-    axios({
-      method: "POST",
-      data,
-      url: `http://192.168.1.4:5000/user/addMark`,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => console.log(error));
+const handleSubmitChange = () => {
+  console.log(selectedLong);
+  console.log(selectedLat);
+  const data = {
+    longitude: `${selectedLong}`,
+    latitude: `${selectedLat}`,
+    address: '123 Main St, Anytown USA', // Replace with actual address
   };
+  axios({
+    method: "POST",
+    data,
+    url: `http://192.168.1.4:5000/user/addMark`,
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => console.log(error));
+};
+
 
   return (
     <View style={styles.container}>
