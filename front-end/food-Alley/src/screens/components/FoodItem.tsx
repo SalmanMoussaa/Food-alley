@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle, ImageStyle } from 'react-native';
 
@@ -6,7 +7,18 @@ interface FoodItemProps {
     imageUri: string;
     kitchenName: string;
   }
-  
+  const handlecklick=()=>{
+    axios.post('http://your-api-url.com/api/orderItems', {
+      recipe_id: 1 // replace with the actual recipe ID
+    })
+    .then(response => {
+      console.log(response.data);
+      // do something with the created order item
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
   const FoodItem: React.FC<FoodItemProps> = ({ foodname, imageUri, kitchenName }) => {
     return (
       <View style={styles.container}>
