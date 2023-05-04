@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet, Pressable ,Image} from 'react
 import axios from 'axios';
 import { NavigationProp } from '@react-navigation/native';
 import { Border, Color, FontFamily, FontSize } from '../components/GlobalStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
   
 
 
@@ -10,7 +12,14 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
   const [question, setQuestion] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("");
  
-
+  const storeResult = async (result: string) => {
+    try {
+      await AsyncStorage.setItem('moodTestResult', result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
 useEffect(() => {
   const generateQuestions = async () => {
     try {
@@ -26,6 +35,7 @@ useEffect(() => {
         },
       });
 
+
       const generatedQuestions = response.data.choices.map((choice: { text: string; }) => {
         return choice.text.trim().replace(/\d+\./, '');
       });
@@ -38,6 +48,8 @@ useEffect(() => {
 
   generateQuestions();
 }, []);
+
+
 
   const handleNext = () => {
       navigation.navigate('Result', { answer:selectedEmoji});
@@ -58,7 +70,10 @@ useEffect(() => {
       <TouchableOpacity
   style={styles.vectorParent}
   activeOpacity={0.2}
-  onPress={() => setSelectedEmoji("😊")}
+  onPress={() => {
+    setSelectedEmoji("😊");
+    storeResult("😊");
+  }}
 >
   <Image
     style={[styles.frameInner, styles.rectangleLayout]}
@@ -70,7 +85,11 @@ useEffect(() => {
 <TouchableOpacity
   style={[styles.rectangleContainer, styles.rectangleLayout]}
   activeOpacity={0.2}
-  onPress={() => setSelectedEmoji("😔")}
+  onPress={() => {
+    setSelectedEmoji("😔");
+    storeResult("😔");
+  }}
+  
 >
   <View style={[styles.rectangleView, styles.rectangleLayout]} />
   <Text style={[styles.text1, styles.textTypo1]}> 😔</Text>
@@ -78,7 +97,11 @@ useEffect(() => {
 <TouchableOpacity
   style={[styles.frameTouchableopacity, styles.rectangleParent1Position]}
   activeOpacity={0.2}
-  onPress={() => setSelectedEmoji("😫")}
+  onPress={() => {
+    setSelectedEmoji("😫")  
+      storeResult("😫");
+  }}
+  
 >
   <View style={[styles.rectangleView, styles.rectangleLayout]} />
   <Text style={[styles.text2, styles.textTypo]}> 😫</Text>
@@ -86,7 +109,10 @@ useEffect(() => {
 <TouchableOpacity
   style={[styles.rectangleParent1, styles.rectangleParent1Position]}
   activeOpacity={0.2}
-  onPress={() => setSelectedEmoji("😠")}
+  onPress={() => {
+    setSelectedEmoji("😠")  
+      storeResult("😠");
+  }}
 >
   <View style={[styles.rectangleView, styles.rectangleLayout]} />
   <Text style={[styles.text3, styles.textTypo]}> 😠</Text>

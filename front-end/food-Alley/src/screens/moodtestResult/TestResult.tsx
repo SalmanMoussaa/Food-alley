@@ -2,8 +2,39 @@ import * as React from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Color, FontFamily, FontSize, Padding, Border } from "../components/GlobalStyles";
 import FoodItem from "../components/FoodItem";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 
 const MoodTest3 = () => {
+    
+    const [responseText, setResponseText] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await AsyncStorage.getItem('moodTestResult');
+        const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
+          prompt: 'based on this emoji results '+ result+' give me a a well fromed paragraph talking about the mood of the user, dont talk in general be specific about this day and tell him at the end that food is important for changing mood ' ,
+          max_tokens: 50,
+          n: 3,
+          stop: ['Q:'],
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${'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'}`,
+          },
+        });
+        setResponseText(response.data.choices[0].text);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+       
   return (
     <View style={styles.moodTest3}>
       <View style={styles.productDescriptionProductDeWrapper}>
@@ -13,11 +44,7 @@ const MoodTest3 = () => {
       </View>
       <View style={styles.productDescriptionProductDeWrapper}>
         <Text style={[styles.basedOnYour, styles.productClr]}>
-          Based on your responses, it seems like you may be feeling overwhelmed
-          or stressed 😫. You may be in need of some comfort food 🍔 and
-          relaxation time in front of the TV 📺. It's important to take care of
-          yourself during times of stress and prioritize activities that help
-          you feel more relaxed and at ease.
+          {responseText}
         </Text>
       </View>
       <Text style={[styles.moodResult, styles.finishTypo]}>mood result</Text>
