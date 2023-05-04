@@ -15,6 +15,8 @@ import { Border, FontFamily, FontSize, Color } from "../components/GlobalStyles"
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import logindesgin from "../../../assets/logindesgin.jpg";
+
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -120,6 +122,11 @@ const Register = () => {
           
         />
       </View>
+      <Image
+        style={styles.loginChild}
+        resizeMode="cover"
+        source={logindesgin}
+      />
       <Pressable   style={({ pressed }) => [
         styles.registerItem,
           
@@ -145,8 +152,13 @@ const Register = () => {
 };
 
 const styles =  StyleSheet.create({
+  loginChild:{
+    bottom:"-75%",
+    width:"100%"
+
+  },
   frameChildLayout: {
-    height: 53,
+    height: 55,
     width: "100%",
     borderRadius: Border.br_3xs,
     left: "6%",
@@ -195,8 +207,8 @@ const styles =  StyleSheet.create({
     position: "absolute",
   },
   registerItem: {
-    top: 708,
-    left: 119,
+    top: "79%",
+    left: "30%",
     borderRadius: Border.br_5xs,
     backgroundColor: Color.darkGray,
     width: 146,
@@ -204,8 +216,8 @@ const styles =  StyleSheet.create({
     position: "absolute",
   },
   register1: {
-    top: 716,
-    left: 145,
+    top: "79%",
+    left: "36%",
     color: Color.wFBaseWhite,
   },
   createAccount: {
@@ -218,7 +230,7 @@ const styles =  StyleSheet.create({
     width: "100%",
   },
   arrowLeft3: {
-    left: 28,
+    left: "2%",
     top: 38,
     width: 50,
     height: 50,

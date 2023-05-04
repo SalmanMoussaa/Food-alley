@@ -1,26 +1,14 @@
-import React, { FC, useState } from 'react'
+import * as React from "react";
 import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType } from "react-native";
 import { FontFamily, Color, Border, FontSize } from "../components/GlobalStyles";
 import FoodItem from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
 import Discount from "../components/Discount";
 import Bar from "../components/bar";
-import { useSelector, useDispatch } from 'react-redux';
-
-
-
-
-
-
 import { useNavigation } from "@react-navigation/native";
-import { NativeRouter } from "react-router-native";
 
-interface HomeScreenProps  {}
 
-const HomePage: FC<HomeScreenProps> = (props) => {
-    const data = useSelector(state => state.home).data
-    const dispatch = useDispatch()
-    const [inputvalue, setInputValue] = useState("");
+const HomePage = (navigation) => {
   return (
     <View style={styles.homePage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
