@@ -7,7 +7,7 @@ import Discount from "../components/Discount";
 import Bar from "../components/bar";
 import Kitchenscomponent from "../components/Kitchenscomponent";
 
-const Kitchens = (navigation) => {
+const Kitchens = () => {
   return (
     <View style={styles.kitchenPage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
@@ -30,10 +30,10 @@ const Kitchens = (navigation) => {
         
       </View>
       <View style={styles.kitchenpagecomp}>
-          <Kitchenscomponent kitchenName={"abir "} slang={"salman"} imageSource={undefined}   />
+          <Kitchenscomponent kitchenName={"abir "} slang={"salman"} imageSource={""}   />
 
         </View>
-        <Bar/>
+        <Bar />
 
       </View>
 
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
 kitchenPage:{
   
     backgroundColor: Color.wFBaseWhite,
-    flex: 1,
+    
     width: "100%",
-    height: 852,
+    height: "100%",
     overflow: "hidden",
   },
   kitchenpagecomp:{
@@ -58,14 +58,15 @@ kitchenPage:{
     
   },
   kitchensicon:{
-    top: "200%",
+    top: "250%",
     width:"40%",
     left: "1%",
 
   },
   search:{
-    top: 0,
+    top: "75%",
     width: 349,
+  
     left: 24,
   },
   ellipseParent: {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType } from "react-native";
+import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType, ScrollView } from "react-native";
 import { FontFamily, Color, Border, FontSize } from "../components/GlobalStyles";
 import FoodItem from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
@@ -8,7 +8,7 @@ import Bar from "../components/bar";
 import { useNavigation } from "@react-navigation/native";
 
 
-const HomePage = (navigation) => {
+const HomePage = () => {
   return (
     <View style={styles.homePage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
@@ -35,10 +35,13 @@ const HomePage = (navigation) => {
       
      
       
-      <View style={styles.homePageChild} >
+      <ScrollView style={styles.homePageChild}   showsHorizontalScrollIndicator={false}
+   automaticallyAdjustContentInsets={true} 
+
+ >
         <Discount discount={"20%"} image={"../../../assets/Ellipse 2.png"}/>
 
-        </View>
+        </ScrollView >
       <Text style={[styles.suggestedFoods, styles.americanFoodTypo]}>
         Suggested foods
       </Text>
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   rectanglePosition: {
-    top: 458,
+    top: 460,
     height: 164,
     width: 162,
     position: "absolute",
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   search:{
-    top: 0,
+    top: "40%",
     width: 349,
     left: 24,
   },
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   },
   groupChild: {
     borderRadius: 13,
-    backgroundColor: Color.d9D9D91,
+    backgroundColor: "#C70039",
     left: 0,
     top: 0,
   },
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
   },
   homePageInner: {
     left: "5%",
-    top: "25%",
+    top: "27%",
     width: "100%",
   },
   rectangleGroup: {
@@ -154,15 +157,17 @@ const styles = StyleSheet.create({
     width: 162,
   },
   homePageChild: {
-    top: "8%",
-    backgroundColor: Color.d9D9D9,
+    flexDirection:"row",
+    alignContent:"flex-start",
+    top: "10%",
+    backgroundColor: "#C70039",
     width: "100%",
     height: "12%",
     left: 0,
     position: "absolute",
   },
   suggestedFoods: {
-    top: "20%",
+    top: "23%",
     fontSize: 18,
     color: Color.darkGray,
     left: 24,

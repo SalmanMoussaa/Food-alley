@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   groupChild: {
     borderRadius: Border.br_4xl,
-    backgroundColor: Color.d9D9D9,
+    backgroundColor: "#900A3D",
   },
   discount: {
     color: "#000",

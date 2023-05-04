@@ -27,21 +27,22 @@ const Bar = () => {
         resizeMode="cover"
         source={require("../../../assets/Rectangle.png")}
       />
-      <Pressable onPress={navigation.navigate("Home")}>
+      <Pressable onPress={() =>navigation.navigate("Home")}>
       <Image
         style={[styles.homeIcon, styles.iconLayout]}
         resizeMode="cover"
         source={require("../../../assets/home.png")}
       />
       </Pressable>
-      <Pressable onPress={navigation.navigate("Menu")}>
+      <Pressable  onPress={() => navigation.navigate("kitchens")}>
       <Image
         style={[styles.menuIcon , styles.iconLayout]}
         resizeMode="cover"
         source={require("../../../assets/menu.png")}
       />
       </Pressable>
-      <Pressable onPress={navigation.navigate("MoodTest")}>
+      <Pressable
+      onPress={() => navigation.navigate("Moodtest")}>
         <Image
           style={[styles.moodtestIcon, styles.iconLayout]}
           resizeMode="cover"
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     
     width: "100%",
     height: 75,
-    top:"-3%",
+    top:"-30%",
     position: "absolute",
   },
   homeIcon: {
@@ -93,8 +94,9 @@ const styles = StyleSheet.create({
   bar: {
     flex: 1,
     width: "100%",
-    top:"88%",
+    top:"92%",
     height: 65,
+    position:"absolute"
   },
 });
 
