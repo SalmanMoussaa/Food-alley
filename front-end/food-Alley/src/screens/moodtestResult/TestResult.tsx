@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Color, FontFamily, FontSize, Padding, Border } from "../GlobalStyles";
+import FoodItem from "../components/FoodItem";
 
 const MoodTest3 = () => {
   return (
@@ -25,23 +26,7 @@ const MoodTest3 = () => {
         <Text style={[styles.finish, styles.stakeClr]}>Finish</Text>
       </Pressable>
       <Text style={[styles.text, styles.productClr]}>😫</Text>
-      <View style={[styles.rectangleGroup, styles.groupLayout]}>
-        <View style={[styles.groupItem, styles.groupLayout]} />
-        <Image
-          style={styles.groupInner}
-          resizeMode="cover"
-          source={require("../assets/rectangle-17.png")}
-        />
-        <Text style={[styles.stake, styles.stakeClr]}>stake</Text>
-        <Text style={[styles.americanFood, styles.stakeClr]}>
-          American food
-        </Text>
-        <Image
-          style={styles.love1Icon}
-          resizeMode="cover"
-          source={require("../assets/love-1.png")}
-        />
-      </View>
+     <FoodItem foodname={"salman"} imageUri={""} kitchenName={""}/>
       <Image
         style={styles.arrowLeft3Icon}
         resizeMode="cover"
