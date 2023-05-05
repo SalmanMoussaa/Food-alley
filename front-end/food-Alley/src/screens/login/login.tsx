@@ -14,7 +14,7 @@ import logindesgin from "../../../assets/logindesgin.jpg";
 import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
 import axios from "axios";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-
+import{BASE_URL} from `env`
 import { RouteProp, NavigationProp } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useMutation } from 'react-query';
@@ -47,13 +47,13 @@ const Login: FC<Screen4Props> = (props) => {
     axios({
       method: "post",
       data,
-      url: "http://127.0.0.1:8000/api/login",
+      url: `${BASE_URL}/api/login`,
     })
       .then((res) => {
         console.warn(res.data)
         
         console.log(res.data)
-        if(res?.data.user_type==="1"){
+        if(res?.data.is_admin==="1"){
           navigation.navigate("VetProfile")}
           else{
 

@@ -1,18 +1,19 @@
-module.exports = function(api) {
+module.exports = function(api: { cache: (arg0: boolean) => void; }) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
+    Plugins:['module:react-native-dotenv']
     
 
   };
 };
-import { Platform } from 'react-native';
-import { Platform } from 'react-native';
+
 
 export default {
   project: {
     ios: {},
     android: {},
   },
+  presets: ['module:metro-react-native-babel-preset'],
   assets: ['./assets/fonts'],
 };
