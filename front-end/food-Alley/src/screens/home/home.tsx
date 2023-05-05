@@ -157,14 +157,15 @@ const styles = StyleSheet.create({
     width: 162,
   },
   homePageChild: {
-    flexDirection:"row",
-    alignContent:"flex-start",
+    flexDirection:"column",
+    
     top: "10%",
     backgroundColor: "#C70039",
     width: "100%",
     height: "12%",
     left: 0,
-    position: "absolute",
+    position:"absolute"
+    
   },
   suggestedFoods: {
     top: "23%",

@@ -65,8 +65,7 @@ kitchenPage:{
   },
   search:{
     top: "75%",
-    width: 349,
-  
+    width: 349, 
     left: 24,
   },
   ellipseParent: {

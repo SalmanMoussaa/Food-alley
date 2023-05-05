@@ -47,7 +47,7 @@ useEffect(() => {
   };
 
   generateQuestions();
-}, []);
+}, [question]);
 
 
 

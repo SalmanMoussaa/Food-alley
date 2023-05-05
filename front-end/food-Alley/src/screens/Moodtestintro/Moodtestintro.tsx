@@ -1,8 +1,12 @@
 import * as React from "react";
 import { Text, StyleSheet, Pressable, View, Image } from "react-native";
 import { FontFamily, FontSize, Color, Border } from "../components/GlobalStyles";
+import Bar from "../components/bar";
+import { useNavigation } from "@react-navigation/native";
 
 const MoodTest = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.moodTest}>
       <Text style={[styles.howAreYou, styles.doUWantTypo]}>
@@ -14,7 +18,7 @@ const MoodTest = () => {
       >{`do u want to test your mood
 and east food based on your
 result `}</Text>
-      <Pressable style={styles.moodTestChild} />
+      <Pressable style={styles.moodTestChild} onPress= {() => navigation.navigate("Moodtestquestion")} />
       <Text style={[styles.startNow, styles.doUWantTypo]}>start now !</Text>
       <View style={styles.oig1} />
       <Image
@@ -22,6 +26,7 @@ result `}</Text>
         resizeMode="cover"
         source={require("../../../assets/questionmark.png")}
       />
+      <Bar/>
     </View>
   );
 };

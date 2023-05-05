@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useContext, useState } from 'react'
 import {
   View,
   StyleSheet,
@@ -21,44 +21,55 @@ import { useMutation } from 'react-query';
 import Toast from 'react-native-root-toast';
 import * as SecureStore from 'expo-secure-store';
 import { useSelector, useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 interface Screen4Props  {}
 
 const Login: FC<Screen4Props> = (props) => {
-  const navigation = useNavigation()
-  const dispatch = useDispatch()
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const navigation = useNavigation();
+  const [myEmail, setMyEmail] = useState("");
+  const [myPassword, setMyPassword] = useState("");
+  const toggleState = (currentState: any) => {
+    useState(!currentState);
+  };
+  
+  const storeData = async (value: string) => {
+    toggleState(value);
+    await AsyncStorage.setItem("@id_token", value);
+    window.location.reload(false);
+  };
+  const handleSubmitLogin = () => {
+    const data = {
+      email: myEmail,
+      password: myPassword,
+      password_confirmation:myPassword
+    };
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post("https://public-jokes-trade-185-40-211-13.loca.lt/api/login", {
-        email,
-        password,
-      });
-      const token = response.data.token;
-      navigation.navigate("SignupScreen");
-    } catch (error) {
-      /*if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        setError(error.response.data.message);
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
-        setError("Network Error");
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        setError("Something Went Wrong");
-        console.log("Error", error.message);
-      }
-    */
-    }
+    axios({
+      method: "post",
+      data,
+      url: "http://127.0.0.1:8000/api/login",
+    })
+      .then((res) => {
+        console.warn(res.data)
+        
+        console.log(res.data)
+        if(res?.data.user_type==="1"){
+          navigation.navigate("VetProfile")}
+          else{
+
+            navigation.navigate("Tabs");
+          }
+      })
+      .catch((error) => {
+        console.log(error)});
+  };
+
+  const handleMyEmailChange = (value: React.SetStateAction<string>) => {
+    setMyEmail(value);
+  };
+
+  const handleMyPasswordChange = (value: React.SetStateAction<string>) => {
+    setMyPassword(value);
   };
   return (
     <View >
@@ -72,9 +83,9 @@ const Login: FC<Screen4Props> = (props) => {
             <RNPTextInput.Icon style={{ marginTop: "50%" }} name="email-box" />
           }
           theme={{ colors: { background: "#d9d9d9" } }}
-          value={email}
-          onChangeText={setEmail}
-        />
+          value={myEmail}
+          onChangeText={(value) => setMyEmail(value)}
+          />
         <RNPTextInput
           style={[styles.frameItem, styles.frameLayout]}
           placeholder="Password"
@@ -82,8 +93,8 @@ const Login: FC<Screen4Props> = (props) => {
           mode="outlined"
           left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
           theme={{ colors: { background: "#d9d9d9" } }}
-          value={password}
-          onChangeText={setPassword}
+          value={myPassword}
+          onChangeText={(value) => setMyPassword(value)}
           secureTextEntry
         />
       </View>
@@ -100,7 +111,7 @@ const Login: FC<Screen4Props> = (props) => {
           styles.rectangleLayout,
           pressed && { transform: [{ scale: 0.9 }] }
         ]}
-        onPress={handleLogin}
+        onPress={handleSubmitLogin}
       >
         <View style={[styles.rectangleView, styles.rectangleLayout]} />
         <Text style={[styles.login2, styles.loginFlexBox]}>Login</Text>
@@ -212,7 +223,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.wFBaseWhite,
     flex: 1,
     width: "100%",
-    height: 852,
+    height: "100%",
     overflow: "hidden",
   },
 });
