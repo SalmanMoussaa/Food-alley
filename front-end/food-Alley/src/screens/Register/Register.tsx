@@ -57,9 +57,11 @@ const Register = () => {
       axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        navigation.navigate("LoginScreen");
       })
       .catch((error) => {
-        console.log("7mar");
+        console.log(error);
+        console.log(error.response.data);
       });
   }
 
