@@ -52,18 +52,30 @@ const MoodTest3 = () => {
         <View style={[styles.groupChild, styles.groupPosition]} />
         <Text style={[styles.finish, styles.stakeClr]}>Finish</Text>
       </Pressable>
+      <View style={[styles.viewposition]}>
       <Text style={[styles.text, styles.productClr]}>😫</Text>
-     <FoodItem foodname={"salman"} imageUri={""} kitchenName={""}/>
+     <FoodItem foodname={"salman"} imageUri={"../../../assets/food.png"} kitchenName={"moussa"}/>
+     </View>
       <Image
         style={styles.arrowLeft3Icon}
         resizeMode="cover"
         source={require("../../../assets/arrow.png")}
+        
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  viewposition:{
+    display:"flex",
+    top:"15%",
+    left:"5%",
+    flexDirection:"column",
+    alignItems:"flex-start",
+    justifyContent:"space-between"
+
+  },
     productClr: {
       color: Color.black,
       textAlign: "left",
@@ -143,14 +155,12 @@ const styles = StyleSheet.create({
       left: 84,
     },
     text: {
-      top: 160,
-      left: 36,
+      
+     paddingLeft:"50%",
       fontSize: 128,
       fontFamily: FontFamily.indieFlowerRegular,
-      width: 160,
-      height: 119,
-      textAlign: "left",
-      position: "absolute",
+      
+      
     },
     groupItem: {
       borderRadius: 13,

@@ -7,8 +7,10 @@ import {
   Pressable,
   ImageBackground,
   View,
+  TextInput,
 } from "react-native";
 import {
+  CheckBox,
   CheckBox as RNKCheckBox,
 } from "@ui-kitten/components";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -20,7 +22,7 @@ const Productpage = () => {
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
-    const [rectangleTextInput, setRectangleTextInput] = useState<string | undefined>(undefined);
+    const [rectangleTextInput, setRectangleTextInput] = useState("salman");
      const [frameDropdownItems, setFrameDropdownItems] = useState([
         { value: "Beirut", label: "Beirut" },
         { value: "lebanon", label: "lebanon" },
@@ -31,7 +33,7 @@ const Productpage = () => {
     return (
       <ScrollView
         style={styles.productPage}
-        horizontal
+        
         contentContainerStyle={styles.productPageScrollViewContent}
       >
         <View style={styles.vectorParent}>
@@ -79,7 +81,7 @@ const Productpage = () => {
               resizeMode="cover"
               source={require("../../../assets/Rectangle35.png")}
             />
-            <RNKCheckBox
+            <CheckBox
               style={styles.frameInner}
               checked={frameCheckboxchecked}
               onChange={() => setFrameCheckboxchecked(!frameCheckboxchecked)}
@@ -103,7 +105,7 @@ const Productpage = () => {
             />
           </View>
           
-<RNKTextInput
+<TextInput
   style={[styles.rectangleRnktextinput, styles.rectangleLayout]}
   placeholder="Place your text"
   value={rectangleTextInput}
@@ -243,7 +245,7 @@ const Productpage = () => {
       color: Color.darkGray,
     },
     dropdownpicker: {
-      backgroundColor: Color.tomato,
+      backgroundColor: "#FE5932",
     },
     wrapper: {
       top: 941,
@@ -255,7 +257,7 @@ const Productpage = () => {
       top: 1041,
       borderRadius: Border.br_3xs,
       left: 19,
-      backgroundColor: Color.white,
+      backgroundColor: "#FFFF",
     },
     specialInstructions: {
       top: 1012,
@@ -288,7 +290,7 @@ const Productpage = () => {
       overflow: "hidden",
       width: "100%",
       flex: 1,
-      backgroundColor: Color.white,
+      backgroundColor: "#FFFF",
     },
   });
   

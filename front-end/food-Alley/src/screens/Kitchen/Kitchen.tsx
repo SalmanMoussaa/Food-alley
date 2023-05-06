@@ -31,23 +31,26 @@ const Kitchen = () => {
   };
   const styles =StyleSheet.create({
     search:{
-        top: "60%",
-    width: "120%",
-    left: -45,
+        top: "200%",
+    width: "115%",
+    left: "-9%",
     backgroundColor:"#FFFFFF",
 
 
     },
     parentfoodItems:{
         left:"6%",
-        top:"110%"
+        top:"350%"
     },
     parenttypes:{
         display:"flex",
         flexDirection:"column",
         justifyContent:"space-between",
         left:"3%",
-        top:"70%"
+        top:"200%",
+        width:"100%",
+        backgroundColor:"#4f4"
+        
     }
 
 

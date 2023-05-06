@@ -1,8 +1,11 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import { Color, FontSize, Border, FontFamily } from "./GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const kitchenpagecomp = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.groupParent}>
       <View style={[styles.rectangleParent, styles.groupChildPosition]}>
@@ -19,11 +22,14 @@ const kitchenpagecomp = () => {
           resizeMode="cover"
           source={require("../../../assets/americanKitchen.png")}
         />
+        <Pressable  onPress={() => navigation.goBack()}>
         <Image
           style={styles.arrowIcon}
           resizeMode="cover"
           source={require("../../../assets/arrowwhite.png")}
+          
         />
+        </Pressable>
       </View>
     </View>
   );
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: 124,
+    top:"15%"
   },
 });
 

@@ -30,25 +30,38 @@ const Register = () => {
   const navigation = useNavigation();
 
   const handleRegister = async () => {
-    try {
-      const response = await axios.post("https://social-bananas-relate-185-40-211-13.loca.lt/api/register", {
-        firstName,
-      
-        
-        lastName,
-        username,
-        phoneNumber,
-        email,
-        password,
-        confirmPassword,
+    
+      let data = JSON.stringify({
+        "first_name": "salman",
+        "Last_name": "moussa",
+        "username": "salman12",
+        "email": "a@gmail.com",
+        "email_verified_at": null,
+        "password": "salman2003.",
+        "password_confirmation": "salman2003.",
+        "adress": "beirut",
+        "phone_number": "03023730",
+        "is_admin": "1"
       });
-      const token = response.data.token;
-      await AsyncStorage.setItem("token", token);
-      navigation.navigate("Home");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:8000/api/register',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const handleUsernameChange = (text: React.SetStateAction<string>) => setUsername(text);
   const handleFirstNameChange = (text: React.SetStateAction<string>) => setFirstName(text);

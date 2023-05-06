@@ -12,9 +12,8 @@ import {
 import { TextInput as RNPTextInput } from "react-native-paper";
 import logindesgin from "../../../assets/logindesgin.jpg";
 import { Border, Color, FontFamily, FontSize } from "../components/GlobalStyles";
-import axios from "axios";
+import axios from 'axios';
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import{BASE_URL} from `env`
 import { RouteProp, NavigationProp } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useMutation } from 'react-query';
@@ -44,11 +43,8 @@ const Login: FC<Screen4Props> = (props) => {
       password_confirmation:myPassword
     };
 
-    axios({
-      method: "post",
-      data,
-      url: `${BASE_URL}/api/login`,
-    })
+   axios.post("http://127.0.0.1:8000/api/login",data,{validateStatus: false
+  })
       .then((res) => {
         console.warn(res.data)
         

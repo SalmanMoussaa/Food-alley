@@ -1,6 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle, ImageStyle } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle, ImageStyle, Pressable } from 'react-native';
+
 
 interface FoodItemProps {
     foodname: string;
@@ -20,8 +22,14 @@ interface FoodItemProps {
     });
   }
   const FoodItem: React.FC<FoodItemProps> = ({ foodname, imageUri, kitchenName }) => {
+    const navigation = useNavigation();
+
     return (
-      <View style={styles.container}>
+      <View style={styles.container} >
+        <Pressable style={({ pressed }) => [
+      
+          pressed && { transform: [{ scale: 0.9 }] }
+        ]} onPress={() =>   navigation.navigate("ProductPage")}>
         <View style={styles.infoContainer}>
           <Text style={styles.foodname}>{foodname}</Text>
           <Image style={styles.image} source={{ uri: imageUri }} />
@@ -33,6 +41,7 @@ interface FoodItemProps {
             uri: "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/brj7d79qb4m-1%3A16?alt=media&token=696d5ba6-d138-44d7-b5ca-1bad33542a0e",
           }}
         />
+        </Pressable>
       </View>
     );
   };
@@ -40,7 +49,7 @@ interface FoodItemProps {
 
   const styles = StyleSheet.create({
     container: {
-      position: "relative",
+      position:"absolute",
       width: 161.66,
       height: 164.08,
       borderRadius: 13.27,
