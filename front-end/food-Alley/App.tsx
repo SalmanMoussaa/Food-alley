@@ -10,16 +10,21 @@ import {
   TextInput,
 } from "react-native";
 import HomeScreen from "./src/screens/home/home";
-
+import "react-native-gesture-handler";
 import { Provider } from "react-redux";
 import { store } from "./src/redux/store";
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import StackSwitcher from "./src/navigation/OnboardingStack";
 import { NavigationContainer } from "@react-navigation/native";
+const ContextProvider = createContext<any>(null);
+
+export const UserContext = createContext<any>(null);
 
 export default function App() {
-  const [flag, setFlag] = useState(false);
-  const [flag2, setFlag2] = useState(false);
+  const [flag, setFlag] = useState<boolean>(false);
+  const [flag2, setFlag2] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string>("");
+  const [userToken, setUserToken] = useState<string>("");
 
   useEffect(() => {
     // will run on every render
@@ -38,12 +43,22 @@ export default function App() {
   }, [flag2, flag]);
 
   return (
-    // <HomeScreen />
+     <>
+    <UserContext.Provider value={{
+      userId,
+      setUserId,
+      userToken,
+      setUserToken,
+      
+    }}>
     <NavigationContainer>
+
     <Provider store={store}>
       <StackSwitcher />
     </Provider>
     </NavigationContainer>
+    </UserContext.Provider>
+    </>
   );
 }
 

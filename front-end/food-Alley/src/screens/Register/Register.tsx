@@ -32,22 +32,22 @@ const Register = () => {
   const handleRegister = async () => {
     
       let data = JSON.stringify({
-        "first_name": "salman",
-        "Last_name": "moussa",
-        "username": "salman12",
-        "email": "a@gmail.com",
-        "email_verified_at": null,
-        "password": "salman2003.",
-        "password_confirmation": "salman2003.",
-        "adress": "beirut",
-        "phone_number": "03023730",
-        "is_admin": "1"
+        first_name: firstName,
+       Last_name: lastName,
+         username:username,
+        email: email,
+        email_verified_at: null,
+        password: password,
+        password_confirmation: confirmPassword,
+        adress: "beirut",
+        phone_number: phoneNumber,
+        is_admin: "1"
       });
       
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://127.0.0.1:8000/api/register',
+        url: 'http://10.0.2.2:8000/api/register',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -59,7 +59,7 @@ const Register = () => {
         console.log(JSON.stringify(response.data));
       })
       .catch((error) => {
-        console.log(error);
+        console.log("7mar");
       });
   }
 
@@ -172,9 +172,10 @@ const styles =  StyleSheet.create({
   },
   frameChildLayout: {
     height: 55,
+    
     width: "100%",
     borderRadius: Border.br_3xs,
-    left: "6%",
+    left: "3%",
     position: "absolute",
   },
   register1Typo: {
@@ -192,25 +193,25 @@ const styles =  StyleSheet.create({
     position: "absolute",
   },
   frameChild: {
-    top: 4,
+    top: "-20%",
   },
   frameItem: {
-    top: 77,
+    top: "-1%",
   },
   frameInner: {
-    top: 150,
+    top: "19%",
   },
   rectangleRnptextinput: {
-    top: 223,
+    top: "38%",
   },
   frameChild1: {
-    top: 296,
+    top: "58%",
   },
   frameChild2: {
-    top: 369,
+    top: "78%",
   },
   frameChild3: {
-    top: 442,
+    top: "100%",
   },
   rectangleParent: {
     top: 183,
@@ -229,8 +230,8 @@ const styles =  StyleSheet.create({
     position: "absolute",
   },
   register1: {
-    top: "79%",
-    left: "36%",
+    top: "79.5%",
+    left: "37%",
     color: Color.wFBaseWhite,
   },
   createAccount: {

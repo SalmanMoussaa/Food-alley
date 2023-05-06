@@ -21,12 +21,20 @@ import Toast from 'react-native-root-toast';
 import * as SecureStore from 'expo-secure-store';
 import { useSelector, useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import HomePage from '../home/home';
+import { UserContext } from "../../../App";
+interface ResponseData {
+  user_id: string;
+  token: string;
+  user_type: string;
+}
 interface Screen4Props  {}
 
 const Login: FC<Screen4Props> = (props) => {
   const navigation = useNavigation();
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
+  const { setUserId, setUserToken } = useContext(UserContext);
   const toggleState = (currentState: any) => {
     useState(!currentState);
   };
@@ -36,29 +44,36 @@ const Login: FC<Screen4Props> = (props) => {
     await AsyncStorage.setItem("@id_token", value);
     window.location.reload(false);
   };
+  
   const handleSubmitLogin = () => {
     const data = {
       email: myEmail,
       password: myPassword,
       password_confirmation:myPassword
     };
+  
 
-   axios.post("http://127.0.0.1:8000/api/login",data,{validateStatus: false
-  })
-      .then((res) => {
-        console.warn(res.data)
+    const config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://10.0.2.2:8000/api/login',
+      headers: { 
+        'Content-Type': 'application/json', 
         
-        console.log(res.data)
-        if(res?.data.is_admin==="1"){
-          navigation.navigate("VetProfile")}
-          else{
-
-            navigation.navigate("Tabs");
-          }
-      })
-      .catch((error) => {
-        console.log(error)});
-  };
+      },
+      data : data
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+      setUserId(response.data.user_id)
+        setUserToken(response.data.token)
+        navigation.navigate("Home");
+    })
+    .catch((error) => {
+      console.log(error);
+    });}
 
   const handleMyEmailChange = (value: React.SetStateAction<string>) => {
     setMyEmail(value);
