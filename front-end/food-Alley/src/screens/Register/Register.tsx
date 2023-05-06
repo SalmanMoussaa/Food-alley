@@ -60,6 +60,19 @@ const Register = () => {
         navigation.navigate("LoginScreen");
       })
       .catch((error) => {
+        if (error.username) {
+          console.log("Username is already taken");
+          alert("username is already registered")
+        }
+        if (error.email) {
+          console.log("Email is already registered");
+          alert("Email is already registered")
+        }
+        if (error.phone_number) {
+          console.log("Phone number is already registered");
+          alert("Phone number is already registered")
+        }
+        console.log("An error occurred during the request:", error.message);
         console.log(error);
         console.log(error.response.data);
       });
