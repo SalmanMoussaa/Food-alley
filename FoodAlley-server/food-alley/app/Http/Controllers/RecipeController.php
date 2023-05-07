@@ -22,6 +22,8 @@ class RecipeController extends Controller
     
         return response()->json($searchResults, 200);
     }
+    
+
 
     public function store(Request $request)
     {
@@ -81,7 +83,14 @@ class RecipeController extends Controller
         'recipe' => $recipe
     ], 200);
 }
-   
+public function getAllNames()
+{
+    $recipes = Recipe::all(); // Retrieve all recipes from the database
+
+    $names = $recipes->pluck('name'); // Extract the 'name' column values into an array
+
+    return $names;
+}
 
 }
 

@@ -37,15 +37,14 @@ const MoodTest3 = ({ route }: NewPageProps)=> {
 
     useEffect(() => {
       const generateMoodText = async (selectedEmoji: string) => {
-        
-  
-        const prompt = `based on this emoji  ${selectedEmoji}, give me a 2 lines paragraph explainig the mood as you are talking to someone to make him fel better`;
-  
+
+        const prompt= `Imagine you are talking to someone who is feeling ${selectedEmoji}. Write a short, uplifting paragraph (2 lines) to help them understand and embrace their mood. Use words that inspire and bring positivity. Here are some examples to guide you: Example: Feeling ${selectedEmoji} means you are radiating pure joy and happiness. Embrace this vibrant mood, let it light up your world, and share your infectious positivity with everyone you meet. Example: When you're feeling ${selectedEmoji}, it's like a warm hug for your soul. Embrace this comforting mood, let it fill you with peace and contentment, and know that everything is going to be alright.`;
         const data = {
           model: 'gpt-3.5-turbo',
           prompt,
-          temperature: 0.2,
-          max_tokens: 100,
+          temperature: 0.5,
+          max_tokens: 50,
+          frequency_penalty: 1.5,
         };
   
         const headers = {
@@ -56,7 +55,10 @@ const MoodTest3 = ({ route }: NewPageProps)=> {
         try {
           const response = await axios.post(endpoint, data, { headers });
           const generatedText = response.data.choices[0].text;
-          setResponseText(generatedText);
+          const startIndex = generatedText.indexOf(':') + 1;
+          const endIndex = generatedText.lastIndexOf('.') + 1;
+         const result = generatedText.slice(startIndex, endIndex).trim();
+          setResponseText(result);
         } catch (error) {
           console.error('Failed to generate mood text:', error);
           // Handle error appropriately, e.g., display an error message to the user

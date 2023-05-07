@@ -43,6 +43,8 @@ Route::put('/recipes/{id}',  'update');
 Route::delete('/recipes/{id}',  'destroy');
 Route::get('/recipes/search', 'searchByName');
 });
+Route::get('/recipes/names', 'App\Http\Controllers\RecipeController@getAllNames');
+
 
 
 Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middleware('auth:api');
