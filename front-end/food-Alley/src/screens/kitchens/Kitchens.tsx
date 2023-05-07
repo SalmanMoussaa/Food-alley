@@ -30,7 +30,10 @@ const Kitchens = () => {
         
       </View>
       <View style={styles.kitchenpagecomp}>
-          <Kitchenscomponent kitchenName={"abir "} slang={"salman"} imageSource={""}   />
+          <Kitchenscomponent kitchenName={"italian Kitchen "} slang={"Mamma mia, buonissimo!"} imageSource={"../../assets/food.png"}   />
+          <Kitchenscomponent kitchenName={"American Kitchen"} slang={"let's eat Meat"} imageSource={require("../../../assets/food.png")}/>
+          <Kitchenscomponent kitchenName={"American Kitchen"} slang={"let's eat Meat"} imageSource={require("../../../assets/food.png")}/>
+
 
         </View>
         <Bar />
@@ -47,12 +50,22 @@ const styles = StyleSheet.create({
 kitchenPage:{
   
     backgroundColor: Color.wFBaseWhite,
-    
+    flex:1,
+    display:"flex",
     width: "100%",
     height: "100%",
-    overflow: "hidden",
+    overflow: "hidden"
   },
   kitchenpagecomp:{
+    
+    display:"flex",
+    flexDirection:"column",
+    alignContent:"space-between",
+    alignItems:"flex-start",
+    justifyContent:"space-between",
+    height:"100%",
+    
+    
     top:"15%",
     left:"1%"
     

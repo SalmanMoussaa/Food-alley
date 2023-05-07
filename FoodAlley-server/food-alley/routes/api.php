@@ -8,6 +8,8 @@ use App\Http\Controllers\RecipeIngredientController;
 use App\Http\Controller\orderitemsController;
 use App\Http\Controllers\AllergyController;
 use App\Http\Controllers\OpenAIController;
+use App\Http\Controllers\RecipeController;
+
 
 
 
@@ -39,7 +41,10 @@ Route::post('/recipes',  'store');
 Route::get('/recipes/{id}',  'show');
 Route::put('/recipes/{id}',  'update');
 Route::delete('/recipes/{id}',  'destroy');
+Route::get('/recipes/search', 'searchByName');
 });
+
+
 Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middleware('auth:api');
 
 Route::get('/ingredients', [IngredientController::class, 'index']);

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\RecipeIngredient;
 use Illuminate\Http\Request;

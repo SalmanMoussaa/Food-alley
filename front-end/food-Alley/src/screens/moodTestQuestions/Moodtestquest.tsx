@@ -22,18 +22,17 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
   
 useEffect(() => {
   const generateQuestions = async () => {
-    try {
-      const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-        prompt: 'Generate 3 mood test questions',
-        max_tokens: 50,
-        n: 3,
-        stop: ['Q:'],
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${'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'}`,
-        },
-      });
+    const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+  apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
+const response = await openai.createCompletion({
+  model: "text-davinci-003",
+  prompt: "Say this is a test",
+  max_tokens: 7,
+  temperature: 1,
+});
 
 
       const generatedQuestions = response.data.choices.map((choice: { text: string; }) => {
@@ -41,20 +40,18 @@ useEffect(() => {
       });
 
       setQuestion(generatedQuestions[0]); // set the first generated question as the current question
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    
 
   generateQuestions();
-}, [question]);
 
 
+
+   
 
   const handleNext = () => {
       navigation.navigate('Result', { answer:selectedEmoji});
      };
-
+    }})
   return (
     <View style={styles.moodTest2}>
       <Text style={styles.howAreYouContainer}>{question} </Text>

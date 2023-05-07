@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
@@ -11,6 +12,15 @@ class RecipeController extends Controller
     {
         $recipes = Recipe::all();
         return response()->json($recipes, 200);
+    }
+
+    public function searchByName(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $searchResults = Recipe::where('name', 'LIKE', '%' . $query . '%')->get();
+    
+        return response()->json($searchResults, 200);
     }
 
     public function store(Request $request)

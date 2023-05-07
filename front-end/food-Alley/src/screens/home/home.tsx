@@ -6,9 +6,27 @@ import Searchbarcomp from "../components/Searchbarcomp";
 import Discount from "../components/Discount";
 import Bar from "../components/bar";
 import { useNavigation } from "@react-navigation/native";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+interface Product {
+  id: React.Key;
+  name:string;
+  description: string;
+  preparation_time: string;
+  price:string;
+  kitchen_id:React.Key;
+  // Other properties...
+}
 
 const HomePage = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  useEffect(() => {
+    // Fetch the product data and update the state
+    axios.get("http://10.0.2.2:8000/api/recipes").then((response) => {
+      setProducts(response.data);
+    });
+  }, []);
+
   return (
     <View style={styles.homePage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
@@ -26,10 +44,17 @@ const HomePage = () => {
           source={require("../../../assets/Ellipse 2.png")as ImageSourcePropType}
         />
       </View>
-      <View style={[styles.homePageInner, styles.rectangleParentLayout]}>
-        <FoodItem foodname={"salman"} imageUri={"../../../assets/Ellipse 2.png"} kitchenName={"american"}/>
+      <View style={[styles.homePageInner]}>
+        <View style={styles.items}>
+      {products.map((Product) => (
+      
+
+        <FoodItem key={Product.id} FoodItem={Product} />
         
+     
+      ))}
       </View>
+       </View>
       
       
       
@@ -54,6 +79,10 @@ const HomePage = () => {
 };
 
 const styles = StyleSheet.create({
+  items:{
+    padding: 5,
+    margin: 15
+  },
   bar:{ top: 0,
     left: 0,
     width:"120%",
@@ -135,9 +164,14 @@ const styles = StyleSheet.create({
     top: 0,
   },
   homePageInner: {
-    left: "5%",
-    top: "27%",
-    width: "100%",
+   marginLeft:25,
+  display:"flex",  
+  width: "50%",
+  flexDirection:"row",
+  justifyContent:"space-between",
+    top:"55%",
+    left:"1%",
+    
   },
   rectangleGroup: {
     left: 203,

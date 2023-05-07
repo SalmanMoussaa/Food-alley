@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupParent: {
-    flex: 1,
-    width: "100%",
-    height: 111,
+    
+    
+
   },
 });
 

@@ -1,27 +1,22 @@
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import React from 'react';
+import React, { Key } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle, ImageStyle, Pressable } from 'react-native';
 
 
 interface FoodItemProps {
-    foodname: string;
-    imageUri: string;
-    kitchenName: string;
+  FoodItem:Product;
   }
-  const handlecklick=()=>{
-    axios.post('http://your-api-url.com/api/orderItems', {
-      recipe_id: 1 // replace with the actual recipe ID
-    })
-    .then(response => {
-      console.log(response.data);
-      // do something with the created order item
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  interface Product {
+    id: Key;
+    name:string;
+    description: string;
+    preparation_time: string;
+    price:string;
+    kitchen_id:Key;
+    // Other properties...
   }
-  const FoodItem: React.FC<FoodItemProps> = ({ foodname, imageUri, kitchenName }) => {
+  const FoodItem: React.FC<FoodItemProps> = ({ FoodItem  }) => {
     const navigation = useNavigation();
 
     return (
@@ -31,9 +26,9 @@ interface FoodItemProps {
           pressed && { transform: [{ scale: 0.9 }] }
         ]} onPress={() =>   navigation.navigate("ProductPage")}>
         <View style={styles.infoContainer}>
-          <Text style={styles.foodname}>{foodname}</Text>
-          <Image style={styles.image} source={{ uri: imageUri }} />
-          <Text style={styles.kitchenName}>{kitchenName}</Text>
+          <Text style={styles.foodname}>{FoodItem.name}</Text>
+          <Image style={styles.image} source={{ uri:""}} />
+          <Text style={styles.kitchenName}>{FoodItem.kitchen_id}</Text>
         </View>
         <Image
           style={styles.heartIcon}
