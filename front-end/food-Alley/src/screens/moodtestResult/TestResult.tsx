@@ -5,9 +5,22 @@ import FoodItem from "../components/FoodItem";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
+interface Product {
+  id: React.Key;
+  name:string;
+  description: string;
+  preparation_time: string;
+  price:string;
+  kitchen_id:React.Key;
+  // Other properties...
+}
 const MoodTest3 = () => {
-    
+  const navigation = useNavigation();
+
+  
+  
     const [responseText, setResponseText] = useState('');
 
   useEffect(() => {
@@ -48,13 +61,13 @@ const MoodTest3 = () => {
         </Text>
       </View>
       <Text style={[styles.moodResult, styles.finishTypo]}>mood result</Text>
-      <Pressable style={[styles.rectangleParent, styles.groupChildLayout]}>
+      <Pressable style={[styles.rectangleParent, styles.groupChildLayout]} onPress={() =>   navigation.navigate("Home")}>
         <View style={[styles.groupChild, styles.groupPosition]} />
         <Text style={[styles.finish, styles.stakeClr]}>Finish</Text>
       </Pressable>
       <View style={[styles.viewposition]}>
       <Text style={[styles.text, styles.productClr]}>😫</Text>
-     <FoodItem foodname={"salman"} imageUri={"../../../assets/food.png"} kitchenName={"moussa"}/>
+     
      </View>
       <Image
         style={styles.arrowLeft3Icon}

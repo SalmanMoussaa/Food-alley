@@ -12,8 +12,15 @@ import { Configuration, OpenAIApi } from 'openai';
 function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) {
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [question, setQuestion] = useState('');
+  const [generatedQuestions, setGeneratedQuestions] = useState<string[]>([]);
+  const [questionCount, setQuestionCount] = useState(0);
 
-      useEffect(() => {
+
+  useEffect(() => {
+    generateQuestion();
+  }, []); 
+
+      
         const generateQuestion = async () => {
           const data = {
             model: 'davinci',
@@ -43,6 +50,18 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
             console.log(response.data);
             console.log('Generated Question:', question);
             setQuestion(question);
+            if (generatedQuestions.includes(question)) {
+              // If the question is a duplicate, generate a new question
+              generateQuestion();
+            } else {
+              setGeneratedQuestions([...generatedQuestions, question]);
+              setQuestion(question);
+              setQuestionCount(questionCount + 1);
+
+              if (questionCount >= 3) {
+                // Navigate to a new page after generating 3 new questions
+                navigation.navigate('MoodTestresult');
+              }}
           } catch (error) {
             console.error('Failed to generate text:', error);
             console.log()
@@ -50,15 +69,22 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
           }
         };
     
-        generateQuestion();
-      }, []);
+        
+      
 
-  const handleNext = () => {
-      navigation.navigate('Result', { answer:selectedEmoji});
-     };
+      const handleNext = () => {
+        setSelectedEmoji('');
+        generateQuestion();
+      };
     
-  function storeResult(arg0: string) {
-    throw new Error('Function not implemented.');
+  function storeResult(selectedEmoji: string) {
+    AsyncStorage.setItem('selectedEmoji', selectedEmoji)
+    .then(() => {
+      console.log('Result stored successfully');
+    })
+    .catch((error) => {
+      console.error('Failed to store result:', error);
+    });
   }
 
   return (
@@ -71,7 +97,7 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
 </Pressable>
       <Pressable style={[styles.rectangleGroup, styles.rectangleLayout1]}>
         <View style={[styles.frameChild, styles.frameChildBg]} />
-        <Text style={[styles.next, styles.backTypo]}>next</Text>
+        <Text style={[styles.next, styles.backTypo]} onPress={handleNext}>next</Text>
       </Pressable>
       <TouchableOpacity
   style={styles.vectorParent}
