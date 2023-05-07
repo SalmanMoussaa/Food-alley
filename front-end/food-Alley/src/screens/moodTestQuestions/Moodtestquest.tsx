@@ -19,44 +19,58 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
       console.log(error);
     }
   };
+  const data = {
+    model: 'text-davinci-003',
+    prompt:`generate me a question that tell the mood of the person be crestive with your question`,
+    temperature: 0,
+    max_tokens: 100,
+    top_p: 1,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+    stop: ['\n'],
+  };
   
 useEffect(() => {
-  const generateQuestions = async () => {
-    const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: "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",
-});
-const openai = new OpenAIApi(configuration);
-const response = await openai.createCompletion({
-  model: "text-davinci-003",
-  prompt: "Say this is a test",
-  max_tokens: 7,
-  temperature: 1,
-});
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer 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`,
+    },
+  };
+  
+  axios
+    .post('https://api.openai.com/v1/completions', data, config)
+    .then((response) => {
+      console.log(response.data.choices[0].text);
+      setQuestion(response.data.choices[0].text);
+    })
+    .catch((error) => {
+      console.error('Failed to generate text:', error);
+    });
 
 
-      const generatedQuestions = response.data.choices.map((choice: { text: string; }) => {
-        return choice.text.trim().replace(/\d+\./, '');
-      });
 
-      setQuestion(generatedQuestions[0]); // set the first generated question as the current question
+     
+
+      // set the first generated question as the current question
+      
     
 
-  generateQuestions();
+  
 
-
+});
 
    
 
   const handleNext = () => {
       navigation.navigate('Result', { answer:selectedEmoji});
      };
-    }})
+    
   return (
     <View style={styles.moodTest2}>
       <Text style={styles.howAreYouContainer}>{question} </Text>
       <Text style={styles.mood}>Mood ?</Text>
-      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]} onPress={() => navigation.goBack()}>
+      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]} onPress={() => navigator.goBack()}>
   <View style={[styles.frameChild, styles.frameChildBg]} />
   <Text style={[styles.back, styles.backTypo]}>back</Text>
 </Pressable>
