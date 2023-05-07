@@ -5,7 +5,12 @@ import FoodItem from "../components/FoodItem";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from '@react-navigation/native';
+type NewPageProps = {
+  navigation: NavigationProp<'MoodTest3'>;
+  route: RouteProp<'MoodTest3', { selectedEmoji: string }>;
+};
 
 interface Product {
   id: React.Key;
@@ -16,44 +21,60 @@ interface Product {
   kitchen_id:React.Key;
   // Other properties...
 }
-const MoodTest3 = () => {
+const MoodTest3 = ({ route }: NewPageProps)=> {
+  const { selectedEmoji } = route.params;
   const navigation = useNavigation();
-
+  const apiKey = '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';
+    const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
   
+  useEffect(() => {
+    console.log('Selected Emoji:', selectedEmoji);
+    // Do something with the selectedEmoji value
+  }, [selectedEmoji]);
+
   
     const [responseText, setResponseText] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await AsyncStorage.getItem('moodTestResult');
-        const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-          prompt: 'based on this emoji results '+ result+' give me a a well fromed paragraph talking about the mood of the user, dont talk in general be specific about this day and tell him at the end that food is important for changing mood ' ,
-          max_tokens: 50,
-          n: 3,
-          stop: ['Q:'],
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${'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'}`,
-          },
-        });
-        setResponseText(response.data.choices[0].text);
-      } catch (error) {
-        console.log(error);
-      }
+    useEffect(() => {
+      const generateMoodText = async (selectedEmoji: string) => {
+        
+  
+        const prompt = `based on this emoji  ${selectedEmoji}, give me a 2 lines paragraph explainig the mood as you are talking to someone to make him fel better`;
+  
+        const data = {
+          model: 'gpt-3.5-turbo',
+          prompt,
+          temperature: 0.2,
+          max_tokens: 100,
+        };
+  
+        const headers = {
+          'Content-Type': 'application/json charset=utf-8',
+          Authorization: `Bearer ${apiKey}`,
+        };
+  
+        try {
+          const response = await axios.post(endpoint, data, { headers });
+          const generatedText = response.data.choices[0].text;
+          setResponseText(generatedText);
+        } catch (error) {
+          console.error('Failed to generate mood text:', error);
+          // Handle error appropriately, e.g., display an error message to the user
+        }
+      };
+  
+      generateMoodText(selectedEmoji);
+    }, [selectedEmoji]);
+    const handlefinish = () => {
+      navigation.dispatch(CommonActions.reset({ index: 0, routes: [] }));
+      navigation.navigate("Home");
     };
-
-    fetchData();
-  }, [responseText]);
-
-       
   return (
     <View style={styles.moodTest3}>
       <View style={styles.productDescriptionProductDeWrapper}>
         <Text
           style={[styles.productDescriptionProduct, styles.productClr]}
-        >{`product description product description product description product description product description product description product description `}</Text>
+        >{responseText}</Text>
       </View>
       <View style={styles.productDescriptionProductDeWrapper}>
         <Text style={[styles.basedOnYour, styles.productClr]}>
@@ -61,12 +82,12 @@ const MoodTest3 = () => {
         </Text>
       </View>
       <Text style={[styles.moodResult, styles.finishTypo]}>mood result</Text>
-      <Pressable style={[styles.rectangleParent, styles.groupChildLayout]} onPress={() =>   navigation.navigate("Home")}>
+      <Pressable style={[styles.rectangleParent, styles.groupChildLayout]} onPress={ handlefinish}  >
         <View style={[styles.groupChild, styles.groupPosition]} />
         <Text style={[styles.finish, styles.stakeClr]}>Finish</Text>
       </Pressable>
       <View style={[styles.viewposition]}>
-      <Text style={[styles.text, styles.productClr]}>😫</Text>
+      <Text style={[styles.text, styles.productClr]}>{selectedEmoji}</Text>
      
      </View>
       <Image

@@ -23,12 +23,13 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
       
         const generateQuestion = async () => {
           const data = {
-            model: 'davinci',
-            prompt: "Generate a thought-provoking question about someone's mood, using creativity and imagination. The question should only be answerable with emojis, so keep that in mind. Avoid providing emoji options.",
-            temperature: 0.1,
-            max_tokens: 20,
-            frequency_penalty: 0,
-            presence_penalty: 0,
+            model: 'gpt-3.5-turbo',
+            prompt: "Imagine you are talking to a person who can only respond with emojis. Generate a question that will make them think deeply about their current mood. Be creative and avoid providing explicit emoji options. Here are some examples to inspire you: Example: If your mood were a sunrise, which emoji would best represent it?  Example: Describe your current mood using an emoji combination that symbolizes a magical adventure.  Example: Imagine your mood as a color palette of emojis. How would you arrange them to reflect your emotions right now? Example: If your mood were a weather condition, which emoji would capture its essence?  Example: Choose an emoji that represents your mood and explain why you resonate with it.",
+            temperature: 0.5,
+
+            max_tokens: 25,
+           
+            frequency_penalty: 1.5,
           };
     
           const headers = {
@@ -37,7 +38,7 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
           };
     
           try {
-            const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers });
+             const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers });
             const generatedQuestion =response.data.choices[0].text.trim();
             const startIndex = generatedQuestion.indexOf(':') + 1;
   const endIndex = generatedQuestion.lastIndexOf('?') + 1;
@@ -60,13 +61,13 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
 
               if (questionCount >= 3) {
                 // Navigate to a new page after generating 3 new questions
-                navigation.navigate('MoodTestresult');
-              }}
-          } catch (error) {
+                navigation.navigate('MoodTestresult', { selectedEmoji});
+              }} 
+          }catch (error) {
             console.error('Failed to generate text:', error);
             console.log()
             // Handle error appropriately, e.g., display an error message to the user
-          }
+          } 
         };
     
         
@@ -75,6 +76,7 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
       const handleNext = () => {
         setSelectedEmoji('');
         generateQuestion();
+        
       };
     
   function storeResult(selectedEmoji: string) {
@@ -236,7 +238,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   textTypo: {
-    top: 35,
     fontSize: FontSize.size_45xl,
     textAlign: "left",
     color: Color.black,
@@ -244,12 +245,12 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   howAreYouContainer: {
-    top: 116,
-    fontSize: FontSize.size_5xl,
+    top: "10%",
+    fontSize: 18,
     textAlign: "center",
     width: 365,
-    height: 32,
     color: Color.black,
+    fontWeight:"bold",
     fontFamily: FontFamily.indieFlowerRegular,
     left: 20,
     position: "absolute",
@@ -273,13 +274,13 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   back: {
-    color: Color.wFBase900,
+    color: "#FFFF",
   },
   rectangleParent: {
     left: 20,
   },
   next: {
-    color: Color.darkGray,
+    color: "#FFFF",
   },
   rectangleGroup: {
     left: 224,
@@ -291,11 +292,8 @@ const styles = StyleSheet.create({
     left: 0,
   },
   text: {
-    width: 41,
-    height: 33,
-    left: 44,
-    fontSize: FontSize.size_45xl,
-    top: 0,
+    left: "13%",
+    top:"35%",
   },
   vectorParent: {
     top: 261,
@@ -312,23 +310,23 @@ const styles = StyleSheet.create({
     top: 0,
   },
   text1: {
-    top: "-45%",
-    width: 97,
-    left: "23%",  },
+    left: "15%",
+    top:"15%"
+   },
   rectangleContainer: {
     top: 294,
     left: 207,
   },
   text2: {
-    top: "75%",
-    width: 97,
-    left: "13%",
+    left: "15%",
+    top:"15%",
   },
   frameTouchableopacity: {
     left: 36,
   },
   text3: {
-    left: 27,
+    left: "15%",
+    top:"15%",
   },
   rectangleParent1: {
     left: 207,
