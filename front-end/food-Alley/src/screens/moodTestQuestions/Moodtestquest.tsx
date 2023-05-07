@@ -4,73 +4,68 @@ import axios from 'axios';
 import { NavigationProp } from '@react-navigation/native';
 import { Border, Color, FontFamily, FontSize } from '../components/GlobalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Configuration, OpenAIApi } from 'openai';
 
   
 
 
 function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) {
-  const [question, setQuestion] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("");
- 
-  const storeResult = async (result: string) => {
-    try {
-      await AsyncStorage.setItem('moodTestResult', result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const data = {
-    model: 'text-davinci-003',
-    prompt:`generate me a question that tell the mood of the person be crestive with your question`,
-    temperature: 0,
-    max_tokens: 100,
-    top_p: 1,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0,
-    stop: ['\n'],
-  };
-  
-useEffect(() => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer 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`,
-    },
-  };
-  
-  axios
-    .post('https://api.openai.com/v1/completions', data, config)
-    .then((response) => {
-      console.log(response.data.choices[0].text);
-      setQuestion(response.data.choices[0].text);
-    })
-    .catch((error) => {
-      console.error('Failed to generate text:', error);
-    });
+  const [question, setQuestion] = useState('');
 
-
-
-     
-
-      // set the first generated question as the current question
-      
+      useEffect(() => {
+        const generateQuestion = async () => {
+          const data = {
+            model: 'davinci',
+            prompt: "Generate a thought-provoking question about someone's mood, using creativity and imagination. The question should only be answerable with emojis, so keep that in mind. Avoid providing emoji options.",
+            temperature: 0.1,
+            max_tokens: 20,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+          };
     
+          const headers = {
+            'Content-Type': 'application/json charset=utf-8',
+            Authorization: 'Bearer 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',
+          };
+    
+          try {
+            const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', data, { headers });
+            const generatedQuestion =response.data.choices[0].text.trim();
+            const startIndex = generatedQuestion.indexOf(':') + 1;
+  const endIndex = generatedQuestion.lastIndexOf('?') + 1;
+  const question = generatedQuestion.slice(startIndex, endIndex).trim();
 
-  
-
-});
-
-   
+  console.log(response.data);
+  console.log('Generated Question:', question);
+  setQuestion(question);
+          
+            console.log(response.data);
+            console.log('Generated Question:', question);
+            setQuestion(question);
+          } catch (error) {
+            console.error('Failed to generate text:', error);
+            console.log()
+            // Handle error appropriately, e.g., display an error message to the user
+          }
+        };
+    
+        generateQuestion();
+      }, []);
 
   const handleNext = () => {
       navigation.navigate('Result', { answer:selectedEmoji});
      };
     
+  function storeResult(arg0: string) {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <View style={styles.moodTest2}>
       <Text style={styles.howAreYouContainer}>{question} </Text>
       <Text style={styles.mood}>Mood ?</Text>
-      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]} onPress={() => navigator.goBack()}>
+      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]} onPress={() => navigation.goBack()}>
   <View style={[styles.frameChild, styles.frameChildBg]} />
   <Text style={[styles.back, styles.backTypo]}>back</Text>
 </Pressable>
