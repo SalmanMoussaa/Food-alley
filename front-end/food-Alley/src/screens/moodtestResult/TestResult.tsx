@@ -23,10 +23,14 @@ interface Product {
 }
 const MoodTest3 = ({ route }: NewPageProps) => {
   const { selectedEmoji } = route.params;
+  const [recipeName, setRecipeName] = useState('');
+
   
   const navigation = useNavigation();
   const apiKey = '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';
   const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+  const [product, setProduct] = useState<Product>({} as Product);
+
 
   useEffect(() => {
     axios.get('http://10.0.2.2:8000/api/recipes/names')
@@ -73,6 +77,8 @@ const MoodTest3 = ({ route }: NewPageProps) => {
         // Handle the response from OpenAI API
         const suggestion =response.data.choices[0].text;
         // Do something with the suggestion
+        setRecipeName(suggestion);
+        getRecipeByName(suggestion)
         console.log(suggestion);
       }
       catch (error) {
@@ -125,6 +131,18 @@ const MoodTest3 = ({ route }: NewPageProps) => {
   
       generateMoodText(selectedEmoji);
     }, [selectedEmoji]);
+
+    const getRecipeByName = async (name: string) => {
+      try {
+      const response = await axios.get(`http://10.0.2.2:8000/api/recipes?name=${name}`);
+      const recipe = response.data;
+      // Store the recipe in the product state
+      setProduct(recipe);
+      } catch (error) {
+      console.error('Failed to get recipe:', error);
+      // Handle error appropriately, e.g., display an error message to the user
+      }
+      };
     const handlefinish = () => {
       navigation.dispatch(CommonActions.reset({ index: 0, routes: [] }));
       navigation.navigate("Home");
@@ -148,6 +166,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
       </Pressable>
       <View style={[styles.viewposition]}>
       <Text style={[styles.text, styles.productClr]}>{selectedEmoji}</Text>
+      <FoodItem FoodItem={product}/>
      
      </View>
       <Image
