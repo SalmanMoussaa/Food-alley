@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     frameDropdownText: {
     
     
-      color: "#fe5932",
+      color: Color.d9D9D9,
       fontSize: 14,
       fontWeight: "800",
       fontFamily: "Inter_extrabold",
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
       position: "absolute",
     },
     taxTypo: {
-      color: Color.white,
+      color: "#fff",
       textAlign: "left",
       fontFamily: FontFamily.interExtrabold,
       fontWeight: "800",
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
     text1Typo: {
       top: 618,
-      color: Color.white,
+      color: "#FFFF",
       textAlign: "left",
       fontFamily: FontFamily.interExtrabold,
       fontWeight: "800",
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     },
     textTypo: {
       left: 335,
-      color: Color.white,
+      color: "#FFFF",
       textAlign: "left",
       fontFamily: FontFamily.interExtrabold,
       fontWeight: "800",
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     groupChild: {
       top: 0,
       borderRadius: Border.br_3xs,
-      backgroundColor: Color.tomato,
+      backgroundColor: Color.d9D9D9,
       left: 0,
       width: 216,
     },
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     },
     rectangleParent: {
       top: 743,
-      left: 84,
+      left: 90,
     },
     wrapper: {
         
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
       top: 582,
     },
     cart: {
-      backgroundColor: Color.wFBase200,
+      backgroundColor: "#edf0f7",
       flex: 1,
       height: 852,
       overflow: "hidden",

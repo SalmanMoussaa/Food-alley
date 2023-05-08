@@ -40,9 +40,9 @@ Route::get('/recipes/names', 'App\Http\Controllers\RecipeController@getallnames'
 Route::post('/recipes', 'App\Http\Controllers\RecipeController@store');
 Route::get('/recipes/searches', 'App\Http\Controllers\RecipeController@searchByName');
 Route::get('/recipes/{id}', 'App\Http\Controllers\RecipeController@show');
+Route::get('/recipes/search', 'App\Http\Controllers\RecipeController@searchByName');
 Route::put('/recipes/{id}', 'App\Http\Controllers\RecipeController@update');
 Route::delete('/recipes/{id}', 'App\Http\Controllers\RecipeController@destroy');
-Route::get('/recipes/search', 'App\Http\Controllers\RecipeController@searchByName');
 
 
 

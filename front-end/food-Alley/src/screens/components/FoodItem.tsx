@@ -7,7 +7,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, StyleProp, ViewStyle, 
 interface FoodItemProps {
   FoodItem:Product;
   }
-  interface Product {
+  export interface Product {
     id: Key;
     name:string;
     description: string;
@@ -24,7 +24,8 @@ interface FoodItemProps {
         <Pressable style={({ pressed }) => [
       
           pressed && { transform: [{ scale: 0.9 }] }
-        ]} onPress={() =>   navigation.navigate("ProductPage")}>
+        ]} onPress={() => navigation.navigate('Productpage', { FoodItem })
+      }>
         <View style={styles.infoContainer}>
           <Text style={styles.foodname}>{FoodItem.name}</Text>
           <Image style={styles.image} source={{ uri:""}} />

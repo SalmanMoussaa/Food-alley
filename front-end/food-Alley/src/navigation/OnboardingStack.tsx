@@ -11,6 +11,7 @@ import MoodTestQuestion from "../screens/moodTestQuestions/Moodtestquest";
 import MoodTestresult from "../screens/moodtestResult/TestResult";
 import Productpage from "../screens/ProductPage/Productpage";
 import SelectLocation from "../screens/SetLocation/Setlocation";
+import Carts from '../screens/Cart/Cart';
 
 
 const OnboardingStack = () => {
@@ -27,6 +28,8 @@ const OnboardingStack = () => {
       <Stack.Screen name="Moodtestquestion" component={MoodTestQuestion} />
       <Stack.Screen name="MoodTestresult" component={MoodTestresult} />
       <Stack.Screen name="selectLocation" component={SelectLocation} />
+      <Stack.Screen name="Cart" component={Carts} />
+
 
 
 

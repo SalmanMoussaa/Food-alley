@@ -6,16 +6,21 @@ import Searchbarcomp from "../components/Searchbarcomp";
 import Discount from "../components/Discount";
 import Bar from "../components/bar";
 import Kitchenscomponent from "../components/Kitchenscomponent";
+import { useNavigation } from "@react-navigation/native";
 
 const Kitchens = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.kitchenPage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
-        <Image
-          style={styles.frameChild}
-          resizeMode="cover"
-          source={require("../../../assets/Ellipse 2.png")as ImageSourcePropType}
-        />
+      <Pressable style={styles.frameChild} onPress={() => navigation.navigate("Cart")}>
+  <Image
+    resizeMode="cover"
+    source={require("../../../assets/Ellipse2.png")}
+  />
+</Pressable>
+
         <View style={[styles.search]}>
         <Searchbarcomp />
         </View>
@@ -30,9 +35,12 @@ const Kitchens = () => {
         
       </View>
       <View style={styles.kitchenpagecomp}>
-          <Kitchenscomponent kitchenName={"italian Kitchen "} slang={"Mamma mia, buonissimo!"} imageSource={"../../assets/food.png"}   />
-          <Kitchenscomponent kitchenName={"American Kitchen"} slang={"let's eat Meat"} imageSource={require("../../../assets/food.png")}/>
-          <Kitchenscomponent kitchenName={"American Kitchen"} slang={"let's eat Meat"} imageSource={require("../../../assets/food.png")}/>
+          <Kitchenscomponent kitchenName={"italian  "} slang={"Mamma mia, buonissimo!"} imageSource={require("../../../assets/ItalianKitchen.png")}/>
+          <Kitchenscomponent kitchenName={"American  "} slang={"let's eat Meat"} imageSource={require("../../../assets/AmericansKitchen.png")}/>
+          <Kitchenscomponent kitchenName={"Lebanese "} slang={"Flavor Feast, Tasty"} imageSource={require("../../../assets/lebaneseKitchen.png")}/>
+          <Kitchenscomponent kitchenName={"Allergy "} slang={"Aller-Chow, Fun-Free"} imageSource={require("../../../assets/Allergieskitchen.png")}/>
+
+
 
 
         </View>
@@ -59,6 +67,7 @@ kitchenPage:{
   kitchenpagecomp:{
     
     display:"flex",
+    flex:0.5,
     flexDirection:"column",
     alignContent:"space-between",
     alignItems:"flex-start",
@@ -86,8 +95,8 @@ kitchenPage:{
     width: "100%",
     left: 0,
   },frameChild: {
-    top: 0,
-    left: 299,
+    top: "80%",
+    left: "85%",
     width: 50,
     height: 50,
     position: "absolute",

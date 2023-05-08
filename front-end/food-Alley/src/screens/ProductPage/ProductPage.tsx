@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Key, useEffect, useState } from "react";
 import {
   ScrollView,
   Image,
@@ -7,18 +7,31 @@ import {
   Pressable,
   ImageBackground,
   View,
+  
   TextInput,
+  Dimensions,
 } from "react-native";
-import {
-  CheckBox,
-  CheckBox as RNKCheckBox,
-} from "@ui-kitten/components";
+import Checkbox from "react-native-check-box";
 import DropDownPicker from "react-native-dropdown-picker";
-import { useNavigation } from "@react-navigation/native";
 import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
-import { TextInput as RNKTextInput } from 'react-native-paper';
-
-const Productpage = () => {
+import { TextInput as RNTextInput } from 'react-native-paper';
+import { useNavigation, useRoute } from "@react-navigation/native";
+import axios from "axios";
+import FoodItem from "../components/FoodItem";
+interface Productpage {
+  Productpage:Product;
+  }
+   interface Product {
+    id: Key;
+    name:string;
+    description: string;
+    preparation_time: string;
+    price:string;
+    kitchen_id:Key;
+    // Other properties...
+  }
+const Productpage=(props: Productpage) => {
+  const { id } = props;
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
@@ -28,23 +41,35 @@ const Productpage = () => {
         { value: "lebanon", label: "lebanon" },
         { value: "Beirut", label: "Beirut" },
     ]);
+    const [productInfo, setProductInfo] = useState<Product | null>(null);
+
     const navigation = useNavigation();
+    const route = useRoute();
+    const routeParams = route.params as { id: React.Key };
+    const productId = Productpage.id;
+
+useEffect(() => {
+  // Fetch the product data using the product ID
+  axios.get(`http://10.0.2.2:8000/api/recipes/${productId}`)
+    .then((response) => {
+          console.log(response.data); // Add this line
+
+      setProductInfo(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching product information:", error);
+    });
+}, [productId]);
+  console.log(productId);
   
     return (
-      <ScrollView
-        style={styles.productPage}
-        
-        contentContainerStyle={styles.productPageScrollViewContent}
-      >
-        <View style={styles.vectorParent}>
-          
-          <Text style={[styles.filterByAllergy, styles.americanFlexBox]}>
-            filter by allergy
-          </Text>
-          <Text style={[styles.americanCheeseBurger, styles.americanFlexBox]}>
-            American cheese burger
-          </Text>
-          <Text style={[styles.text, styles.americanFlexBox]}>60$</Text>
+      <ScrollView style={styles.productPage} contentContainerStyle={styles.productPageScrollViewContent}>
+     
+  <View style={styles.vectorParent}>
+    {/* Display the product information */}
+    <Text style={[styles.filterByAllergy, styles.americanFlexBox]}>filter by allergy</Text>
+    <Text style={[styles.americanCheeseBurger, styles.americanFlexBox]}>{productInfo.name}</Text>
+    <Text style={[styles.text, styles.americanFlexBox]}>{productInfo.price}$</Text>
           <ImageBackground
             style={[styles.arrowLeft5Wrapper, styles.frameChildPosition]}
             resizeMode="cover"
@@ -81,36 +106,37 @@ const Productpage = () => {
               resizeMode="cover"
               source={require("../../../assets/Rectangle35.png")}
             />
-            <CheckBox
-              style={styles.frameInner}
-              checked={frameCheckboxchecked}
-              onChange={() => setFrameCheckboxchecked(!frameCheckboxchecked)}
-            />
+            <Checkbox
+  style={styles.frameInner}
+  checked={frameCheckboxchecked}
+  onChange={(isChecked: boolean | ((prevState: boolean) => boolean)) => setFrameCheckboxchecked(isChecked)}
+/>
           </View>
           <Text style={[styles.removeIngredient, styles.americanFlexBox]}>
             remove ingredient
           </Text>
           <View style={[styles.wrapper, styles.rectangleLayout]}>
-            <DropDownPicker
-              style={styles.dropdownpicker}
-              open={frameDropdownOpen}
-              items={frameDropdownItems}
-              setOpen={setFrameDropdownOpen}
+          <DropDownPicker
+             style={styles.dropdownpicker}
+               open={frameDropdownOpen}
+            items={frameDropdownItems}
+             setOpen={setFrameDropdownOpen}
               value={frameDropdownValue}
               setValue={setFrameDropdownValue}
-              placeholder="allergy  name  "
-              labelStyle={styles.frameDropdownValue}
-              dropDownContainerStyle={styles.frameDropdowndropDownContainer}
-              
-            />
+              placeholder="allergy name"
+                labelStyle={styles.frameDropdownValue}
+             dropDownContainerStyle={styles.frameDropdowndropDownContainer}
+/>
+
           </View>
           
-<TextInput
+          <RNTextInput
   style={[styles.rectangleRnktextinput, styles.rectangleLayout]}
   placeholder="Place your text"
   value={rectangleTextInput}
   onChangeText={(text) => setRectangleTextInput(text)}
 />
+
           <Text style={[styles.specialInstructions, styles.americanFlexBox]}>
             special instructions
           </Text>
@@ -121,7 +147,9 @@ const Productpage = () => {
             Add to Cart
           </Text>
         </View>
-        
+      
+          
+       
       </ScrollView>
     );
   };
@@ -140,8 +168,9 @@ const Productpage = () => {
     },
     frameChildPosition: {
       left: 0,
+      width:Dimensions.get("window").width,
+
       position: "absolute",
-      width: 393,
     },
     americanFlexBox: {
       textAlign: "left",

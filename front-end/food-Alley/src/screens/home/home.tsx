@@ -8,7 +8,7 @@ import Bar from "../components/bar";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import axios from "axios";
-interface Product {
+export interface Product {
   id: React.Key;
   name:string;
   description: string;
@@ -33,7 +33,7 @@ const HomePage = () => {
         <Image
           style={styles.frameChild}
           resizeMode="cover"
-          source={require("../../../assets/Ellipse 2.png")as ImageSourcePropType}
+          source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
         />
         <View style={[styles.search]}>
         <Searchbarcomp />
@@ -41,7 +41,7 @@ const HomePage = () => {
         <Image
           style={[styles.frameItem, styles.frameItemPosition]}
           resizeMode="cover"
-          source={require("../../../assets/Ellipse 2.png")as ImageSourcePropType}
+          source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
         />
       </View>
       <View style={[styles.homePageInner]}>

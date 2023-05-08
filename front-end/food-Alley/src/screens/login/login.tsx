@@ -20,9 +20,11 @@ import { useMutation } from 'react-query';
 import Toast from 'react-native-root-toast';
 import * as SecureStore from 'expo-secure-store';
 import { useSelector, useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomePage from '../home/home';
 import { UserContext } from "../../../App";
+import { err } from 'react-native-svg/lib/typescript/xml';
 interface ResponseData {
   user_id: string;
   token: string;
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
     height: 53,
     width: 336,
     borderRadius: Border.br_3xs,
-    left: 0,
+    left: "7%",
     position: "absolute",
   },
   loginFlexBox: {
@@ -170,14 +172,14 @@ const styles = StyleSheet.create({
   },
   rectangleParent: {
     top: 366,
-    left: 24,
-    width: 346,
+    left: "5%",
+    width: "50%",
     height: 230,
     position: "absolute",
   },
   login1: {
-    top: 225,
-    left: 142,
+    top: 255,
+    left: "35%",
     fontSize: 36,
     color: Color.black,
     textAlign: "left",
@@ -203,8 +205,8 @@ const styles = StyleSheet.create({
     left: 119,
   },
   loginChild: {
-    top: 620,
-    width: 430,
+    top:640,
+    width:'100%',
     height: 202,
     left: 0,
     position: "absolute",
@@ -218,20 +220,20 @@ const styles = StyleSheet.create({
   },
   dontHaveAnContainer: {
     top: 717,
-    left: 75,
+    left: "20%",
     fontSize: FontSize.size_base,
     color: Color.black,
     textAlign: "left",
   },
   appLogo1: {
-    top: 24,
-    left: 99,
+    top: 55,
+    left: '25%',
     width: 194,
     height: 201,
     position: "absolute",
   },
   login: {
-    backgroundColor: Color.wFBaseWhite,
+    backgroundColor:"#FFFFF7",
     flex: 1,
     width: "100%",
     height: "100%",
