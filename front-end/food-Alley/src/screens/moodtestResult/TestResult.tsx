@@ -21,11 +21,69 @@ interface Product {
   kitchen_id:React.Key;
   // Other properties...
 }
-const MoodTest3 = ({ route }: NewPageProps)=> {
+const MoodTest3 = ({ route }: NewPageProps) => {
   const { selectedEmoji } = route.params;
+  
   const navigation = useNavigation();
   const apiKey = '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';
-    const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+  const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+
+  useEffect(() => {
+    axios.get('http://10.0.2.2:8000/api/recipes/names')
+      .then(response => {
+        // Store the names in a JSON object
+        const names = response.data;
+        // Do something with the names
+        console.log(names);
+        // Call the generateSuggestion function with the names and selectedEmoji
+        generateSuggestion(names, selectedEmoji);
+      })
+      .catch(error => {
+        // Handle error
+        console.log(error);
+      });
+  }, []);
+
+
+  const generateSuggestion = async(names: any, selectedEmoji: any) => {
+    // Your input to generate the suggestion
+    const input = `Given a JSON object representing names: ${JSON.stringify(names)} And an emoji: ${selectedEmoji} Suggest a name from the JSON object that best represents the given emoji, respond only with the name of the suggestion from the names JSON object. 
+    AI:`;
+      
+    // Define the request payload
+    const payload = {
+      model: 'gpt-3.5-turbo',
+      prompt: input,
+      temperature: 0.2,
+     max_tokens: 1,
+      stop: '\n',
+      // Add any other required parameters
+    };
+  
+    // Define the headers (replace with the appropriate headers)
+    const headers = {
+      'Content-Type': 'application/json charset=utf-8',
+      Authorization: `Bearer ${apiKey}`,
+    };
+  
+    // Make the POST request to the OpenAI API
+    try {
+    const response = await axios.post(endpoint, payload, { headers });
+     
+        // Handle the response from OpenAI API
+        const suggestion =response.data.choices[0].text;
+        // Do something with the suggestion
+        console.log(suggestion);
+      }
+      catch (error) {
+        console.error('Failed to generate mood text:', error);
+        // Handle error appropriately, e.g., display an error message to the user
+      }
+  };
+
+
+    
+    
   
   useEffect(() => {
     console.log('Selected Emoji:', selectedEmoji);

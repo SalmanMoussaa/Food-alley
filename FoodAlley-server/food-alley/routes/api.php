@@ -35,15 +35,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-Route::controller(RecipeController::class)->group(function (){
-Route::get('/recipes',  'index');
-Route::post('/recipes',  'store');
-Route::get('/recipes/{id}',  'show');
-Route::put('/recipes/{id}',  'update');
-Route::delete('/recipes/{id}',  'destroy');
-Route::get('/recipes/search', 'searchByName');
-});
-Route::get('/recipes/names', 'App\Http\Controllers\RecipeController@getAllNames');
+Route::get('/recipes', 'App\Http\Controllers\RecipeController@index');
+Route::get('/recipes/names', 'App\Http\Controllers\RecipeController@getallnames');
+Route::post('/recipes', 'App\Http\Controllers\RecipeController@store');
+Route::get('/recipes/searches', 'App\Http\Controllers\RecipeController@searchByName');
+Route::get('/recipes/{id}', 'App\Http\Controllers\RecipeController@show');
+Route::put('/recipes/{id}', 'App\Http\Controllers\RecipeController@update');
+Route::delete('/recipes/{id}', 'App\Http\Controllers\RecipeController@destroy');
+Route::get('/recipes/search', 'App\Http\Controllers\RecipeController@searchByName');
 
 
 

@@ -16,11 +16,23 @@ class RecipeController extends Controller
 
     public function searchByName(Request $request)
     {
-        $query = $request->input('query');
+        try {
+            $name = $request->input('name');
+            
+            // Find the recipe by name
+            $recipe = Recipe::where('name', 'LIKE', '%' . $name . '%')->first();
     
-        $searchResults = Recipe::where('name', 'LIKE', '%' . $query . '%')->get();
-    
-        return response()->json($searchResults, 200);
+            if ($recipe) {
+                // Recipe found
+                return response()->json($recipe);
+            } else {
+                // Recipe not found
+                return response()->json(['message' => 'Recipe not found'], 404);
+            }
+        } catch (\Exception $e) {
+            // Error occurred
+            return response()->json(['message' => 'Error retrieving recipe', 'error' => $e->getMessage()], 500);
+        }
     }
     
 
@@ -41,6 +53,25 @@ class RecipeController extends Controller
         $recipe = Recipe::findOrFail($id);
         return response()->json($recipe, 200);
     }
+    public function getRecipeByName(Request $request, $name)
+    {
+        try {
+            // Find the recipe by name
+            $recipes = Recipe::where('name', $name)->get();
+
+            if ($recipe) {
+                // Recipe found
+                return response()->json($recipe);
+            } else {
+                // Recipe not found
+                return response()->json(['message' => 'Recipe not found'], 404);
+            }
+        } catch (\Exception $e) {
+            // Error occurred
+            return response()->json(['message' => 'Error retrieving recipe', 'error' => $e->getMessage()], 500);
+        }
+    }
+
 
     public function update(Request $request, $id)
     {
@@ -83,13 +114,14 @@ class RecipeController extends Controller
         'recipe' => $recipe
     ], 200);
 }
-public function getAllNames()
+public function getallnames()
 {
     $recipes = Recipe::all(); // Retrieve all recipes from the database
 
     $names = $recipes->pluck('name'); // Extract the 'name' column values into an array
+    $ss="salman";
 
-    return $names;
+    return response()->json($names, 200);
 }
 
 }
