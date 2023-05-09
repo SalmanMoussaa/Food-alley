@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType, ScrollView } from "react-native";
+import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType, ScrollView, TouchableOpacity, ActionSheetIOS } from "react-native";
 import { FontFamily, Color, Border, FontSize } from "../components/GlobalStyles";
 import FoodItem from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
@@ -8,6 +8,10 @@ import Bar from "../components/bar";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Searchbar } from "react-native-paper";
+import Productpage from "../ProductPage/Productpage";
+import {   } from "@reduxjs/toolkit";
+Productpage
 export interface Product {
   id: React.Key;
   name:string;
@@ -20,40 +24,62 @@ export interface Product {
 }
 
 const HomePage = () => {
+  const navigation = useNavigation();
+
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
     // Fetch the product data and update the state
     axios.get("http://10.0.2.2:8000/api/recipes").then((response) => {
       console.log(response.data);
       setProducts(response.data);
+      setFilteredProducts(response.data);
+
     });
   }, []);
+  const handleSearch = (searchTerm: string) => {
+    // Filter the products based on the search term
+    setSearchTerm(searchTerm);
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
 
   return (
     <View style={styles.homePage}>
       <View style={[styles.ellipseParent, styles.frameItemLayout]}>
+        <Pressable onPress={() => navigation.navigate("Cart")} style={styles.frameChild}>
         <Image
-          style={styles.frameChild}
+          
           resizeMode="cover"
           source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
         />
+        </Pressable>
         <View style={[styles.search]}>
-        <Searchbarcomp />
+        <Searchbar 
+        
+        placeholder="Search"
+        onChangeText={handleSearch}
+        value={searchTerm}
+       
+         />
         </View>
-        <Image
-          style={[styles.frameItem, styles.frameItemPosition]}
-          resizeMode="cover"
-          source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
-        />
+       
       </View>
       <View style={styles.container}>
-      <ScrollView horizontal>
+      
         <View style={styles.foodItemsContainer}>
+        
           {products.map((product) => (
-            <FoodItem key={product.id} FoodItem={product} />
-          ))}
+            <Pressable onPress={() => navigation.navigate('Productpage')}><FoodItem key={product.id} FoodItem={product} /></Pressable>
+          ))} 
+          
+
         </View>
-      </ScrollView>
+      
     </View>
       
       
@@ -111,8 +137,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   foodItemsContainer: {
-    
+    flex:1,
     flexDirection: "row",
+    flexWrap:"wrap",
+    width:100,
+    paddingVertical:4,
+
     justifyContent:"space-between",
     
   },
@@ -135,9 +165,9 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   frameChild: {
-    top: 0,
-    left: 299,
-    width: 50,
+    top: "70%",
+    left: "85%",
+    width: "100%",
     height: 50,
     position: "absolute",
   },
@@ -148,9 +178,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   search:{
-    top: "40%",
-    width: 349,
-    left: 24,
+    top: "50%",
+    width: "70%",
+    left: "15%",
+    backgroundColor:"#FFFFF",
     position:"absolute"
   },
   ellipseParent: {

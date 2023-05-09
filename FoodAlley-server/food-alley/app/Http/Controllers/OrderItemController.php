@@ -52,4 +52,5 @@ class OrderItemController extends Controller
 
         return response()->json(['message' => 'Order item deleted successfully']);
     }
+    
 }

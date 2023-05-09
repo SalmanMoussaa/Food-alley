@@ -27,7 +27,7 @@ interface FoodItemProps {
         <Pressable style={({ pressed }) => [
       
           pressed && { transform: [{ scale: 0.9 }] }
-        ]} onPress={() => navigation.navigate('Productpage', { id })
+        ]} onPress={() => navigation.navigate('ProductPage',{data:FoodItem})
       }>
         <View style={styles.infoContainer}>
           <Text style={styles.foodname}>{FoodItem.name}</Text>

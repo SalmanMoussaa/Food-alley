@@ -20,21 +20,10 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import axios from "axios";
 import FoodItem from "../components/FoodItem";
-interface Productpage {
-  Productpage:Product;
-  }
-   interface Product {
-    id: Key;
-    name:string;
-    description: string;
-    preparation_time: string;
-    price:string;
-    kitchen_id:Key;
-    // Other properties...
-  }
-const Productpage=({ route }) => {
-  const { id } = route.params;
-  
+
+const Productpage=({route}) => {
+  const { data } = route.params;
+
   
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
@@ -45,15 +34,15 @@ const Productpage=({ route }) => {
         { value: "lebanon", label: "lebanon" },
         { value: "Beirut", label: "Beirut" },
     ]);
-    const [productInfo, setProductInfo] = useState<Product | null>(null);
+    const [productInfo, setProductInfo] = useState([]);
 
     const navigation = useNavigation();
-    const routeParams = route.params as { id: React.Key };
-    const productId = id;
+    //const routeParams = route.params as { id: React.Key };
+   // const productId = id;
 
 useEffect(() => {
   // Fetch the product data using the product ID
-  axios.get(`http://10.0.2.2:8000/api/recipes/${productId}`)
+  axios.get(`http://10.0.2.2:8000/api/recipes/${data?.id}`)
     .then((response) => {
           console.log(response.data); // Add this line
 
@@ -62,8 +51,8 @@ useEffect(() => {
     .catch((error) => {
       console.error("Error fetching product information:", error);
     });
-}, [productId]);
-  console.log(productId);
+}, [/* productId */]);
+  //console.log(productId);
   
     return (
       <ScrollView style={styles.productPage} contentContainerStyle={styles.productPageScrollViewContent}>
@@ -71,12 +60,12 @@ useEffect(() => {
   <View style={styles.vectorParent}>
     {/* Display the product information */}
     <Text style={[styles.filterByAllergy, styles.americanFlexBox]}>filter by allergy</Text>
-    <Text style={[styles.americanCheeseBurger, styles.americanFlexBox]}>{productInfo.name}</Text>
-    <Text style={[styles.text, styles.americanFlexBox]}>{productInfo.price}$</Text>
-          <ImageBackground
+    <Text style={[styles.americanCheeseBurger, styles.americanFlexBox]}>{data?.name}</Text>
+    <Text style={[styles.text, styles.americanFlexBox]}>{data?.price}</Text>
+    <ImageBackground
             style={[styles.arrowLeft5Wrapper, styles.frameChildPosition]}
             resizeMode="cover"
-            source={require("../../../assets/Frame26.png")}
+            source={{uri:data?.imguri}}
           >
             <Pressable
               style={styles.arrowLeft5}
@@ -85,10 +74,10 @@ useEffect(() => {
               <Image
                 style={styles.icon}
                 resizeMode="cover"
-                source={require("../../../assets/arrow.png")}
-              />
+                source={require("../../../assets/arrow.png")} />
             </Pressable>
           </ImageBackground>
+    
           <View
             style={[
               styles.theAmericanCheeseburgerIsAWrapper,
@@ -98,9 +87,7 @@ useEffect(() => {
             <Text
               style={[styles.theAmericanCheeseburger, styles.americanFlexBox]}
             >
-              The American cheeseburger is a classic fast-food staple, featuring a
-              juicy beef patty, melted American cheese, and a variety of toppings
-              on a toasted bun, making it a beloved and iconic American dish.
+              {data?.descreption}
             </Text>
           </View>
           <View style={[styles.vectorGroup, styles.vectorGroupLayout]}>

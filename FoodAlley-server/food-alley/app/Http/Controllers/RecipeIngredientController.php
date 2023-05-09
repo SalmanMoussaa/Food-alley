@@ -53,4 +53,23 @@ class RecipeIngredientController extends Controller
         $recipeIngredient->delete();
         return response()->json(null, 204);
     }
+    function getecipengredients($recipeId)
+{
+    $recipeIngredients = RecipeIngredient::where('recipes_id', $recipeId)->get();
+
+    $result = [];
+
+    foreach ($recipeIngredients as $recipeIngredient) {
+        $ingredient = Ingredient::find($recipeIngredient->ingredients_id);
+
+        if ($ingredient) {
+            $result[] = [
+                'ingredient_name' => $ingredient->name,
+                'quantity' => $recipeIngredient->quantity,
+            ];
+        }
+    }
+
+    return $result;
+}
 }

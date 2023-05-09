@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType } from "react-native";
 import { FontFamily, Color, Border, FontSize } from "../components/GlobalStyles";
 import FoodItem from "../components/FoodItem";
@@ -35,7 +35,7 @@ const Kitchens = () => {
         
       </View>
       <View style={styles.kitchenpagecomp}>
-          <Kitchenscomponent kitchenName={"italian  "} slang={"Mamma mia, buonissimo!"} imageSource={require("../../../assets/ItalianKitchen.png")}/>
+          <Pressable onPress={"ProductPage"}> <Kitchenscomponent kitchenName={"italian  "} slang={"Mamma mia, buonissimo!"} imageSource={require("../../../assets/ItalianKitchen.png") }/></Pressable>
           <Kitchenscomponent kitchenName={"American  "} slang={"let's eat Meat"} imageSource={require("../../../assets/AmericansKitchen.png")}/>
           <Kitchenscomponent kitchenName={"Lebanese "} slang={"Flavor Feast, Tasty"} imageSource={require("../../../assets/lebaneseKitchen.png")}/>
           <Kitchenscomponent kitchenName={"Allergy "} slang={"Aller-Chow, Fun-Free"} imageSource={require("../../../assets/Allergieskitchen.png")}/>

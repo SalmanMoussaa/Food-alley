@@ -88,7 +88,7 @@ const Register = () => {
 
   const { width, height } = Dimensions.get('window');
   return (
-    <View style={styles.register}>
+    <View style={styles.register} >
       
         
       
@@ -97,6 +97,7 @@ const Register = () => {
           style={[styles.frameChild, styles.frameChildLayout]}
           placeholder="username"
           label="username"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={username}
           onChangeText={handleUsernameChange}
         
@@ -105,6 +106,7 @@ const Register = () => {
           style={[styles.frameItem, styles.frameChildLayout]}
           placeholder="FirstName"
           label="FirstName"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={firstName}
           onChangeText={handleFirstNameChange}
           
@@ -113,6 +115,7 @@ const Register = () => {
           style={[styles.frameInner, styles.frameChildLayout]}
           placeholder="LastName"
           label="LastName"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={lastName}
           onChangeText={handleLastNameChange}
           
@@ -121,6 +124,7 @@ const Register = () => {
           style={[styles.rectangleRnptextinput, styles.frameChildLayout]}
           placeholder="Phone Number"
           label="Phone Number"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={phoneNumber}
           onChangeText={handlePhoneNumberChange}
           
@@ -129,6 +133,7 @@ const Register = () => {
           style={[styles.frameChild1, styles.frameChildLayout]}
           placeholder="Email"
           label="Email"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={email}
           onChangeText={handleEmailChange}
           
@@ -137,17 +142,19 @@ const Register = () => {
           style={[styles.frameChild2, styles.frameChildLayout]}
           placeholder="password"
           label="Password"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={password}
           onChangeText={handlePasswordChange}
-          
+          secureTextEntry
         />
         <RNPTextInput
           style={[styles.frameChild3, styles.frameChildLayout]}
           placeholder="Re-enter Password"
           label="Re-enter Password"
+          theme={{ colors: { background: "#d9d9d9" } }}
           value={confirmPassword}
           onChangeText={handleConfirmPasswordChange}
-          
+          secureTextEntry
         />
       </View>
       <Image
@@ -181,8 +188,9 @@ const Register = () => {
 
 const styles =  StyleSheet.create({
   loginChild:{
-    bottom:"-75%",
-    width:"100%"
+    bottom:"0%",
+    width:"100%",
+    position:"absolute"
 
   },
   frameChildLayout: {
@@ -190,7 +198,7 @@ const styles =  StyleSheet.create({
     
     width: "100%",
     borderRadius: Border.br_3xs,
-    left: "3%",
+    left: "8%",
     position: "absolute",
   },
   register1Typo: {

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\RecipeIngredientController;
-use App\Http\Controller\orderitemsController;
+use App\Http\Controller\OrderItemController;
 use App\Http\Controllers\AllergyController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\RecipeController;
@@ -53,21 +53,23 @@ Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy']);
 Route::get('/ingredients/generate-random', [IngredientController::class, 'generateRandomIngredients']);
 
 
-Route::get('/recipe-ingredients', 'RecipeIngredientController@index');
-Route::post('/recipe-ingredients', 'RecipeIngredientController@store');
-Route::get('/recipe-ingredients/{id}', 'RecipeIngredientController@show');
-Route::put('/recipe-ingredients/{id}', 'RecipeIngredientController@update');
-Route::delete('/recipe-ingredients/{id}', 'RecipeIngredientController@destroy');
+Route::get('/recipe-ingredients', 'App\Http\Controllers\RecipeIngredientController@index');
+Route::post('/recipe-ingredients', 'App\Http\Controllers\RecipeIngredientController@store');
+Route::get('/recipe-ingredients/{recipe_id}',`App\Http\Controllers\RecipeIngredientController@getecipengredients`);
+Route::get('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@show');
+Route::put('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@update');
+Route::delete('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@destroy');
 
 Route::get('orders', [OrderController::class, 'index']);
 Route::post('orders', [OrderController::class, 'store']);
 Route::get('orders/{order}', [OrderController::class, 'show']);
 Route::delete('orders/{order}', [OrderController::class, 'destroy']);
 
-Route::get('order_items', [OrderItemController::class, 'index']);
-Route::post('order_items', [OrderItemController::class, 'store']);
-Route::get('order_items/{id}', [OrderItemController::class, 'show']);
-Route::delete('order_items/{id}', [OrderItemController::class, 'destroy']);
+Route::get('order_items', [ App\Http\Controller\OrderItemController::class, 'index']);
+Route::post('order_items', [ App\Http\Controller\OrderItemController::class, 'store']);
+Route::get('order_items/{id}', [ App\Http\Controller\OrderItemController::class, 'show']);
+Route::delete('order_items/{id}', [ App\Http\Controller\OrderItemController::class, 'destroy']);
+Route::get('order_items/get/{recipeId}', [ App\Http\Controller\OrderItemController::class, 'getRecipe']);
 
 
 

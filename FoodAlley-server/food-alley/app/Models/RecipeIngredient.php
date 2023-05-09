@@ -12,6 +12,8 @@ use App\Models\Ingredient;
 class RecipeIngredient extends Model
 {
     use HasFactory;
+    protected $table = 'recipe_ingridents';
+
 
     protected $fillable = [
         'recipe_id',

@@ -49,13 +49,13 @@ const Bar = () => {
           source={require("../../../assets/moodtest.png")}
         />
       </Pressable>
-      <Pressable onPress={handleSettingsPress}>
+      {/* <Pressable onPress={handleSettingsPress}>
         <Image
           style={[styles.settingsIcon, styles.iconLayout]}
           resizeMode="cover"
           source={require("../../../assets/settings.png")}
         />
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 };
@@ -78,15 +78,15 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   homeIcon: {
-    left: "10%",
+    left: "15%",
     borderRadius: Border.br_20xl,
   },
   menuIcon:{
-    left: "30%",
+    left: "45%",
     
   },
   moodtestIcon: {
-    left: "60%",
+    left: "75%",
   },
   settingsIcon: {
     left: "75%",
