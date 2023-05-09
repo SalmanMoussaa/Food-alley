@@ -52,11 +52,9 @@ Route::post('/ingredients', [IngredientController::class, 'store']);
 Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy']);
 Route::get('/ingredients/generate-random', [IngredientController::class, 'generateRandomIngredients']);
 
-
+Route::get('/recipe-ingredients/{id}',`App\Http\Controllers\RecipeIngredientController@getecipengredients`);
 Route::get('/recipe-ingredients', 'App\Http\Controllers\RecipeIngredientController@index');
 Route::post('/recipe-ingredients', 'App\Http\Controllers\RecipeIngredientController@store');
-Route::get('/recipe-ingredients/{recipe_id}',`App\Http\Controllers\RecipeIngredientController@getecipengredients`);
-Route::get('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@show');
 Route::put('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@update');
 Route::delete('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@destroy');
 
@@ -65,11 +63,11 @@ Route::post('orders', [OrderController::class, 'store']);
 Route::get('orders/{order}', [OrderController::class, 'show']);
 Route::delete('orders/{order}', [OrderController::class, 'destroy']);
 
-Route::get('order_items', [ App\Http\Controller\OrderItemController::class, 'index']);
-Route::post('order_items', [ App\Http\Controller\OrderItemController::class, 'store']);
-Route::get('order_items/{id}', [ App\Http\Controller\OrderItemController::class, 'show']);
-Route::delete('order_items/{id}', [ App\Http\Controller\OrderItemController::class, 'destroy']);
-Route::get('order_items/get/{recipeId}', [ App\Http\Controller\OrderItemController::class, 'getRecipe']);
+Route::get('order_items', [ App\Http\Controllers\OrderItemController::class, 'index']);
+Route::post('order_items', [ App\Http\Controllers\OrderItemController::class, 'store']);
+Route::get('order_items/{id}', [ App\Http\Controllers\OrderItemController::class, 'show']);
+Route::delete('order_items/{id}', [ App\Http\Controllers\OrderItemController::class, 'destroy']);
+Route::get('order_items/get/{recipeId}', [ App\Http\Controllers\OrderItemController::class, 'getRecipe']);
 
 
 

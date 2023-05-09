@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\RecipeIngredient;
 use Illuminate\Http\Request;
-
+use App\Models\Ingredient;
 
 class RecipeIngredientController extends Controller
 {
@@ -55,15 +55,31 @@ class RecipeIngredientController extends Controller
     }
     function getecipengredients($recipeId)
 {
+    // Find the recipe
+    $recipe = Recipe::find($recipeId);
+
+    // Return an error response if the recipe doesn't exist
+    if (!$recipe) {
+        return response()->json(['error' => 'Recipe not found'], 404);
+    }
+
+    // Find the recipe ingredients
     $recipeIngredients = RecipeIngredient::where('recipes_id', $recipeId)->get();
 
-    $result = [];
+    // Initialize the result array
+    $result = [
+        'recipe_name' => $recipe->name,
+        'ingredients' => [],
+    ];
 
+    // Loop through the recipe ingredients
     foreach ($recipeIngredients as $recipeIngredient) {
+        // Find the corresponding ingredient
         $ingredient = Ingredient::find($recipeIngredient->ingredients_id);
 
+        // Only add the ingredient if it exists
         if ($ingredient) {
-            $result[] = [
+            $result['ingredients'][] = [
                 'ingredient_name' => $ingredient->name,
                 'quantity' => $recipeIngredient->quantity,
             ];

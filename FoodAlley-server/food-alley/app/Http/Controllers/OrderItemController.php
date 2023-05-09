@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Orderitems;
+use App\Models\OrderItems;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 
 class OrderItemController extends Controller
 {
@@ -16,12 +17,12 @@ class OrderItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'recipe_id' => 'required|exists:recipes,id',
+            'recepie_id' => 'required|exists:recipes,id',
         ]);
 
-        $orderItem = OrderItem::create([
-            'recipe_id' => $request->recipe_id,
-        ]);
+        $orderItem = OrderItems::create([
+            'recepie_id' => $request->recepie_id,
+        ]); 
 
         return response()->json([
             'message' => 'Order item created successfully',
