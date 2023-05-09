@@ -4,7 +4,7 @@ import { Color, FontFamily, FontSize, Padding, Border } from "../components/Glob
 import FoodItem from "../components/FoodItem";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 type NewPageProps = {
@@ -13,23 +13,25 @@ type NewPageProps = {
 };
 
 interface Product {
-  id: React.Key;
-  name:string;
-  description: string;
-  preparation_time: string;
-  price:string;
-  kitchen_id:React.Key;
+  id: Key;
+    name:string;
+    description: string;
+    preparation_time: string;
+    price:string;
+    kitchen_id:Key;
+    imguri:string;
   // Other properties...
 }
 const MoodTest3 = ({ route }: NewPageProps) => {
   const { selectedEmoji } = route.params;
-  const [recipeName, setRecipeName] = useState('');
+  const [recipeNames, setRecipeNames] = useState<string[]>([]);
 
-  
+
+
   const navigation = useNavigation();
   const apiKey = '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';
   const endpoint = 'https://api.openai.com/v1/engines/curie/completions';
-  const [product, setProduct] = useState<Product>({} as Product);
+  const [products, setProducts] = useState<Product| "">("");
 
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
         const names = response.data;
         // Do something with the names
         console.log(names);
+        setRecipeNames(names);
         // Call the generateSuggestion function with the names and selectedEmoji
         generateSuggestion(names, selectedEmoji);
       })
@@ -75,7 +78,6 @@ const MoodTest3 = ({ route }: NewPageProps) => {
         // Handle the response from OpenAI API
         const suggestion =response.data.choices[0].text.trim();
         // Do something with the suggestion
-        setRecipeName(suggestion);
         getRecipeByName(suggestion)
         console.log(suggestion);
       }
@@ -129,13 +131,18 @@ const MoodTest3 = ({ route }: NewPageProps) => {
   
       generateMoodText(selectedEmoji);
     }, [selectedEmoji]);
-
-    const getRecipeByName = async (name: string) => {
+    
+    
+    const getRecipeByName = async (randomName:string) => {
+      const randomIndex = getRandomIndex(recipeNames.length);
+      randomName = recipeNames[randomIndex];
       try {
-      const response = await axios.get(`http://10.0.2.2:8000/api/recipes?name=${name}`);
+      const response = await axios.get(`http://10.0.2.2:8000/api/recipes?name=${randomName}`);
       const recipe = response.data;
+      console.log(recipe)
+      setProducts(recipe)
+      
       // Store the recipe in the product state
-      setProduct(recipe);
       } catch (error) {
       console.error('Failed to get recipe:', error);
       // Handle error appropriately, e.g., display an error message to the user
@@ -145,6 +152,11 @@ const MoodTest3 = ({ route }: NewPageProps) => {
       navigation.dispatch(CommonActions.reset({ index: 0, routes: [] }));
       navigation.navigate("Home");
     };
+    function getRandomIndex(maxIndex: number) {
+      return Math.floor(Math.random() * maxIndex);
+   
+    }
+    
   return (
     <View style={styles.moodTest3}>
       <View style={styles.productDescriptionProductDeWrapper}>
@@ -164,7 +176,13 @@ const MoodTest3 = ({ route }: NewPageProps) => {
       </Pressable>
       <View style={[styles.viewposition]}>
       <Text style={[styles.text, styles.productClr]}>{selectedEmoji}</Text>
-      <FoodItem FoodItem={product}/>
+      {products ? (
+        <FoodItem FoodItem={products} />
+      ) : (
+        <Text>No product available</Text>
+        // You can replace the text above with any fallback content
+      )}
+
      
      </View>
       <Image
@@ -180,7 +198,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
 const styles = StyleSheet.create({
   viewposition:{
     display:"flex",
-    top:"15%",
+    top:"-10%",
     left:"5%",
     flexDirection:"column",
     alignItems:"flex-start",
@@ -266,7 +284,7 @@ const styles = StyleSheet.create({
       left: 84,
     },
     text: {
-      
+      bottom:"-50%",
      paddingLeft:"50%",
       fontSize: 128,
       fontFamily: FontFamily.indieFlowerRegular,

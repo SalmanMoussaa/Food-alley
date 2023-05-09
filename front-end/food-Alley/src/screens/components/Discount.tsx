@@ -27,10 +27,9 @@ const Discount: React.FC<DiscountProps> = ({ discount, image }) => {
 const styles = StyleSheet.create({
   groupChildPosition: {
     width: 152,
-    left: 0,
+    left: 5,
     top: 0,
-    position: "absolute",
-    height: 78,
+    height:"100%",
   },
   discountTypo: {
     width: 101,
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: 78,
+    top:"2%"
     
   },
 });

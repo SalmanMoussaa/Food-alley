@@ -64,7 +64,7 @@ const HomePage = () => {
    automaticallyAdjustContentInsets={true} 
 
  >
-        <Discount discount={"20%"} image={"../../../assets/Ellipse 2.png"}/>
+        <Discount discount={"20%"} image={"../../../assets/Ellipse2.png"}/>
 
         </ScrollView >
       <Text style={[styles.suggestedFoods, styles.americanFoodTypo]}>
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     top: "40%",
     width: 349,
     left: 24,
+    position:"absolute"
   },
   ellipseParent: {
     top: 0,

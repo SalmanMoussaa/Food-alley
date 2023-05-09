@@ -1,60 +1,75 @@
 import React, { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
-import { View, StyleSheet, FlatList, ListRenderItemInfo } from 'react-native';
+import { View, StyleSheet, FlatList, ListRenderItemInfo, Text } from 'react-native';
 import axios from 'axios';
 import FoodItem from './FoodItem';
 
 interface Recipe {
-  id: React.Key;
+  id: string;
   name: string;
   description: string;
   preparation_time: string;
   price: string;
-  kitchen_id: React.Key;
+  kitchen_id: string;
+  imguri: string;
   // Other properties...
 }
 
 const Searchbarcomp = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Recipe[]>([]);
+  const [showResults, setShowResults] = useState(false);
 
-  const fetchRecipes = async (searchQuery: string) => {
+  const fetchRecipes = async (query: string) => {
     try {
-      const response = await axios.get(`http://10.0.2.2:8000/api/recipes/search?query=${searchQuery}`);
+      const response = await axios.get(`http://10.0.2.2:8000/api/recipes/search?query=${query}`);
       const results = response.data;
+      console.log(response.data);
       setSearchResults(results);
+      setShowResults(true);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const onChangeSearch = (searchQuery: string) => {
-    setSearchQuery(searchQuery);
-    fetchRecipes(searchQuery);
+  const onChangeSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query === '') {
+      setShowResults(false);
+    } else {
+      fetchRecipes(query);
+    }
   };
 
-  const renderItem = ({ item }: ListRenderItemInfo<Recipe>) => {
+  const renderRecipeItem = ({ item }: ListRenderItemInfo<Recipe>) => {
     return <FoodItem FoodItem={item} />;
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Searchbar
         style={styles.search}
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
+        onFocus={() => setShowResults(true)}
+        onBlur={() => setShowResults(false)}
       />
-      <FlatList
-        data={searchResults}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      {showResults && searchResults.length === 0 ? (
+        <Text>No results found.</Text>
+      ) : showResults && (
+        <FlatList
+          data={searchResults}
+          renderItem={renderRecipeItem}
+          keyExtractor={(item) => item.id}
+        />
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  
   search: {
     backgroundColor: '#FFFFFF',
     borderColor: '#fdc4',
@@ -63,7 +78,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 10,
     textAlign: 'justify',
-    paddingTop: 0,
+    paddingTop: 10,
+    position:"absolute"
   },
   searchResults: {
     marginTop: 10,
