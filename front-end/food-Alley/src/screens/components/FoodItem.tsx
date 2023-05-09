@@ -14,11 +14,13 @@ interface FoodItemProps {
     preparation_time: string;
     price:string;
     kitchen_id:Key;
+    imguri:string;
     // Other properties...
   }
   const FoodItem: React.FC<FoodItemProps> = ({ FoodItem  }) => {
     const navigation = useNavigation();
     const id=FoodItem.id;
+    console.log(FoodItem.imguri);
 
     return (
       <View style={styles.container} >
@@ -29,14 +31,12 @@ interface FoodItemProps {
       }>
         <View style={styles.infoContainer}>
           <Text style={styles.foodname}>{FoodItem.name}</Text>
-          <Image style={styles.image} source={{ uri:""}} />
+          <Image style={styles.image} source={{ uri:FoodItem.imguri}}/>
           <Text style={styles.kitchenName}>{FoodItem.kitchen_id}</Text>
         </View>
         <Image
           style={styles.heartIcon}
-          source={{
-            uri: "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/brj7d79qb4m-1%3A16?alt=media&token=696d5ba6-d138-44d7-b5ca-1bad33542a0e",
-          }}
+          source={require("../../../assets/heart-outline.png")}
         />
         </Pressable>
       </View>
@@ -71,12 +71,17 @@ interface FoodItemProps {
       fontWeight: "700",
     },
     image: {
-      width: 98.93,
-      height: 69.97,
+      left:10,
+      top:"5%",
+      borderRadius:10,
+      width: "90%",
+      height: "60%",
     },
     kitchenName: {
       color: "rgba(255,255,255,1)",
       fontSize: 16,
+      top:"20%",
+      left:10,
       lineHeight: 16,
       fontFamily: "Inter, sans-serif",
       fontWeight: "800",

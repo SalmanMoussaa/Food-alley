@@ -15,6 +15,7 @@ export interface Product {
   preparation_time: string;
   price:string;
   kitchen_id:React.Key;
+  imguri:string;
   // Other properties...
 }
 
@@ -23,6 +24,7 @@ const HomePage = () => {
   useEffect(() => {
     // Fetch the product data and update the state
     axios.get("http://10.0.2.2:8000/api/recipes").then((response) => {
+      console.log(response.data);
       setProducts(response.data);
     });
   }, []);
