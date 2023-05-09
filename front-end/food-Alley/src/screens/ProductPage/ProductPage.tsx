@@ -15,7 +15,9 @@ import Checkbox from "react-native-check-box";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
 import { TextInput as RNTextInput } from 'react-native-paper';
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import axios from "axios";
 import FoodItem from "../components/FoodItem";
 interface Productpage {
@@ -30,8 +32,10 @@ interface Productpage {
     kitchen_id:Key;
     // Other properties...
   }
-const Productpage=(props: Productpage) => {
-  const { id } = props;
+const Productpage=({ route }) => {
+  const { id } = route.params;
+  
+  
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
@@ -44,9 +48,8 @@ const Productpage=(props: Productpage) => {
     const [productInfo, setProductInfo] = useState<Product | null>(null);
 
     const navigation = useNavigation();
-    const route = useRoute();
     const routeParams = route.params as { id: React.Key };
-    const productId = Productpage.id;
+    const productId = id;
 
 useEffect(() => {
   // Fetch the product data using the product ID

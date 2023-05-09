@@ -28,7 +28,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
   
   const navigation = useNavigation();
   const apiKey = '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';
-  const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+  const endpoint = 'https://api.openai.com/v1/engines/curie/completions';
   const [product, setProduct] = useState<Product>({} as Product);
 
 
@@ -51,17 +51,15 @@ const MoodTest3 = ({ route }: NewPageProps) => {
 
   const generateSuggestion = async(names: any, selectedEmoji: any) => {
     // Your input to generate the suggestion
-    const input = `Given a JSON object representing names: ${JSON.stringify(names)} And an emoji: ${selectedEmoji} Suggest a name from the JSON object that best represents the given emoji, respond only with the name of the suggestion from the names JSON object. 
-    AI:`;
+    const input =  "role" + "system" +"content"+ `Given a JSON object representing names: ${JSON.stringify(names)} And an emoji: ${selectedEmoji}`+ "role" +"user" +"content" +"Please select a name from the JSON object that best represents the given emoji.";
       
     // Define the request payload
     const payload = {
       model: 'gpt-3.5-turbo',
       prompt: input,
-      temperature: 0.2,
-     max_tokens: 1,
-      stop: '\n',
-      // Add any other required parameters
+      temperature: 0.6,
+     max_tokens: 100, 
+      // Add any other required parameters 
     };
   
     // Define the headers (replace with the appropriate headers)
@@ -75,7 +73,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
     const response = await axios.post(endpoint, payload, { headers });
      
         // Handle the response from OpenAI API
-        const suggestion =response.data.choices[0].text;
+        const suggestion =response.data.choices[0].text.trim();
         // Do something with the suggestion
         setRecipeName(suggestion);
         getRecipeByName(suggestion)

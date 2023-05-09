@@ -18,13 +18,14 @@ interface FoodItemProps {
   }
   const FoodItem: React.FC<FoodItemProps> = ({ FoodItem  }) => {
     const navigation = useNavigation();
+    const id=FoodItem.id;
 
     return (
       <View style={styles.container} >
         <Pressable style={({ pressed }) => [
       
           pressed && { transform: [{ scale: 0.9 }] }
-        ]} onPress={() => navigation.navigate('Productpage', { FoodItem })
+        ]} onPress={() => navigation.navigate('Productpage', { id })
       }>
         <View style={styles.infoContainer}>
           <Text style={styles.foodname}>{FoodItem.name}</Text>
@@ -45,7 +46,7 @@ interface FoodItemProps {
 
   const styles = StyleSheet.create({
     container: {
-      position:"absolute",
+      marginHorizontal:20,
       width: 161.66,
       height: 164.08,
       borderRadius: 13.27,

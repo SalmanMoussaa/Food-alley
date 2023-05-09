@@ -44,23 +44,21 @@ const HomePage = () => {
           source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
         />
       </View>
-      <View style={[styles.homePageInner]}>
-        <View style={styles.items}>
-      {products.map((Product) => (
-      
-
-        <FoodItem key={Product.id} FoodItem={Product} />
-        
-     
-      ))}
-      </View>
-       </View>
+      <View style={styles.container}>
+      <ScrollView horizontal>
+        <View style={styles.foodItemsContainer}>
+          {products.map((product) => (
+            <FoodItem key={product.id} FoodItem={product} />
+          ))}
+        </View>
+      </ScrollView>
+    </View>
       
       
       
      
       
-      <ScrollView style={styles.homePageChild}   showsHorizontalScrollIndicator={false}
+      <ScrollView horizontal style={styles.homePageChild}   showsHorizontalScrollIndicator={false}
    automaticallyAdjustContentInsets={true} 
 
  >
@@ -101,6 +99,20 @@ const styles = StyleSheet.create({
     height: 164,
     width: 162,
     position: "absolute",
+  },
+  container: {
+    flex: 1,
+    left:2,
+    top:"30%",
+    width:"100%",
+    height:"100%",
+    backgroundColor: "#fff",
+  },
+  foodItemsContainer: {
+    
+    flexDirection: "row",
+    justifyContent:"space-between",
+    
   },
   americanFoodTypo: {
     fontFamily: FontFamily.interExtrabold,

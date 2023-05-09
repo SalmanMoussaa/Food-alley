@@ -24,7 +24,7 @@ const OnboardingStack = () => {
       <Stack.Screen name="kitchens" component={Kitchens} />
       <Stack.Screen name="kitchen" component={Kitchen} />
       <Stack.Screen name="ProductPage" component={Productpage} />
-      <Stack.Screen name="Moodtest" component={MoodTest} />
+      <Stack.Screen name="Moodtest" component={MoodTest} />    
       <Stack.Screen name="Moodtestquestion" component={MoodTestQuestion} />
       <Stack.Screen name="MoodTestresult" component={MoodTestresult} />
       <Stack.Screen name="selectLocation" component={SelectLocation} />
