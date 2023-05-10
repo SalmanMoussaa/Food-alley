@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\RecipeIngredient;
 use Illuminate\Http\Request;
 use App\Models\Ingredient;
+use App\Models\Recipe;
+
 
 class RecipeIngredientController extends Controller
 {

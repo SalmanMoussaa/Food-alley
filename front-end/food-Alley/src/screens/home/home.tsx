@@ -70,6 +70,7 @@ const HomePage = () => {
        
       </View>
       <View style={styles.container}>
+        
       
         <View style={styles.foodItemsContainer}>
         
@@ -137,13 +138,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   foodItemsContainer: {
-    flex:1,
-    flexDirection: "row",
-    flexWrap:"wrap",
-    width:100,
-    paddingVertical:4,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    
 
-    justifyContent:"space-between",
+    
     
   },
   americanFoodTypo: {

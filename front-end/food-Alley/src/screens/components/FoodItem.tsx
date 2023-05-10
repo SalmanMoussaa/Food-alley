@@ -47,6 +47,7 @@ interface FoodItemProps {
   const styles = StyleSheet.create({
     container: {
       marginHorizontal:20,
+      marginBottom:10,
       width: 161.66,
       height: 164.08,
       borderRadius: 13.27,
@@ -71,7 +72,7 @@ interface FoodItemProps {
       fontWeight: "700",
     },
     image: {
-      left:10,
+      left:20,
       top:"5%",
       borderRadius:10,
       width: "90%",

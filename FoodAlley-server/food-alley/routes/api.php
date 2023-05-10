@@ -52,7 +52,7 @@ Route::post('/ingredients', [IngredientController::class, 'store']);
 Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy']);
 Route::get('/ingredients/generate-random', [IngredientController::class, 'generateRandomIngredients']);
 
-Route::get('/recipe-ingredients/{id}',`App\Http\Controllers\RecipeIngredientController@getecipengredients`);
+Route::get('recipe-ingredients/{recipeId}', 'App\Http\Controllers\RecipeIngredientController@getecipengredients');
 Route::get('/recipe-ingredients', 'App\Http\Controllers\RecipeIngredientController@index');
 Route::post('/recipe-ingredients', 'App\Http\Controllers\RecipeIngredientController@store');
 Route::put('/recipe-ingredients/{id}', 'App\Http\Controllers\RecipeIngredientController@update');

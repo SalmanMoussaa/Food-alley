@@ -7,11 +7,10 @@ import {
   Pressable,
   ImageBackground,
   View,
-  
+   
   TextInput,
   Dimensions,
 } from "react-native";
-import Checkbox from "react-native-check-box";
 import DropDownPicker from "react-native-dropdown-picker";
 import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
 import { TextInput as RNTextInput } from 'react-native-paper';
@@ -20,25 +19,62 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import axios from "axios";
 import FoodItem from "../components/FoodItem";
+import Checkbox from "../components/Checkbox";
 
 const Productpage=({route}) => {
   const { data } = route.params;
+  const [orderData, setOrderData] = useState({
+    recepie_id: data.id,
+    // add other order details here
+  });
 
   
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
     const [rectangleTextInput, setRectangleTextInput] = useState("salman");
-     const [frameDropdownItems, setFrameDropdownItems] = useState([
-        { value: "Beirut", label: "Beirut" },
-        { value: "lebanon", label: "lebanon" },
-        { value: "Beirut", label: "Beirut" },
-    ]);
+     const [frameDropdownItems, setFrameDropdownItems] = useState([]);
     const [productInfo, setProductInfo] = useState([]);
+    const [ingredientData, setIngredientData] = useState<Array<{ name: string, checked: boolean }>>([]);
+
 
     const navigation = useNavigation();
     //const routeParams = route.params as { id: React.Key };
    // const productId = id;
+   useEffect(() => {
+    // Fetch the list of allergies from the server
+    axios
+      .get("http://10.0.2.2:8000/api/allergies")
+      .then((response) => {
+        // Extract the allergy names from the response data
+        const allergyNames = response.data.map((allergy: { name: any; }) => allergy.name);
+
+        // Transform the allergy names into dropdown items format
+        const dropdownItems = allergyNames.map((name: any) => ({
+          value: name,
+          label: name,
+        }));
+
+        // Update the dropdown items state
+        setFrameDropdownItems(dropdownItems);
+      })
+      .catch((error) => {
+        console.error("Error fetching allergies:", error);
+      });
+  }, []);
+   const addToCart = () => {
+    axios.post('http://10.0.2.2:8000/api/order_items', orderData)
+      .then((response) => {
+        console.log('Order added:', response.data);
+        // add code to handle successful response here
+      })
+      .catch((error) => {
+        console.error('Error adding order:', error);
+        console.log(orderData)
+        // add code to handle error here
+      });
+  };
+
 
 useEffect(() => {
   // Fetch the product data using the product ID
@@ -53,6 +89,33 @@ useEffect(() => {
     });
 }, [/* productId */]);
   //console.log(productId);
+  
+  useEffect(() => {
+    // Fetch the product data using the product ID
+    axios.get(`http://10.0.2.2:8000/api/recipe-ingredients/${data?.id}`)
+      .then((response) => {
+        if (response.data && response.data.length > 0) {
+          const ingredients = response.data.map((ingredient: { ingredient_name: string; }) => ({
+            name: ingredient.ingredient_name.trim(),
+            checked: false,
+          }));
+          setIngredientData(ingredients);
+
+          // Check the extracted ingredient names in the console
+        } else {
+           // Set the error state to indicate no data
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching product information:", error);
+      });
+  }, [/* productId */]);
+  const handleCheckboxChange = (index: number, checked: any) => {
+    const updatedIngredientData = [...ingredientData];
+    updatedIngredientData[index].checked = checked;
+    setIngredientData(updatedIngredientData);
+  };
+ 
   
     return (
       <ScrollView style={styles.productPage} contentContainerStyle={styles.productPageScrollViewContent}>
@@ -96,27 +159,35 @@ useEffect(() => {
               resizeMode="cover"
               source={require("../../../assets/Rectangle35.png")}
             />
-            <Checkbox
-  style={styles.frameInner}
-  checked={frameCheckboxchecked}
-  onChange={(isChecked: boolean | ((prevState: boolean) => boolean)) => setFrameCheckboxchecked(isChecked)}
-/>
+           {ingredientData.map((ingredient, index) => (
+  <Checkbox
+    key={index}
+    label={ingredient.name}
+    onChange={(checked: any) => handleCheckboxChange(index, checked)}
+  />
+))}
           </View>
           <Text style={[styles.removeIngredient, styles.americanFlexBox]}>
             remove ingredient
           </Text>
           <View style={[styles.wrapper, styles.rectangleLayout]}>
-          <DropDownPicker
-             style={styles.dropdownpicker}
-               open={frameDropdownOpen}
-            items={frameDropdownItems}
-             setOpen={setFrameDropdownOpen}
-              value={frameDropdownValue}
-              setValue={setFrameDropdownValue}
-              placeholder="allergy name"
-                labelStyle={styles.frameDropdownValue}
-             dropDownContainerStyle={styles.frameDropdowndropDownContainer}
-/>
+          
+  <DropDownPicker
+    items={frameDropdownItems}
+    open={frameDropdownOpen}
+    setOpen={setFrameDropdownOpen}
+    value={frameDropdownValue}
+    setValue={setFrameDropdownItems}
+    placeholder="Select an allergy"
+    badgeColors={Color.black}
+    textStyle={styles.frameDropdownText}
+    dropDownContainerStyle={styles.frameDropdowndropDownContainer}
+    labelStyle={styles.frameDropdownValue}
+    scrollViewProps={{ persistentScrollbar: true }}
+
+  />
+
+
 
           </View>
           
@@ -132,6 +203,7 @@ useEffect(() => {
           </Text>
           <Pressable
             style={[styles.rectanglePressable, styles.rectangleLayout]}
+            onPress={addToCart}
           />
           <Text style={[styles.addToCart, styles.addToCartTypo]}>
             Add to Cart
@@ -145,13 +217,13 @@ useEffect(() => {
   };
   const styles = StyleSheet.create({
     frameDropdownValue: {
-      color: "#e2e7f0",
-      fontSize: 16,
+      color: Color.d9D9D9,
+      fontSize: 20,
       fontWeight: "800",
       fontFamily: "Inter_extrabold",
     },
     frameDropdowndropDownContainer: {
-      backgroundColor: "#fe5932",
+      backgroundColor: "#fe32",
     },
     productPageScrollViewContent: {
       flexDirection: "row",
@@ -170,8 +242,17 @@ useEffect(() => {
       width: 358,
       position: "absolute",
     },
+    frameDropdownText: {
+    
+    
+      color: Color.d9D9D9,
+      fontSize: 14,
+      fontWeight: "800",
+      fontFamily: "Inter_extrabold",
+    },
     rectangleLayout: {
-      width: 355,
+      width: "100%",
+      left: "3%",
       position: "absolute",
     },
     addToCartTypo: {
@@ -265,12 +346,12 @@ useEffect(() => {
     },
     dropdownpicker: {
       backgroundColor: "#FE5932",
+      
     },
     wrapper: {
-      top: 941,
-      borderRadius: 14,
-      height: 45,
-      left: 19,
+      top: "74%",
+      width:"60%",
+      left:"4%",
     },
     rectangleRnktextinput: {
       top: 1041,

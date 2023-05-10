@@ -35,7 +35,7 @@ const Kitchens = () => {
         
       </View>
       <View style={styles.kitchenpagecomp}>
-          <Pressable onPress={"ProductPage"}> <Kitchenscomponent kitchenName={"italian  "} slang={"Mamma mia, buonissimo!"} imageSource={require("../../../assets/ItalianKitchen.png") }/></Pressable>
+          <Kitchenscomponent kitchenName={"Italian  "} slang={"Mamma mia, buonissimo!"} imageSource={require("../../../assets/ItalianKitchen.png") }/>
           <Kitchenscomponent kitchenName={"American  "} slang={"let's eat Meat"} imageSource={require("../../../assets/AmericansKitchen.png")}/>
           <Kitchenscomponent kitchenName={"Lebanese "} slang={"Flavor Feast, Tasty"} imageSource={require("../../../assets/lebaneseKitchen.png")}/>
           <Kitchenscomponent kitchenName={"Allergy "} slang={"Aller-Chow, Fun-Free"} imageSource={require("../../../assets/Allergieskitchen.png")}/>

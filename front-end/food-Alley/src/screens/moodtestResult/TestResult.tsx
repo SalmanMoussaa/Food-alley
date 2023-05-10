@@ -31,7 +31,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
   const navigation = useNavigation();
   const apiKey = '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';
   const endpoint = 'https://api.openai.com/v1/engines/curie/completions';
-  const [products, setProducts] = useState<Product| "">("");
+  const [products, setProducts] = useState<Product[]>([]);
 
 
   useEffect(() => {
@@ -140,7 +140,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
       const response = await axios.get(`http://10.0.2.2:8000/api/recipes?name=${randomName}`);
       const recipe = response.data;
       console.log(recipe)
-      setProducts(recipe)
+      setProducts([recipe])
       
       // Store the recipe in the product state
       } catch (error) {
@@ -177,8 +177,12 @@ const MoodTest3 = ({ route }: NewPageProps) => {
       <View style={[styles.viewposition]}>
       <Text style={[styles.text, styles.productClr]}>{selectedEmoji}</Text>
       {products ? (
-        <FoodItem FoodItem={products} />
-      ) : (
+            <Pressable onPress={() => navigation.navigate('Productpage')}>
+               {products.map((products) => (
+              <FoodItem   FoodItem={products} />
+              ))}
+              </Pressable>
+            ) : (
         <Text>No product available</Text>
         // You can replace the text above with any fallback content
       )}
