@@ -6,6 +6,7 @@ import {
   Pressable,
   Text,
   Dimensions,
+  TextInput,
 } from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
 import axios from "axios";
@@ -89,109 +90,116 @@ const Register = () => {
   const { width, height } = Dimensions.get('window');
   return (
     <View style={styles.register} >
-      
-        
+      <Pressable style={styles.arrowLeft3} onPress={() => navigation.goBack()}>
+        <Image
+          resizeMode="cover"
+          source={require("../../../assets/arrow.png")}
+        />
+      </Pressable>
+      <Text style={[ styles.register1Typo]}>
+        create account
+      </Text>
       
       <View style={styles.rectangleParent}>
-        <RNPTextInput
-          style={[styles.frameChild, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild,]}
           placeholder="username"
-          label="username"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={username}
           onChangeText={handleUsernameChange}
         
         />
-        <RNPTextInput
-          style={[styles.frameItem, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild, ]}
           placeholder="FirstName"
-          label="FirstName"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={firstName}
           onChangeText={handleFirstNameChange}
           
         />
-        <RNPTextInput
-          style={[styles.frameInner, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild, ]}
           placeholder="LastName"
-          label="LastName"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={lastName}
           onChangeText={handleLastNameChange}
           
         />
-        <RNPTextInput
-          style={[styles.rectangleRnptextinput, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild, ]}
           placeholder="Phone Number"
-          label="Phone Number"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={phoneNumber}
           onChangeText={handlePhoneNumberChange}
           
         />
-        <RNPTextInput
-          style={[styles.frameChild1, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild,]}
           placeholder="Email"
-          label="Email"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={email}
           onChangeText={handleEmailChange}
           
         />
-        <RNPTextInput
-          style={[styles.frameChild2, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild,]}
           placeholder="password"
-          label="Password"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={password}
           onChangeText={handlePasswordChange}
           secureTextEntry
         />
-        <RNPTextInput
-          style={[styles.frameChild3, styles.frameChildLayout]}
+        <TextInput
+          style={[styles.frameChild, ]}
           placeholder="Re-enter Password"
-          label="Re-enter Password"
-          theme={{ colors: { background: "#d9d9d9" } }}
           value={confirmPassword}
           onChangeText={handleConfirmPasswordChange}
           secureTextEntry
         />
+        <Pressable   style={({ pressed }) => [
+          styles.rectangleView,
+          
+          pressed && { transform: [{ scale: 0.9 }] }
+        ]} 
+        onPress={handleRegister}
+        >
+      <Text style={[ styles.login2]}>register</Text>
+      </Pressable>
       </View>
+      
+      
+      
       <Image
         style={styles.loginChild}
         resizeMode="cover"
         source={logindesgin}
       />
-      <Pressable   style={({ pressed }) => [
-        styles.registerItem,
-          
-          pressed && { transform: [{ scale: 0.9 }] }
-        ]} 
-        onPress={handleRegister}
-        />
-      <Text style={[styles.register1, styles.register1Typo]}>register</Text>
-      <Text style={[styles.createAccount, styles.register1Typo]}>
-        create account
-      </Text>
-      <Pressable style={styles.arrowLeft3} onPress={() => navigation.goBack()}>
-        <Image
-          style={styles.icon}
-          resizeMode="cover"
-          source={require("../../../assets/arrow.png")}
-        />
-      </Pressable>
-     
     
    </View>
   );
 };
 
 const styles =  StyleSheet.create({
-  loginChild:{
+  loginChild: {
     bottom:"0%",
-    width:"100%",
+    top:"9%",
+    width:'100%',
+    height: 190,
+    left: 0,
+   // position: "absolute",
+  },
+  login2: {
+    //top: 8,
+   //left: 43,
+   textAlign:"center",
+   fontSize:20,
+   color: Color.wFBaseWhite,
+   fontFamily: FontFamily.interExtrabold,
+   fontWeight: "600", 
+ },
+  rectangleView: {
+    //bottom: "80%",
+   top:"108%",
+    width:"35%",
+    height:55,
+    borderRadius: Border.br_5xs,
+    backgroundColor: Color.darkGray,
+    padding:"7%",
     position:"absolute"
-
   },
   frameChildLayout: {
     height: 55,
@@ -202,11 +210,16 @@ const styles =  StyleSheet.create({
     position: "absolute",
   },
   register1Typo: {
-    textAlign: "left",
+    //top:"2%",
+    bottom:"1%",
+    textAlign: "center",
     fontFamily: FontFamily.interExtrabold,
-    fontWeight: "800",
-    fontSize: FontSize.size_5xl,
-    position: "absolute",
+    fontWeight: "600",
+    fontSize: 30,
+    width:"50%",
+    left:"25%",
+    position:"relative",
+    //backgroundColor:Color.black
   },
   registerChild: {
     top: 620,
@@ -216,32 +229,74 @@ const styles =  StyleSheet.create({
     position: "absolute",
   },
   frameChild: {
-    top: "-20%",
-  },
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
+marginBottom:"2%"  },
   frameItem: {
-    top: "-1%",
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
   },
   frameInner: {
-    top: "19%",
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
   },
   rectangleRnptextinput: {
-    top: "38%",
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
   },
   frameChild1: {
-    top: "58%",
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
   },
   frameChild2: {
-    top: "78%",
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
   },
   frameChild3: {
-    top: "100%",
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
   },
   rectangleParent: {
-    top: 183,
-    left: 10,
-    width: 346,
-    height: 333,
-    position: "absolute",
+    top:"3%",
+    padding:"5%",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
   },
   registerItem: {
     top: "79%",
@@ -267,18 +322,17 @@ const styles =  StyleSheet.create({
     width: "100%",
   },
   arrowLeft3: {
-    left: "2%",
-    top: 38,
-    width: 50,
-    height: 50,
-    position: "absolute",
+    left: "5%",
+    top: "6%",
+    width: 60,
+    height: 60,
+    
   },
   register: {
     backgroundColor: Color.wFBaseWhite,
-    flex: 1,
     
-    overflow: "hidden",
-    width: "100%",
+height:"100%",
+
   }
 });
 

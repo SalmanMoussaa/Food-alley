@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Image, StyleSheet, Pressable } from "react-native";
-import { Border } from "./GlobalStyles";
+import { Border, Color } from "./GlobalStyles";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 const Bar = () => {
@@ -22,11 +22,8 @@ const Bar = () => {
 
   return (
     <View style={styles.bar}>
-      <Image
-        style={styles.barChild}
-        resizeMode="cover"
-        source={require("../../../assets/Rectangle.png")}
-      />
+      
+      
       <Pressable onPress={() =>navigation.navigate("Home")}>
       <Image
         style={[styles.homeIcon, styles.iconLayout]}
@@ -62,40 +59,52 @@ const Bar = () => {
 
 const styles = StyleSheet.create({
   iconLayout: {
-    height: 40,
-    width: 40,
-    top:"-5%",
+   
+    //top:"3%",
   
-    position: "absolute",
+    //position: "absolute",
   },
-  barChild: {
+  /* barChild: {
     
     left: 0,
     
     width: "100%",
     height: 75,
-    top:"-30%",
+    //top:"-30%",
     position: "absolute",
-  },
+  }, */
   homeIcon: {
-    left: "15%",
+   // left: "15%",
     borderRadius: Border.br_20xl,
+    //top:"30%",
+    height: 40,
+    width: 40,
+    
   },
   menuIcon:{
-    left: "45%",
+    //left: "45%",
+    height: 40,
+    width: 40,
     
   },
   moodtestIcon: {
-    left: "75%",
+    //left: "75%",
+    height: 40,
+    width: 40,
   },
-  settingsIcon: {
-    left: "75%",
-  },
+  
   bar: {
-    flex: 1,
+    display:"flex",
+    justifyContent:"space-around",
+    flexDirection:"row",
+
+
     width: "100%",
-    top:"92%",
+    top:"93%",
     height: 65,
+    paddingTop:"2%",
+    backgroundColor:"rgba(51,51,51,0.8)",
+
     position:"absolute"
   },
 });

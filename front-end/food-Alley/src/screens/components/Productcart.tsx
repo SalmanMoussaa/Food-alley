@@ -1,47 +1,46 @@
-import * as React from "react";
-import {
-  Image,
-  StyleSheet,
-  Pressable,
-  TouchableOpacity,
-  Text,
-  View,
-} from "react-native";
+import React from "react";
+import { Image, StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "./GlobalStyles";
-import { Button } from "react-native-paper";
-const ProdcutinCart = () => {
-    const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
-    return (
-        <View style={styles.prodcutincart}>
-        <Image
-          style={styles.prodcutincartChild}
-          resizeMode="cover"
-          source={require("../../../assets/Shapeprcart.png")}
-        />
-        <TouchableOpacity
-          style={styles.x}
-          activeOpacity={0.2}
-          onPress={() => navigation.toggleDrawer()}
-        >
-          <Text
-            style={styles.icon}
-          >
-            X
-            </Text>
-        </TouchableOpacity>
-        <Image
-          style={styles.prodcutincartItem}
-          resizeMode="cover"
-          source={require("../../../assets/Shapeprcart.png")}
-        />
-        <Text style={[styles.productName, styles.priceTypo]}>Product name</Text>
-        <Text style={[styles.price, styles.priceTypo]}>price</Text>
-      </View>
-    );
+interface ProductProps {
+  product: {
+    id: string;
+    name: string;
+    description: string;
+    price: string;
+    imguri: string;
   };
+}
+
+const ProdcutinCart: React.FC<ProductProps> = ({ product }) => {
+  const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
+
+  return (
+    <View style={styles.prodcutincart}>
+      <Image
+        style={styles.prodcutincartChild}
+        resizeMode="cover"
+        source={require("../../../assets/Shapeprcart.png")}
+      />
+      <TouchableOpacity
+        style={styles.x}
+        activeOpacity={0.2}
+        onPress={() => navigation.toggleDrawer()}
+      >
+        <Text style={styles.icon}>X</Text>
+      </TouchableOpacity>
+      <Image
+        style={styles.prodcutincartItem}
+        resizeMode="cover"
+        source={{ uri: product.imguri }} // Use the product's image URI
+      />
+      <Text style={[styles.productName, styles.priceTypo]}>{product.name}</Text>
+      <Text style={[styles.price, styles.priceTypo]}>{product.price}</Text>
+    </View>
+  );
+};
   const styles = StyleSheet.create({
     prodcutincartChild: {
       top: 0,

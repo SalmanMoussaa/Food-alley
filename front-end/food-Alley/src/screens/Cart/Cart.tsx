@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Pressable, View, Text } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useNavigation } from "@react-navigation/native";
@@ -6,6 +6,7 @@ import { FontFamily, Color, FontSize, Border } from "../components/GlobalStyles"
 import ProdcutinCart from "../components/Productcart";
 import { black } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import { color } from "react-native-reanimated";
+import axios from "axios";
 
 const Cart = () => {
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
@@ -16,6 +17,36 @@ const Cart = () => {
     { value: "Beirut", label: "Beirut" },
 ]);
 const navigation = useNavigation();
+const [orderItems, setOrderItems] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch the order items data and update the state
+    axios.get("http://10.0.2.2:8000/api/kitchens").then((response) => {
+      console.log(response.data);
+      setOrderItems(response.data);
+    });
+
+    // Fetch the product data and update the state
+    axios.get("http://10.0.2.2:8000/api/recipes").then((response) => {
+      console.log(response.data);
+      setProducts(response.data);
+    });
+  }, []);
+
+  // Filter the products based on the order items
+  const filteredProducts = products.filter((product) =>
+    orderItems.some((item) => item.recipe_id === product.id)
+  );
+
+useEffect(() => {
+  // Fetch the product data and update the state
+  axios.get("http://10.0.2.2:8000/api/recipes").then((response) => {
+    console.log(response.data);
+    setProducts(response.data);
+
+  });
+}, []);
     return(
 
         <View style={styles.cart}>
@@ -56,8 +87,12 @@ const navigation = useNavigation();
           textStyle={styles.frameDropdownText}
         />
       </View>
-      <View style={[styles.productsContainer]}><ProdcutinCart/>
-      <ProdcutinCart/></View>
+      <View style={[styles.productsContainer]}>
+      {filteredProducts.map((product) => (
+          <ProdcutinCart key={product.id} product={product} />
+        ))}
+
+      </View>
       <Text style={[styles.chooseLocation]}>
         choose location
       </Text>

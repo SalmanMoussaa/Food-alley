@@ -1,30 +1,43 @@
 import * as React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import { Color, Border, FontSize, FontFamily } from "./GlobalStyles";
+import { Key } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-interface Props {
-  kitchenName: string;
-  slang: string;
-  imageSource: any;
-}
+interface kitchensProps {
+  FoodItem:kitchens;
+  }
+  export interface kitchens{
+    id:Key;
+    name:string;
+    slang:string;
+    imguri:string
+  
+  
+  }
 
-const FrameScreen = ({ kitchenName, slang, imageSource }: Props) => {
+  const FrameScreen: React.FC<kitchensProps> = ({ FoodItem  }) => {
+    const navigation = useNavigation();
+    const id=FoodItem.id;
   return (
+    
     <View style={styles.groupParent}>
+     
       <View style={styles.groupChildPosition}>
         <View style={[styles.groupChild, styles.groupChildPosition]} />
         <Text style={[styles.mammaMiaBuonissimo, styles.italianKitchenFlexBox]}>
-          {slang}
+          {FoodItem.slang}
         </Text>
         <Text style={[styles.italianKitchen, styles.italianKitchenFlexBox]}>
-          {kitchenName}
+          {FoodItem.name}
         </Text>
         <Image
           style={styles.istockphoto1220017909612x612Icon}
           resizeMode="cover"
-          source={imageSource}
+          source={{ uri:FoodItem.imguri}}
         />
       </View>
+      
     </View>
   );
 };

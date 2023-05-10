@@ -12,7 +12,7 @@ import {
   Dimensions,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import { Color, FontFamily, FontSize, Border } from "../components/GlobalStyles";
+import { Color, FontFamily, FontSize, Border, Padding } from "../components/GlobalStyles";
 import { TextInput as RNTextInput } from 'react-native-paper';
 import { useNavigation } from "@react-navigation/native";
 import { RouteProp } from '@react-navigation/native';
@@ -20,6 +20,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import axios from "axios";
 import FoodItem from "../components/FoodItem";
 import Checkbox from "../components/Checkbox";
+import { Dropdown } from 'react-native-element-dropdown';
+
 
 const Productpage=({route}) => {
   const { data } = route.params;
@@ -94,12 +96,14 @@ useEffect(() => {
     // Fetch the product data using the product ID
     axios.get(`http://10.0.2.2:8000/api/recipe-ingredients/${data?.id}`)
       .then((response) => {
-        if (response.data && response.data.length > 0) {
-          const ingredients = response.data.map((ingredient: { ingredient_name: string; }) => ({
+        if (response.data && response.data.ingredients.length > 0) {
+          const ingredients = response.data.ingredients.map((ingredient: { ingredient_name: string; }) => ({
             name: ingredient.ingredient_name.trim(),
             checked: false,
-          }));
+          }));         
+
           setIngredientData(ingredients);
+          
 
           // Check the extracted ingredient names in the console
         } else {
@@ -118,18 +122,9 @@ useEffect(() => {
  
   
     return (
-      <ScrollView style={styles.productPage} contentContainerStyle={styles.productPageScrollViewContent}>
-     
-  <View style={styles.vectorParent}>
-    {/* Display the product information */}
-    <Text style={[styles.filterByAllergy, styles.americanFlexBox]}>filter by allergy</Text>
-    <Text style={[styles.americanCheeseBurger, styles.americanFlexBox]}>{data?.name}</Text>
-    <Text style={[styles.text, styles.americanFlexBox]}>{data?.price}</Text>
-    <ImageBackground
-            style={[styles.arrowLeft5Wrapper, styles.frameChildPosition]}
-            resizeMode="cover"
-            source={{uri:data?.imguri}}
-          >
+      
+    <ScrollView style={styles.productPage} contentContainerStyle={styles.productPageScrollViewContent}>
+      <View style={styles.vectorParent}>
             <Pressable
               style={styles.arrowLeft5}
               onPress={() => navigation.goBack()}
@@ -139,19 +134,99 @@ useEffect(() => {
                 resizeMode="cover"
                 source={require("../../../assets/arrow.png")} />
             </Pressable>
-          </ImageBackground>
+    <Text style={styles.americanCheeseBurger}>{data?.name}</Text>
+    <Image
+            style={styles.arrowLeft5Wrapper}
+            resizeMode="cover"
+            source={{uri:data?.imguri}}
+          />
+    {/* Display the product information */}
+    <Text style={styles.details}>Details</Text>
+    <Text style={[styles.text]}>{data?.price}</Text>
+            <Text
+              style={[styles.theAmericanCheeseburger]}
+            >
+              {data?.descreption}
+            </Text>
+            <View style={styles.removeView}>
+          <Text style={styles.removeIngredient}>
+            Remove Ingredient
+          </Text>
+    {ingredientData.map((ingredient, index) => (    
+      <Checkbox
+      key={index}
+      label={ingredient.name}
+      onChange={(checked: any) => handleCheckboxChange(index, checked)}
+      />
+      ))}
+      </View>
+          
     
-          <View
+      <Text style={styles.filter}>Filter by Allergy</Text>
+      <View style={[ styles.rectangleLayout]}>
+<DropDownPicker 
+items={frameDropdownItems}
+open={frameDropdownOpen}
+setOpen={setFrameDropdownOpen}
+value={frameDropdownValue}
+setValue={setFrameDropdownItems}
+placeholder="Select an allergy"
+badgeColors={Color.black}
+textStyle={styles.frameDropdownText}
+dropDownContainerStyle={styles.frameDropdowndropDownContainer}
+labelStyle={styles.frameDropdownValue}
+scrollViewProps={{ persistentScrollbar: true }}
+
+/>
+           {/*  <Dropdown
+              style={[styles.dropdown]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={data}
+              search
+              maxHeight={300}
+              valueField="value"
+
+              setValue={setFrameDropdownItems}
+              
+              placeholder="Select an allergy"
+              searchPlaceholder="Search..."
+              // setOpen={setFrameDropdownOpen}
+              value={frameDropdownValue} 
+              onChange={item => {
+                setValue(item.value)
+                
+              }}
+              />
+   */}
+  
+            </View>
+          <Text style={[styles.specialInstructions]}>
+            Special Instructions
+          </Text>
+          <TextInput
+  style={styles.rectangleRnktextinput}
+  placeholder="Place your text"
+  value={rectangleTextInput}
+  onChangeText={(text) => setRectangleTextInput(text)}
+/>
+
+          <Pressable
+            style={styles.rectanglePressable}
+            onPress={addToCart}
+          >
+          <Text style={[styles.addToCart]}>
+            Add to Cart
+          </Text>
+          </Pressable>
+          {/* <View
             style={[
               styles.theAmericanCheeseburgerIsAWrapper,
               styles.vectorGroupLayout,
             ]}
-          >
-            <Text
-              style={[styles.theAmericanCheeseburger, styles.americanFlexBox]}
             >
-              {data?.descreption}
-            </Text>
           </View>
           <View style={[styles.vectorGroup, styles.vectorGroupLayout]}>
             <Image
@@ -159,60 +234,14 @@ useEffect(() => {
               resizeMode="cover"
               source={require("../../../assets/Rectangle35.png")}
             />
-           {ingredientData.map((ingredient, index) => (
-  <Checkbox
-    key={index}
-    label={ingredient.name}
-    onChange={(checked: any) => handleCheckboxChange(index, checked)}
-  />
-))}
           </View>
-          <Text style={[styles.removeIngredient, styles.americanFlexBox]}>
-            remove ingredient
-          </Text>
-          <View style={[styles.wrapper, styles.rectangleLayout]}>
-          
-  <DropDownPicker
-    items={frameDropdownItems}
-    open={frameDropdownOpen}
-    setOpen={setFrameDropdownOpen}
-    value={frameDropdownValue}
-    setValue={setFrameDropdownItems}
-    placeholder="Select an allergy"
-    badgeColors={Color.black}
-    textStyle={styles.frameDropdownText}
-    dropDownContainerStyle={styles.frameDropdowndropDownContainer}
-    labelStyle={styles.frameDropdownValue}
-    scrollViewProps={{ persistentScrollbar: true }}
+           */}
 
-  />
-
-
-
-          </View>
-          
-          <RNTextInput
-  style={[styles.rectangleRnktextinput, styles.rectangleLayout]}
-  placeholder="Place your text"
-  value={rectangleTextInput}
-  onChangeText={(text) => setRectangleTextInput(text)}
-/>
-
-          <Text style={[styles.specialInstructions, styles.americanFlexBox]}>
-            special instructions
-          </Text>
-          <Pressable
-            style={[styles.rectanglePressable, styles.rectangleLayout]}
-            onPress={addToCart}
-          />
-          <Text style={[styles.addToCart, styles.addToCartTypo]}>
-            Add to Cart
-          </Text>
         </View>
+      </ScrollView>
       
           
        
-      </ScrollView>
     );
   };
   const styles = StyleSheet.create({
@@ -222,8 +251,37 @@ useEffect(() => {
       fontWeight: "800",
       fontFamily: "Inter_extrabold",
     },
+    filter:{
+      top: "14%",
+      left:"5%",
+      fontSize: 26,
+     // width: 293,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "700",
+      paddingBottom:"5%"
+
+    },
+    removeView:{
+      display:"flex",
+      flexDirection:"column",
+      left:"5%",
+      top:"14%"
+
+    },
+    details:{
+      top: "12%",
+      left:"5%",
+      fontSize: 26,
+     // width: 293,
+      fontFamily: FontFamily.interExtrabold,
+      fontWeight: "700",
+      paddingBottom:"5%"
+
+
+    },
     frameDropdowndropDownContainer: {
       backgroundColor: "#fe32",
+      
     },
     productPageScrollViewContent: {
       flexDirection: "row",
@@ -251,14 +309,18 @@ useEffect(() => {
       fontFamily: "Inter_extrabold",
     },
     rectangleLayout: {
+      top:"15%",
       width: "100%",
-      left: "3%",
-      position: "absolute",
+      left: "5%",
+      padding:20,
+      
+
+      
+     // position: "absolute",
     },
     addToCartTypo: {
       fontFamily: FontFamily.interExtrabold,
       fontWeight: "800",
-      position: "absolute",
     },
     frameChild: {
       top: 393,
@@ -272,27 +334,33 @@ useEffect(() => {
       fontSize: FontSize.size_lg,
       color: Color.darkGray,
       left: 20,
+
     },
     americanCheeseBurger: {
-      top: 409,
-      fontSize: FontSize.size_5xl,
-      width: 293,
+      top: "8%",
+      left:"5%",
+      fontSize: 32,
+     // width: 293,
       fontFamily: FontFamily.interExtrabold,
       fontWeight: "800",
-      position: "absolute",
-      left: 20,
+      //position: "absolute",
+
+      //backgroundColor:Color.black,
+      //left: 20,
     },
     text: {
-      top: 444,
+      top: "12%",
       fontFamily: FontFamily.interRegular,
       opacity: 0.5,
       fontSize: FontSize.size_base,
-      left: 20,
-      position: "absolute",
+      left: "5%",
+     // position: "absolute",
     },
     icon: {
-      height: "100%",
-      width: "100%",
+      left: "5%",
+      top: "6%",
+      width: 60,
+      height: 60,
     },
     arrowLeft5: {
       left: 14,
@@ -303,21 +371,26 @@ useEffect(() => {
     },
     arrowLeft5Wrapper: {
       height: 393,
-      top: 0,
+      top: "10%",
+      left:"5%",
+      borderRadius:25
+
     },
     theAmericanCheeseburger: {
+      
       fontFamily: FontFamily.itimRegular,
       fontSize: FontSize.size_base,
-      flex: 1,
+      top:"13%",
+      left:"5%",
     },
     theAmericanCheeseburgerIsAWrapper: {
-      top: 479,
-      backgroundColor: Color.wFBase400,
+      
+      
       flexDirection: "row",
-      padding: 18,
-      borderRadius: Border.br_3xs,
-      left: 19,
-      overflow: "hidden",
+     // padding: 18,
+     // borderRadius: Border.br_3xs,
+     // left: 19,
+      //overflow: "hidden",
     },
     frameItem: {
       left: -7,
@@ -336,13 +409,13 @@ useEffect(() => {
       height: 220,
     },
     removeIngredient: {
-      top: 624,
-      left: 19,
+     // top: "",
+      //left: "5%",
       fontFamily: FontFamily.interExtrabold,
-      fontWeight: "800",
-      position: "absolute",
-      fontSize: FontSize.size_lg,
-      color: Color.darkGray,
+      fontWeight: "700",
+      fontSize: 26,
+      paddingBottom:"5%"
+      
     },
     dropdownpicker: {
       backgroundColor: "#FE5932",
@@ -354,37 +427,42 @@ useEffect(() => {
       left:"4%",
     },
     rectangleRnktextinput: {
-      top: 1041,
-      borderRadius: Border.br_3xs,
-      left: 19,
-      backgroundColor: "#FFFF",
+      height: 55,
+      width: "100%",
+      borderRadius:10,
+      backgroundColor:"#edf0f7",
+      left:"5%",
+      paddingLeft:"5%",
+      top:"17%"
     },
     specialInstructions: {
-      top: 1012,
-      left: 19,
+      top: "16%",
+      left:"5%",
+      fontSize: 26,
+     // width: 293,
       fontFamily: FontFamily.interExtrabold,
-      fontWeight: "800",
-      position: "absolute",
-      fontSize: FontSize.size_lg,
-      color: Color.darkGray,
+      fontWeight: "700",
+      paddingBottom:"5%"
     },
     rectanglePressable: {
-      top: 1170,
+      top: "22%",
       backgroundColor: Color.darkGray,
-      borderRadius: Border.br_3xs,
-      left: 19,
+      borderRadius: 30,
+      left: "5%",
       height: 50,
     },
     addToCart: {
-      top: 1185,
-      left: 151,
+      paddingTop: "3%",
+      /*
+      left: 151, */
       color: Color.wFBase300,
       textAlign: "center",
-      fontSize: FontSize.size_base,
+      fontWeight:700,
+      fontSize: 20,
     },
     vectorParent: {
       height: 1270,
-      width: 393,
+     width: 393,
     },
     productPage: {
       overflow: "hidden",
@@ -392,6 +470,43 @@ useEffect(() => {
       flex: 1,
       backgroundColor: "#FFFF",
     },
+   /*  container: {
+      backgroundColor: 'white',
+      padding: 16,
+    }, */
+   /*  dropdown: {
+      height: 50,
+      borderColor: 'gray',
+      borderWidth: 0.5,
+      borderRadius: 8,
+      paddingHorizontal: 8,
+    },
+    icon: {
+      marginRight: 5,
+    },
+    label: {
+      position: 'absolute',
+      backgroundColor: 'white',
+      left: 22,
+      top: 8,
+      zIndex: 999,
+      paddingHorizontal: 8,
+      fontSize: 14,
+    },
+    placeholderStyle: {
+      fontSize: 16,
+    },
+selectedTextStyle: {
+      fontSize: 16,
+    },
+    iconStyle: {
+      width: 20,
+      height: 20,
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: 16,
+    }, */
   });
   
   export default Productpage; 

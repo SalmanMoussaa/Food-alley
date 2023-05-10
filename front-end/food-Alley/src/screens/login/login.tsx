@@ -7,7 +7,8 @@ import {
   Image,
   ImageSourcePropType,
   SafeAreaView,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from "react-native";
 import { TextInput as RNPTextInput } from "react-native-paper";
 import logindesgin from "../../../assets/logindesgin.jpg";
@@ -25,6 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomePage from '../home/home';
 import { UserContext } from "../../../App";
 import { err } from 'react-native-svg/lib/typescript/xml';
+import { white } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
 interface ResponseData {
   user_id: string;
   token: string;
@@ -85,59 +87,54 @@ const Login: FC<Screen4Props> = (props) => {
     setMyPassword(value);
   };
   return (
-    <View >
-      <View style={styles.rectangleParent}>
-        <RNPTextInput
-          style={[styles.frameChild, styles.frameLayout]}
-          placeholder="Email"
-          label="  Email"
-          mode="outlined"
-          left={
-            <RNPTextInput.Icon style={{ marginTop: "50%" }} name="email-box" />
-          }
-          theme={{ colors: { background: "#d9d9d9" } }}
-          value={myEmail}
-          onChangeText={(value) => setMyEmail(value)}
-          />
-        <RNPTextInput
-          style={[styles.frameItem, styles.frameLayout]}
-          placeholder="Password"
-          label="Password"
-          mode="outlined"
-          left={<RNPTextInput.Icon style={{ marginTop: "50%" }} name="lock" />}
-          theme={{ colors: { background: "#d9d9d9" } }}
-          value={myPassword}
-          onChangeText={(value) => setMyPassword(value)}
-          secureTextEntry
-        />
-      </View>
-
-      <Image
-        style={styles.loginChild}
-        resizeMode="cover"
-        source={logindesgin}
-      />
-      <Text style={[styles.login1, styles.loginFlexBox]}>Login</Text>
-      <Pressable
-        style={({ pressed }) => [
-          styles.rectangleGroup,
-          styles.rectangleLayout,
-          pressed && { transform: [{ scale: 0.9 }] }
-        ]}
-        onPress={handleSubmitLogin}
-      >
-        <View style={[styles.rectangleView, styles.rectangleLayout]} />
-        <Text style={[styles.login2, styles.loginFlexBox]}>Login</Text>
-      </Pressable>
-      <Text style={[styles.dontHaveAnContainer, styles.loginFlexBox]}>
-        <Text style={styles.dontHaveAn}>Don't have an account?</Text>
-        <Text style={styles.loginTypo} onPress={() =>   navigation.navigate("SignupScreen")}> Signup</Text>
-      </Text>
+    <View style={styles.container} >
       <Image
         style={styles.appLogo1}
         resizeMode="cover"
         source={require("../../../assets/logo.png") as ImageSourcePropType}
       />
+            <Text style={[styles.login1]}>Login</Text>
+
+      <View style={styles.rectangleParent}>
+        <TextInput
+          style={[ styles.frameLayout]}
+          placeholder="Email"
+         
+          value={myEmail}
+          onChangeText={(value) => setMyEmail(value)}
+          />
+        <TextInput
+          style={[ styles.frameLayout1]}
+          placeholder="Password"
+         
+          value={myPassword}
+          onChangeText={(value) => setMyPassword(value)}
+          secureTextEntry
+        />
+        <Pressable
+        style={({ pressed }) => [
+          styles.rectangleView,
+          pressed && { transform: [{ scale: 0.9 }] }
+        ]}
+        onPress={handleSubmitLogin}
+      >
+        
+        <Text style={[styles.login2]}>Login</Text>
+        
+      </Pressable>
+      </View>
+      
+      <Image
+        style={styles.loginChild}
+        resizeMode="cover"
+        source={logindesgin}
+      />
+     
+      <Text style={[styles.dontHaveAnContainer]}>
+        <Text style={styles.dontHaveAn}>Don't have an account?</Text>
+        <Text style={styles.loginTypo} onPress={() =>   navigation.navigate("SignupScreen")}> Signup</Text>
+      </Text>
+      
     </View>
 
   );
@@ -145,71 +142,80 @@ const Login: FC<Screen4Props> = (props) => {
 };
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor:"#FFFF",
+    height:"100%",
+    //width:"100%"
+  },
+  frameLayout1:{
+
+   height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    backgroundColor:"#FFFF",
+    paddingLeft:"4%",
+    top:"10%"
+  },
   frameLayout: {
-    height: 53,
-    width: 336,
-    borderRadius: Border.br_3xs,
-    left: "7%",
-    position: "absolute",
+    
+    height: 55,
+    width: "100%",
+    borderRadius:10,
+    borderWidth:2,
+    borderColor:Color.black,
+    paddingLeft:"4%",
+    backgroundColor:"#FFFF",
   },
-  loginFlexBox: {
-    textAlign: "left",
-    position: "absolute",
-  },
-  rectangleLayout: {
-    height: 46,
-    width: 146,
-    position: "absolute",
-  },
-  frameChild: {
-    top: 4,
-  },
-  frameItem: {
-    top: 77,
-  },
-  frameInner: {
-    top: 150,
-  },
+  
   rectangleParent: {
-    top: 366,
-    left: "5%",
-    width: "50%",
-    height: 230,
-    position: "absolute",
+    top:"20%",
+    padding:"5%",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
+    
+  
   },
   login1: {
-    top: 255,
-    left: "35%",
+   
     fontSize: 36,
+    top:"10%",
     color: Color.black,
-    textAlign: "left",
+    textAlign: "center",
     fontFamily: FontFamily.interExtrabold,
     fontWeight: "800",
   },
   rectangleView: {
-    top: 0,
+    //bottom: "80%",
+    top:"25%",
+    width:"35%",
+    height:55,
     borderRadius: Border.br_5xs,
     backgroundColor: Color.darkGray,
+    padding:"3%",
     left: 0,
   },
   login2: {
-    top: 8,
-    left: 43,
-    fontSize: FontSize.size_5xl,
+     //top: 8,
+    //left: 43,
+    textAlign:"center",
+    fontSize:20,
     color: Color.wFBaseWhite,
     fontFamily: FontFamily.interExtrabold,
-    fontWeight: "800",
+    fontWeight: "600", 
   },
   rectangleGroup: {
     top: 597,
     left: 119,
   },
   loginChild: {
-    top:640,
+    top:"23%",
     width:'100%',
-    height: 202,
+    height: 190,
     left: 0,
-    position: "absolute",
+    //position: "absolute",
   },
   dontHaveAn: {
     fontFamily: FontFamily.interRegular,
@@ -219,18 +225,18 @@ const styles = StyleSheet.create({
     fontWeight: "800",
   },
   dontHaveAnContainer: {
-    top: 717,
-    left: "20%",
+    top: "1%",
+    //left: "20%",
     fontSize: FontSize.size_base,
     color: Color.black,
-    textAlign: "left",
+    textAlign: "center",
   },
   appLogo1: {
-    top: 55,
-    left: '25%',
+    left: '30%',
+    top:"10%",
     width: 194,
     height: 201,
-    position: "absolute",
+   // position: "absolute",
   },
   login: {
     backgroundColor:"#FFFFF7",

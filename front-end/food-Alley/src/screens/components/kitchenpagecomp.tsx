@@ -2,9 +2,24 @@ import * as React from "react";
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import { Color, FontSize, Border, FontFamily } from "./GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
+import { Key } from "react";
+import Kitchen from "../Kitchen/Kitchen";
 
-const kitchenpagecomp = () => {
+interface kitchensProps {
+  FoodItem:kitchens;
+  }
+  export interface kitchens{
+    id:Key;
+    name:string;
+    slang:string;
+    imguri:string
+  
+  
+  }
+const kitchenpagecomp: React.FC<kitchensProps> = ({ FoodItem  }) => {
   const navigation = useNavigation();
+  const id=FoodItem.id;
+
 
   return (
     <View style={styles.groupParent}>
@@ -12,15 +27,15 @@ const kitchenpagecomp = () => {
         <View style={[styles.groupChild, styles.groupChildPosition]} />
         <Text
           style={[styles.usaOnPlate, styles.usaOnPlateTypo]}
-        >{`"USA on plate!"
-`}</Text>
+        >{FoodItem.slang}
+`</Text>
         <Text style={[styles.americanKitchen, styles.usaOnPlateTypo]}>
-          american Kitchen
+          {FoodItem.name}
         </Text>
         <Image
           style={styles.resturantImgIcon}
           resizeMode="cover"
-          source={require("../../../assets/americanKitchen.png")}
+          source={{ uri:FoodItem.imguri}}
         />
         <Pressable  onPress={() => navigation.goBack()}>
         <Image

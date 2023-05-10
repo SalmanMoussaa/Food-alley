@@ -45,7 +45,7 @@ Route::delete('/recipes/{id}', 'App\Http\Controllers\RecipeController@destroy');
 
 
 
-Route::resource('kitchens', 'App\Http\Controllers\KitchenController')->middleware('auth:api');
+Route::resource('kitchens', 'App\Http\Controllers\KitchenController');
 
 Route::get('/ingredients', [IngredientController::class, 'index']);
 Route::post('/ingredients', [IngredientController::class, 'store']);

@@ -10,7 +10,7 @@ class OrderItemController extends Controller
 {
     public function index()
     {
-        $orderItems = OrderItem::all();
+        $orderItems = OrderItems::all();
         return response()->json($orderItems);
     }
 

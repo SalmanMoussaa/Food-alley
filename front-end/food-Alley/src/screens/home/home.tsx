@@ -11,7 +11,7 @@ import axios from "axios";
 import { Searchbar } from "react-native-paper";
 import Productpage from "../ProductPage/Productpage";
 import {   } from "@reduxjs/toolkit";
-Productpage
+
 export interface Product {
   id: React.Key;
   name:string;
@@ -50,15 +50,8 @@ const HomePage = () => {
 
   return (
     <View style={styles.homePage}>
-      <View style={[styles.ellipseParent, styles.frameItemLayout]}>
-        <Pressable onPress={() => navigation.navigate("Cart")} style={styles.frameChild}>
-        <Image
-          
-          resizeMode="cover"
-          source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
-        />
-        </Pressable>
-        <View style={[styles.search]}>
+      <View style={[styles.ellipseParent]}>
+      <View style={[styles.search]}>
         <Searchbar 
         
         placeholder="Search"
@@ -67,36 +60,40 @@ const HomePage = () => {
        
          />
         </View>
+        <Pressable onPress={() => navigation.navigate("Cart")} >
+        <Image
+          style={styles.frameChild}
+          resizeMode="cover"
+          source={require("../../../assets/Ellipse2.png")as ImageSourcePropType}
+        />
+        </Pressable>
+        
        
       </View>
-      <View style={styles.container}>
+      <Text style={[styles.suggestedFoods]}>
+        Suggested foods
+      </Text>
+     
         
-      
+      <ScrollView >
         <View style={styles.foodItemsContainer}>
-        
+       
           {products.map((product) => (
             <Pressable onPress={() => navigation.navigate('Productpage')}><FoodItem key={product.id} FoodItem={product} /></Pressable>
           ))} 
           
 
         </View>
-      
-    </View>
+       
+        </ScrollView>
+   
       
       
       
      
       
-      <ScrollView horizontal style={styles.homePageChild}   showsHorizontalScrollIndicator={false}
-   automaticallyAdjustContentInsets={true} 
-
- >
-        <Discount discount={"20%"} image={"../../../assets/Ellipse2.png"}/>
-
-        </ScrollView >
-      <Text style={[styles.suggestedFoods, styles.americanFoodTypo]}>
-        Suggested foods
-      </Text>
+      
+      
       <View style={styles.homePageItem} />
       
       <Bar />
@@ -130,18 +127,20 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   container: {
-    flex: 1,
-    left:2,
-    top:"30%",
-    width:"100%",
-    height:"100%",
-    backgroundColor: "#fff",
+   // flex: 1,
+    //left:2,
+    //top:"30%",
+    //width:"100%",
+    //height:"100%",
+    //backgroundColor: "#fff",
   },
   foodItemsContainer: {
+    display:"flex",
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingHorizontal: 10,
+    paddingHorizontal: "5%",
+    top:"5%"
     
 
     
@@ -166,11 +165,13 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   frameChild: {
-    top: "70%",
-    left: "85%",
-    width: "100%",
-    height: 50,
-    position: "absolute",
+    //top: "10%",
+    //left: "13%",
+    width: 80,
+    height: 40,
+    marginTop:"8%",
+    //position: "absolute",
+   // backgroundColor:Color.black
   },
   frameItem: {
     width: 40,
@@ -179,14 +180,19 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   search:{
-    top: "50%",
-    width: "70%",
-    left: "15%",
+   // top: "50%",
+    width: "85%",
+    //left: "15%",
     backgroundColor:"#FFFFF",
-    position:"absolute"
+   // position:"absolute"
   },
   ellipseParent: {
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between",
     top: 0,
+    padding:"5%",
+    marginTop:"5%",
     width: "100%",
     left: 0,
   },
@@ -249,10 +255,10 @@ const styles = StyleSheet.create({
     
   },
   suggestedFoods: {
-    top: "23%",
-    fontSize: 18,
+    //top: "23%",
+    fontSize: 20,
     color: Color.darkGray,
-    left: 24,
+    left: "5%",
   },
   homePageItem: {
     top: "22%",
