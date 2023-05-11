@@ -257,8 +257,11 @@ const styles = StyleSheet.create({
   suggestedFoods: {
     //top: "23%",
     fontSize: 20,
+    fontWeight:800,
+    
     color: Color.darkGray,
     left: "5%",
+    
   },
   homePageItem: {
     top: "22%",

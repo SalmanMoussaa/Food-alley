@@ -309,10 +309,11 @@ scrollViewProps={{ persistentScrollbar: true }}
       fontFamily: "Inter_extrabold",
     },
     rectangleLayout: {
-      top:"15%",
       width: "100%",
       left: "5%",
-      padding:20,
+      top:"71%",
+      paddingBottom:10,
+      position: "absolute",
       
 
       

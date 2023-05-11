@@ -133,21 +133,19 @@ const MoodTest3 = ({ route }: NewPageProps) => {
     }, [selectedEmoji]);
     
     
-    const getRecipeByName = async (randomName:string) => {
+    const getRecipeByName = async (randomName: string) => {
       const randomIndex = getRandomIndex(recipeNames.length);
       randomName = recipeNames[randomIndex];
       try {
-      const response = await axios.get(`http://10.0.2.2:8000/api/recipes?name=${randomName}`);
-      const recipe = response.data;
-      console.log(recipe)
-      setProducts([recipe])
-      
-      // Store the recipe in the product state
+        const response = await axios.get(`http://10.0.2.2:8000/api/recipes?name=${randomName}`);
+        const recipe = response.data;
+        console.log(recipe);
+        setProducts(recipe);
       } catch (error) {
-      console.error('Failed to get recipe:', error);
-      // Handle error appropriately, e.g., display an error message to the user
+        console.error('Failed to get recipe:', error);
+        // Handle error appropriately, e.g., display an error message to the user
       }
-      };
+    };
     const handlefinish = () => {
       navigation.dispatch(CommonActions.reset({ index: 0, routes: [] }));
       navigation.navigate("Home");
@@ -176,15 +174,14 @@ const MoodTest3 = ({ route }: NewPageProps) => {
       </Pressable>
       <View style={[styles.viewposition]}>
       <Text style={[styles.text, styles.productClr]}>{selectedEmoji}</Text>
-      {products ? (
-            <Pressable onPress={() => navigation.navigate('Productpage')}>
-               {products.map((products) => (
-              <FoodItem   FoodItem={products} />
-              ))}
-              </Pressable>
-            ) : (
-        <Text>No product available</Text>
-        // You can replace the text above with any fallback content
+      
+       {products.length > 0 ? (
+        <FoodItem
+          key={products[getRandomIndex(products.length)].id}
+          FoodItem={products[getRandomIndex(products.length)]}
+        />
+      ) : (
+        <Text>Loading...</Text>
       )}
 
      
@@ -202,7 +199,7 @@ const MoodTest3 = ({ route }: NewPageProps) => {
 const styles = StyleSheet.create({
   viewposition:{
     display:"flex",
-    top:"-10%",
+    top:"-22%",
     left:"5%",
     flexDirection:"column",
     alignItems:"flex-start",

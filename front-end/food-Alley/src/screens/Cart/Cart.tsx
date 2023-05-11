@@ -17,8 +17,11 @@ const Cart = () => {
     { value: "Beirut", label: "Beirut" },
 ]);
 const navigation = useNavigation();
-const [orderItems, setOrderItems] = useState([]);
-  const [products, setProducts] = useState([]);
+const [orderItems, setOrderItems] = useState([] as any[]); // Set initial state as an empty array
+const [products, setProducts] = useState([] as any[]); // Set initial state as an empty array
+const [cartTotal, setCartTotal] = useState(0);
+let totalPrice = 0;
+
 
   useEffect(() => {
     // Fetch the order items data and update the state
@@ -35,9 +38,32 @@ const [orderItems, setOrderItems] = useState([]);
   }, []);
 
   // Filter the products based on the order items
-  const filteredProducts = products.filter((product) =>
-    orderItems.some((item) => item.recipe_id === product.id)
-  );
+  
+
+  const filteredProducts = orderItems.length > 0
+  ? products.filter((product) =>
+      orderItems.some((item) => item.recipe_id === product.id && item.quantity > 0)
+    )
+  : [];
+  filteredProducts.map((product) => {
+    // Add the price of each product to the totalPrice
+    totalPrice += product.price;
+  
+    return (
+      <ProdcutinCart key={product.id} product={product} />
+    );
+  });
+
+const totalPrices = filteredProducts.reduce((total, product) => {
+  const orderItem = orderItems.find((item) => item.recipe_id === product.id);
+  const productPrice = parseFloat(product.price);
+  const quantity = orderItem ? orderItem.quantity : 0;
+  return total + productPrice * quantity;
+}, 0);
+
+useEffect(() => {
+  setCartTotal(totalPrice);
+}, [totalPrice]);
 
 useEffect(() => {
   // Fetch the product data and update the state
@@ -108,7 +134,7 @@ useEffect(() => {
       <Text style={[styles.delivery, styles.taxTypo]}>Delivery:</Text>
       <Text style={[styles.tax, styles.taxTypo]}>Tax:</Text>
       <Text style={[styles.text, styles.textTypo]}>52$</Text>
-      <Text style={[styles.text1, styles.text1Typo]}>52$</Text>
+      <Text style={[styles.text1, styles.text1Typo]}>{totalPrice}$</Text>
       <Text style={[styles.text2, styles.textTypo]}>52$</Text>
       <Text style={[styles.text3, styles.textTypo]}>52$</Text>
     </View>
@@ -129,7 +155,8 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         
         alignContent:"flex-start",
-        top:"15%",
+        backgroundColor:Color.black,
+        //top:"%",
         left:"3%"
 
 

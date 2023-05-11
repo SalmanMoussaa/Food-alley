@@ -43,11 +43,12 @@ interface kitchensProps {
 };
 
 const styles = StyleSheet.create({
+
   groupChildPosition: {
     width: 354,
     left: 0,
     top: 0,
-    position: "absolute",
+    //position: "absolute",
     height: 111,
   },
   italianKitchenFlexBox: {
@@ -88,7 +89,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupParent: {
-    
+    paddingBottom:"4%",
+    width:"100%",
     
 
   },

@@ -9,12 +9,12 @@ interface ProductProps {
     id: string;
     name: string;
     description: string;
-    price: string;
+    price: Number;
     imguri: string;
   };
 }
 
-const ProdcutinCart: React.FC<ProductProps> = ({ product }) => {
+const ProductinCart: React.FC<ProductProps> = ({ product }) => {
   const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 
   return (
@@ -122,5 +122,5 @@ productNameIcon: {
   
   });
   
-  export default ProdcutinCart;
+  export default ProductinCart;
 
