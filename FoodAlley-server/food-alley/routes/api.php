@@ -41,11 +41,12 @@ Route::get('/recipes', 'App\Http\Controllers\RecipeController@index');
 Route::get('/recipes/names', 'App\Http\Controllers\RecipeController@getallnames');
 Route::post('/recipes', 'App\Http\Controllers\RecipeController@store');
 Route::get('/recipes/search', 'App\Http\Controllers\RecipeController@searchByName');
+Route::delete('/recipes/{id}', 'App\Http\Controllers\RecipeController@destroy');
 Route::get('/recipes/{id}', 'App\Http\Controllers\RecipeController@show');
 Route::put('/recipes/{id}', 'App\Http\Controllers\RecipeController@update');
-Route::delete('/recipes/{id}', 'App\Http\Controllers\RecipeController@destroy');
 
 
+Route::post('/kitchens', [KitchenController::class, 'store']);
 
 Route::resource('kitchens', 'App\Http\Controllers\KitchenController');
 
