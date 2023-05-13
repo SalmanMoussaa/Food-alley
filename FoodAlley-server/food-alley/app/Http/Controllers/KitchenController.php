@@ -17,6 +17,10 @@ class KitchenController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:kitchens',
+            'slang' => 'required|string|max:255|unique:kitchens',
+            'imguri'=>  'required|string|max:255|unique:kitchens',
+
+
         ]);
 
         $kitchen = Kitchen::create($validatedData);
