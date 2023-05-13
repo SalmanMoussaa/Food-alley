@@ -10,7 +10,7 @@ class Kitchen extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name','slang','imguri'
     ];
 
     public function recipes()
