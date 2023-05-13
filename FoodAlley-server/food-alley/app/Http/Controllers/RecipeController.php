@@ -41,10 +41,11 @@ class RecipeController extends Controller
     {
         $recipe = new Recipe;
         $recipe->name = $request->name;
-        $recipe->description = $request->description;
+        $recipe->descreption = $request->descreption;
         $recipe->preparation_time = $request->preparation_time;
         $recipe->price = $request->price;
         $recipe->kitchen_id = $request->kitchen_id;
+        $recipe->imguri=$request->imguri;
         $recipe->save();
         return response()->json($recipe, 201);
     }
