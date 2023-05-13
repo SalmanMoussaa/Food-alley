@@ -29,6 +29,8 @@ use App\Http\Controllers\RecipeController;
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
+    Route::post('register_admin', 'register_admin');
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
