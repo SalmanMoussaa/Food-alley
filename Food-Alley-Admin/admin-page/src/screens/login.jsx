@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../Styles/LoginPage.css'; // Import the CSS file for styling
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 
 const Login = ({ setIsAuthenticated }) => {
   const [myEmail, setMyEmail] = useState('');
@@ -40,13 +40,15 @@ const Login = ({ setIsAuthenticated }) => {
           if (data.success) {
             const user = response.data.user;
             console.log(response.data.user.is_admin);
-            if (response.data.user.is_admin === '1') {
+            if (response.data.user.is_admin === 1) {
               // Admin login
+              console.log("Admin login successful!");
+             { <Navigate to="/AdminPanel" />}
               setIsAuthenticated=data.token;
               const token = data.token;
+              console.log(token)
               localStorage.setItem('token', token); // Save the token to localStorage
-              console.log("Admin login successful!");
-              nav("/adminpanel"); // Redirect to AdminPanel
+               // Redirect to AdminPanel
             } else {
               // Non-admin login
               setLoginError('Sorry, only admins are allowed to log in.');
