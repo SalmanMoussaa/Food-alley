@@ -15,7 +15,7 @@ class AuthController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login','register','register_admin']]);
     }
 
 public function register(Request $request)
@@ -72,4 +72,46 @@ public function login(Request $request)
     'user' => Auth::user()
 ]);
 }
+public function register_admin(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'first_name' => 'required|string|max:255',
+        'username' => 'required|string|max:255|unique:users',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        
+        'phone_number' => 'required|string|max:255|unique:users',
+        
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+    }
+
+    $user = new User([
+        'first_name' => $request->first_name,
+        'Last_name'=>"a",
+        'username' => $request->username,
+
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        'adress' => "1",
+        'phone_number' => $request->phone_number,
+        'is_admin' => 1, // Set is_admin to 1 for admin registration
+    ]);
+
+    $user->save();
+
+    $token = $user->createToken('auth_token')->plainTextToken;
+    return response()->json([
+        'status' => 'success',
+        'message' => 'User created successfully',
+        'user' => $user,
+        'authorization' => [
+            'token' => $token,
+            'type' => 'bearer',
+        ]
+    ]);
+}
+
 }
