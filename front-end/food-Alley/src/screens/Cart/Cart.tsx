@@ -119,9 +119,12 @@ useEffect(() => {
         ))}
 
       </View>
+      <Pressable  onPress={() => navigation.navigate("selectLocation")}>
+
       <Text style={[styles.chooseLocation]}>
         choose location
       </Text>
+      </Pressable>
       <Pressable style={styles.arrowLeft3} onPress={() => navigation.goBack()}>
         <Image
           style={styles.icon}
