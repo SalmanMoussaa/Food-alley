@@ -14,6 +14,7 @@
 - As a user, I want to be able to customize my food order by selecting specific ingredients and the way I want it prepared so that I can get exactly what I'm in the mood for..
 - As a user, I want to be able to play the mood test  game and get  the dish that fit my moode
 - As a user, I want the app to offer a wide variety of customization options so that I can order food that tastes like it was made by my mom or grandma.
+- ### Admin Stories
 - As a admin, i want to be able to add food to the menu 
 - As a admin, i want to be able to add kitchens
 
