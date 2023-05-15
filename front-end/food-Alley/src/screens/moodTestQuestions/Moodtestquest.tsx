@@ -5,6 +5,7 @@ import { NavigationProp } from '@react-navigation/native';
 import { Border, Color, FontFamily, FontSize } from '../components/GlobalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Configuration, OpenAIApi } from 'openai';
+import { color } from 'react-native-reanimated';
 
   
 
@@ -93,31 +94,26 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
     <View style={styles.moodTest2}>
       <Text style={styles.howAreYouContainer}>{question} </Text>
       <Text style={styles.mood}>Mood ?</Text>
-      <Pressable style={[styles.rectangleParent, styles.rectangleLayout1]} onPress={() => navigation.goBack()}>
-  <View style={[styles.frameChild, styles.frameChildBg]} />
-  <Text style={[styles.back, styles.backTypo]}>back</Text>
-</Pressable>
-      <Pressable style={[styles.rectangleGroup, styles.rectangleLayout1]}>
-        <View style={[styles.frameChild, styles.frameChildBg]} />
-        <Text style={[styles.next, styles.backTypo]} onPress={handleNext}>next</Text>
-      </Pressable>
+        <View style={styles.touchabl}>
+      <View style={styles.align} >
       <TouchableOpacity
-  style={styles.vectorParent}
-  activeOpacity={0.2}
-  onPress={() => {
-    setSelectedEmoji("😊");
-    storeResult("😊");
-  }}
+      style={[ styles.rectangleLayout]}
+      activeOpacity={0.2}
+      onPress={() => {
+        setSelectedEmoji("😊");
+        storeResult("😊");
+      }}
 >
-  <Image
+
+  {/* <Image
     style={[styles.frameInner, styles.rectangleLayout]}
     resizeMode="cover"              
     source={require("../../../assets/emojibacground.png")}
-  />
-  <Text style={[styles.text, styles.textTypo1]}> 😊</Text>
+    /> */}
+  <Text style={[styles.text, ]}> 😊</Text>
 </TouchableOpacity>
 <TouchableOpacity
-  style={[styles.rectangleContainer, styles.rectangleLayout]}
+  style={[ styles.rectangleLayout]}
   activeOpacity={0.2}
   onPress={() => {
     setSelectedEmoji("😔");
@@ -125,41 +121,59 @@ function MoodTestPage1({ navigation }: { navigation: NavigationProp<'Login'> }) 
   }}
   
 >
-  <View style={[styles.rectangleView, styles.rectangleLayout]} />
-  <Text style={[styles.text1, styles.textTypo1]}> 😔</Text>
+  
+  <Text style={[styles.text,]}> 😔</Text>
 </TouchableOpacity>
+</View>
+<View style={styles.align}>
 <TouchableOpacity
-  style={[styles.frameTouchableopacity, styles.rectangleParent1Position]}
+ style={[ styles.rectangleLayout]}
   activeOpacity={0.2}
   onPress={() => {
     setSelectedEmoji("😫")  
-      storeResult("😫");
+    storeResult("😫");
   }}
   
 >
-  <View style={[styles.rectangleView, styles.rectangleLayout]} />
-  <Text style={[styles.text2, styles.textTypo]}> 😫</Text>
+ 
+  <Text style={[styles.text, ]}> 😫</Text>
 </TouchableOpacity>
 <TouchableOpacity
-  style={[styles.rectangleParent1, styles.rectangleParent1Position]}
+  style={[ styles.rectangleLayout]}
   activeOpacity={0.2}
   onPress={() => {
     setSelectedEmoji("😠")  
       storeResult("😠");
   }}
 >
-  <View style={[styles.rectangleView, styles.rectangleLayout]} />
-  <Text style={[styles.text3, styles.textTypo]}> 😠</Text>
-</TouchableOpacity>
-     
-      
-    </View>
+  
+  <Text style={[styles.text ]}> 😠</Text>
+</TouchableOpacity></View>
+</View>
+<View style={styles.align}>
+<Pressable style={[ styles.rectangleLayout1]} onPress={() => navigation.goBack()}>
+<Text style={[ styles.backTypo]}>back</Text>
+</Pressable>
+      <Pressable style={[ styles.rectangleLayout1]}>
+        <Text style={[ styles.backTypo]} onPress={handleNext}>next</Text>
+      </Pressable>
+      </View>
+      </View>
   );
 }
 const styles = StyleSheet.create({
   container:{
     backgroundColor:"#ffff",
     height:"100%"
+
+  },
+  align:{
+    display:"flex",
+    flexDirection:'row',
+   marginBottom:40,
+    gap:40,
+    
+
 
   },
   questionTitle: {
@@ -197,153 +211,168 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginTop: 16,
   },
+  touchabl:{
+    top:100,
+    
+    
+    
+  },
   nextButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },rectangleLayout1: {
-    height: 49,
-    top: 726,
+    height: 55,
+    marginTop:150,
+    backgroundColor:Color.d9D9D9,
+    borderRadius:15,
     width: 151,
-    position: "absolute",
+   /*  position: "absolute", */
   },
   frameChildBg: {
     backgroundColor: Color.d9D9D9,
     top: 0,
   },
   backTypo: {
-    fontSize: FontSize.size_13xl,
-    top: 2,
-    left: 44,
-    textAlign: "left",
+    fontSize: 25,
+    paddingTop:7,
+    color:"white",
+    
+    textAlign: "center",
     fontFamily: FontFamily.indieFlowerRegular,
-    position: "absolute",
+    fontWeight:"bold"
+    // position: "absolute",
   },
   rectangleLayout: {
     height: 134,
     width: 151,
-    position: "absolute",
+
+    backgroundColor:Color.d9D9D9,
+    borderRadius:30
+    // position: "absolute",
   },
   textTypo1: {
     fontSize: FontSize.size_45xl,
     textAlign: "left",
     color: Color.black,
     fontFamily: FontFamily.indieFlowerRegular,
-    position: "absolute",
+    // position: "absolute",
   },
   rectangleParent1Position: {
     top: 448,
     height: 134,
     width: 151,
-    position: "absolute",
+    // position: "absolute",
   },
   textTypo: {
     fontSize: FontSize.size_45xl,
     textAlign: "left",
     color: Color.black,
     fontFamily: FontFamily.indieFlowerRegular,
-    position: "absolute",
+    // position: "absolute",
   },
   howAreYouContainer: {
-    top: "10%",
-    fontSize: 18,
+    
+    fontSize: 20,
     textAlign: "center",
     width: 365,
     color: Color.black,
     fontWeight:"bold",
     fontFamily: FontFamily.indieFlowerRegular,
-    left: 20,
-    position: "absolute",
+   
+    // position: "absolute",
   },
   mood: {
-    top: 148,
-    left: 137,
+    
+   
     fontSize: 40,
-    textAlign: "left",
+    textAlign: "center",
     color: Color.black,
     fontFamily: FontFamily.indieFlowerRegular,
-    position: "absolute",
+    // position: "absolute",
   },
   frameChild: {
     borderRadius: Border.br_3xs,
-    left: 0,
+    
     backgroundColor: Color.d9D9D9,
     top: 0,
     height: 49,
     width: 151,
-    position: "absolute",
+    // position: "absolute",
   },
   back: {
     color: "#FFFF",
   },
   rectangleParent: {
-    left: 20,
+   
   },
   next: {
     color: "#FFFF",
   },
-  rectangleGroup: {
-    left: 224,
-  },
+  
   frameInner: {
     top: 33,
     borderRadius: Border.br_15xl,
     height: 134,
-    left: 0,
+    
   },
   text: {
-    left: "13%",
-    top:"35%",
+    
+    fontSize:80,
+    textAlign:"center",
+    marginRight:20,
+    marginTop:10
   },
   vectorParent: {
     top: 261,
     height: 167,
-    left: 36,
+    
     width: 151,
-    position: "absolute",
+    // position: "absolute",
   },
   rectangleView: {
     borderRadius: Border.br_15xl,
     height: 134,
-    left: 0,
+    
     backgroundColor: Color.d9D9D9,
     top: 0,
   },
   text1: {
-    left: "15%",
+    
     top:"15%"
    },
   rectangleContainer: {
     top: 294,
-    left: 207,
+    
   },
   text2: {
-    left: "15%",
+   
     top:"15%",
   },
-  frameTouchableopacity: {
-    left: 36,
-  },
+ 
   text3: {
-    left: "15%",
     top:"15%",
   },
-  rectangleParent1: {
-    left: 207,
-  },
+  
   arrowLeft4Icon: {
     top: 37,
     width: 50,
     height: 50,
-    left: 20,
-    position: "absolute",
+    
+    // position: "absolute",
   },
   moodTest2: {
     backgroundColor: Color.wFBaseWhite,
-    flex: 1,
-    width: "100%",
-    height: 852,
-    overflow: "hidden",
+   display:"flex",
+   flexDirection:"column",
+   justifyContent:"center",
+   alignItems:"center",
+   height:"100%"
+   
+
+  
+   
+    
   },
 });
 export default MoodTestPage1;
