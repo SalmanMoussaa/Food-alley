@@ -67,15 +67,15 @@ const Login = ({ setIsAuthenticated }) => {
       });
   }
   return (
-    <div className="container">
+    <div className="logincontainer">
+     
+      <div className="rectangleParent">
       <img
         className="appLogo1"
-        src={require("../assets/logo.png").default}
-        alt="App Logo"
+      src={"https://firebasestorage.googleapis.com/v0/b/food-alley-46853.appspot.com/o/Salman_Moussa_FoodAlley%20(1).png?alt=media&token=3781d959-b52f-40bb-bebb-b0461c397954"}       
       />
       <h2 className="login1">Login</h2>
 
-      <div className="rectangleParent">
         <input
           className="frameLayout"
           type="text"
@@ -84,23 +84,20 @@ const Login = ({ setIsAuthenticated }) => {
           onChange={handleMyEmailChange}
         />
         <input
-          className="frameLayout1"
+          className="frameLayout"
           type="password"
           placeholder="Password"
           value={myPassword}
           onChange={handleMyPasswordChange}
         />
         <button className="rectangleView" onClick={handleSubmitLogin}>
-          <span className="login2">Login</span>
+          Login
         </button>
       </div>
       {loginError && <p>{loginError}</p>}
      
 
-      <p className="dontHaveAnContainer">
-        <span className="dontHaveAn">Don't have an account?</span>
-        <span className="loginTypo"> Signup</span>
-      </p>
+      
     </div>
   );
 };
