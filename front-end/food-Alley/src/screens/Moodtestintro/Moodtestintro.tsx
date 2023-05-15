@@ -8,26 +8,29 @@ const MoodTest = () => {
   const navigation = useNavigation();
 
   return (
+    <>
     <View style={styles.moodTest}>
+       <Text style={styles.moodTest1}>Mood Test</Text>
       <Text style={[styles.howAreYou, styles.doUWantTypo]}>
         how are you feeling today?
       </Text>
-      <Text style={styles.moodTest1}>mood test</Text>
+     
       <Text
         style={[styles.doUWant, styles.doUWantTypo]}
       >{`do u want to test your mood
-and east food based on your
+and eat food based on your
 result `}</Text>
-      <Pressable style={styles.moodTestChild} onPress= {() => navigation.navigate("Moodtestquestion")} />
-      <Text style={[styles.startNow, styles.doUWantTypo]}>start now !</Text>
-      <View style={styles.oig1} />
       <Image
         style={styles.oig71}
         resizeMode="cover"
         source={require("../../../assets/questionmark.png")}
       />
-      <Bar/>
+      <Pressable style={styles.moodTestChild} onPress= {() => navigation.navigate("Moodtestquestion")} />
+      <Text style={[styles.startNow, styles.doUWantTypo]}>start now !</Text>
+      
     </View>
+      <Bar/>
+      </>
   );
 };
 
@@ -40,27 +43,27 @@ const styles = StyleSheet.create({
   },
   howAreYou: {
     top: 142,
-    left: 49,
+    
     color: Color.black,
   },
   moodTest1: {
     top: 52,
-    left: 136,
+    
     fontWeight: "800",
     fontFamily: FontFamily.interExtrabold,
     textAlign: "center",
     color: Color.black,
-    fontSize: FontSize.size_5xl,
+    fontSize: 30,
     position: "absolute",
   },
   doUWant: {
     top: 535,
-    left: 54,
+    
     color: Color.black,
   },
   moodTestChild: {
     top: 656,
-    left: 50,
+    
     borderRadius: Border.br_3xs,
     backgroundColor: Color.d9D9D9,
     width: 297,
@@ -69,29 +72,31 @@ const styles = StyleSheet.create({
   },
   startNow: {
     top: 673,
-    left: 146,
+    
     color: Color.wFBase300,
   },
   oig1: {
     top: 222,
-    left: 72,
+    
     width: 250,
     height: 250,
     position: "absolute",
   },
   oig71: {
     top: 206,
-    left: 41,
+    
     width: 300,
     height: 300,
     position: "absolute",
   },
   moodTest: {
     backgroundColor: Color.wFBase200,
-    flex: 1,
-    width: "100%",
-    height: 852,
-    overflow: "hidden",
+   display:"flex",
+   flexDirection:"column",
+   justifyContent:"center",
+   alignItems:"center",
+    
+    
   },
 });
 
