@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, Image, StyleSheet, Pressable } from "react-native";
 import { Border, Color } from "./GlobalStyles";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
-
+import { Entypo ,MaterialIcons } from '@expo/vector-icons';
 const Bar = () => {
   const navigation = useNavigation()
 
@@ -22,37 +22,15 @@ const Bar = () => {
 
   return (
     <View style={styles.bar}>
+<Entypo name="home" size={28} color="white" onPress={() =>navigation.navigate("Home")} />
+<MaterialIcons name="menu-book" size={30} color="white" onPress={() => navigation.navigate("kitchens")} />
+<MaterialIcons name="emoji-emotions" size={30} color="white"  onPress={() => navigation.navigate("Moodtest")}/>
+
+
       
+    
       
-      <Pressable onPress={() =>navigation.navigate("Home")}>
-      <Image
-        style={[styles.homeIcon, styles.iconLayout]}
-        resizeMode="cover"
-        source={require("../../../assets/home.png")}
-      />
-      </Pressable>
-      <Pressable  onPress={() => navigation.navigate("kitchens")}>
-      <Image
-        style={[styles.menuIcon , styles.iconLayout]}
-        resizeMode="cover"
-        source={require("../../../assets/menu.png")}
-      />
-      </Pressable>
-      <Pressable
-      onPress={() => navigation.navigate("Moodtest")}>
-        <Image
-          style={[styles.moodtestIcon, styles.iconLayout]}
-          resizeMode="cover"
-          source={require("../../../assets/moodtest.png")}
-        />
-      </Pressable>
-      {/* <Pressable onPress={handleSettingsPress}>
-        <Image
-          style={[styles.settingsIcon, styles.iconLayout]}
-          resizeMode="cover"
-          source={require("../../../assets/settings.png")}
-        />
-      </Pressable> */}
+     
     </View>
   );
 };
@@ -102,7 +80,7 @@ const styles = StyleSheet.create({
     width: "100%",
     top:"93%",
     height: 65,
-    paddingTop:"2%",
+    paddingTop:"3%",
     backgroundColor:"rgba(51,51,51,0.8)",
 
     position:"absolute"
