@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
@@ -22,6 +21,7 @@ class OrderItemController extends Controller
 
         $orderItem = OrderItems::create([
             'recepie_id' => $request->recepie_id,
+            
         ]); 
 
         return response()->json([
@@ -32,7 +32,7 @@ class OrderItemController extends Controller
 
     public function show($id)
     {
-        $orderItem = OrderItem::find($id);
+        $orderItem = OrderItems::find($id);
 
         if (!$orderItem) {
             return response()->json(['message' => 'Order item not found'], 404);
@@ -43,7 +43,7 @@ class OrderItemController extends Controller
 
     public function destroy($id)
     {
-        $orderItem = OrderItem::find($id);
+        $orderItem = OrderItems::find($id);
 
         if (!$orderItem) {
             return response()->json(['message' => 'Order item not found'], 404);

@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@expo/vector-icons": "^13.0.0",
     "@react-native-async-storage/async-storage": "1.17.11",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.7",
@@ -25,6 +27,7 @@
     "expo-secure-store": "~12.1.1",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
+    "jsonwebtoken": "^9.0.0",
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-native": "0.71.7",
@@ -46,6 +49,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/react": "~18.0.27",
     "@types/react-native": "^0.71.6",
     "@types/react-native-dotenv": "^0.2.0",

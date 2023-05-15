@@ -13,6 +13,7 @@ class OrderItems extends Model
 
      protected $fillable = [
         'recepie_id',
+    
     ];
 
     public function recipe()
