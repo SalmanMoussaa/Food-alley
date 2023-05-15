@@ -26,14 +26,14 @@
 > We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
-| Login screen  | Register screen |  Landing screen |
+| Login screen  | Register screen | Mood Test |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/login.png) | ![fsdaf](./readme/register.png) | ![fsdaf](./readme/moodtest3.png) |
 
 ### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| kitchens menu   | Test Result |
+| ---| ---| 
+| ![Landing](./readme/kitchensmenu.png) | ![fsdaf](./readme/moodmokup.png) |
 
 <br><br>
 
@@ -43,18 +43,20 @@
 > Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
+| Login screen  | Register screen | Home screen | kitchens screen |
 | ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![Landing](./readme/demo/2023-05-10%20(2).png) | ![fsdaf](./readme/demo/app2.png) | ![fsdaf](./readme/demo/Screenshot_1684156386.png) | ![fsdaf](./readme/demo/Screenshot_1684156396.png) |
+| Mood Landing  | Moodt test questions | Mood test result | Product Page |
+| ![Landing](./readme/demo/Screenshot_1684156403.png) | ![fsdaf](./readme/demo/MoodTestQuestion%20(1).png) | ![fsdaf](./readme/demo/MoodTestResult%20(1).png) | ![fsdaf](./readme/demo/Screenshot_1684156414.png) |
+ Product Page1 | kitchen page 
+![Landing](./readme/demo/Screenshot_1684156419.png) |![fsdaf](./readme/demo/Screenshot_1684156455.png)
 
 ### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
+| Login screen  | recipes |  kitchens |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/2023-05-15%20(6).png) | ![fsdaf](./readme/demo/2023-05-15%20(1).png) | ![fsdaf](./readme/demo/2023-05-15%20(2).png) |
+| Add recipe  | Add Kitchens | 
+| ![Landing](./readme/demo/2023-05-15%20(4).png) | ![fsdaf](./readme/demo/2023-05-15%20(8).png) |
 
 <br><br>
 
@@ -79,27 +81,36 @@
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+- npm
   ```sh
   npm install npm@latest -g
   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+To install FoodAlley locally:
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Open any terminal (like command prompt or vs terminal) and navigate to where you want to install the project (run cd folder-name)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/salman-moussa/Food-alley
    ```
-3. Install NPM packages
+3. Navigate to the desktop app folder and install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. Run the desktop app
+   npm start
+5. Make sure you have Laravel installed on your computer by visiting the official website
 
-Now, you should be able to run Food-Alley locally and explore its features.
+6. Navigate to the mobile app folder and install NPM packages
+   npm install
+7. Install expo
+   npm install -g expo-cli
+8. Run the mobile app
+   expo start
+9. Run it on the web
+   press w
+
+Now, you should be able to run GoResto (desktop app and mobile app) locally and explore its features.
