@@ -1,0 +1,1 @@
+export const RETRIEVE_TOKEN = 'RETRIEVE_TOKEN';
