@@ -73,8 +73,16 @@ const RecipeList = () => {
           ))}
         </tbody>
       </table>
-      <div className='popup'>{openform && <RecipeForm/>}</div>
-    </div>
+      </div>
+      {openform && (
+        <div className="formContainer">
+          <div className="formBackground" onClick={() => setopenform(false)}></div>
+          <div className="formWrapper">
+            <RecipeForm />
+          </div>
+        </div>
+      )}
+    
     </>
   );
 };
