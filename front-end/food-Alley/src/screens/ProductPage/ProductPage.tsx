@@ -21,12 +21,19 @@ import axios from "axios";
 import FoodItem from "../components/FoodItem";
 import Checkbox from "../components/Checkbox";
 import { Dropdown } from 'react-native-element-dropdown';
+import jwt from "jsonwebtoken";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const Productpage=({route}) => {
   const { data } = route.params;
+  const userId =  AsyncStorage.getItem('@user_id');
+  
+
   const [orderData, setOrderData] = useState({
     recepie_id: data.id,
+   
     // add other order details here
   });
 
@@ -34,7 +41,7 @@ const Productpage=({route}) => {
     const [frameCheckboxchecked, setFrameCheckboxchecked] = useState(true);
     const [frameDropdownOpen, setFrameDropdownOpen] = useState(false);
     const [frameDropdownValue, setFrameDropdownValue] = useState("");
-    const [rectangleTextInput, setRectangleTextInput] = useState("salman");
+    const [rectangleTextInput, setRectangleTextInput] = useState("");
      const [frameDropdownItems, setFrameDropdownItems] = useState([]);
     const [productInfo, setProductInfo] = useState([]);
     const [ingredientData, setIngredientData] = useState<Array<{ name: string, checked: boolean }>>([]);
@@ -67,6 +74,7 @@ const Productpage=({route}) => {
    const addToCart = () => {
     axios.post('http://10.0.2.2:8000/api/order_items', orderData)
       .then((response) => {
+        navigation.navigate("Cart");
         console.log('Order added:', response.data);
         // add code to handle successful response here
       })
@@ -208,7 +216,7 @@ scrollViewProps={{ persistentScrollbar: true }}
           </Text>
           <TextInput
   style={styles.rectangleRnktextinput}
-  placeholder="Place your text"
+  placeholder="special instructions"
   value={rectangleTextInput}
   onChangeText={(text) => setRectangleTextInput(text)}
 />
