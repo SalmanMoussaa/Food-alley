@@ -3,6 +3,7 @@ import { Image, StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Border, Color, FontFamily, FontSize } from "./GlobalStyles";
+import axios from "axios";
 
 interface ProductProps {
   product: {
@@ -16,6 +17,20 @@ interface ProductProps {
 
 const ProductinCart: React.FC<ProductProps> = ({ product }) => {
   const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
+  const deleteOrderItem = (id: any) => {
+    const url = `http:"http://10.0.2.2:8000/api/order_items/${id}`;
+  
+    axios
+      .delete(url)
+      .then((response) => {
+        // Handle successful deletion
+        console.log('Order item deleted:', response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.log('Error deleting order item:', error);
+      });
+  };
 
   return (
     <View style={styles.prodcutincart}>
@@ -27,7 +42,7 @@ const ProductinCart: React.FC<ProductProps> = ({ product }) => {
       <TouchableOpacity
         style={styles.x}
         activeOpacity={0.2}
-        onPress={() => navigation.toggleDrawer()}
+        onPress={() => deleteOrderItem(product.id)}
       >
         <Text style={styles.icon}>X</Text>
       </TouchableOpacity>
@@ -85,7 +100,8 @@ productNameIcon: {
     flex: 1,
     width: "100%",
     height: 69,
-  },priceTypo: {
+  },
+  priceTypo: {
     textAlign: "left",
     color: Color.black,
     fontFamily: FontFamily.interExtrabold,
