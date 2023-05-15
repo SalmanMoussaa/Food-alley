@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-direction: row;
   }
   
   .sidebar {
@@ -45,6 +46,9 @@
   }
   .addrecipe:hover{
     box-shadow: 0 0 0 4px #fe5932;
+  }
+  .blur-background {
+    backdrop-filter: blur(5px);
   }
   /* .table{
 
@@ -219,5 +223,33 @@ font-size: 30px;
   .recipe-form-container button[type="submit"]:hover {
     background-color: #45a049;
   }
+  .formContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .formWrapper {
+    z-index: 1;
+    background-color: white;
+    padding: 20px;
+  }
+  
+  /* Add any additional styles as needed */
+  
   
   

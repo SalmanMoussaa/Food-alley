@@ -45,7 +45,7 @@ const RecipeList = () => {
     <div className='listContainer'>
       <div className='listTitle'>
       <h1 className='title'>Recipe List</h1>
-      <button className='addrecipe' onClick={()=>{setopenform(!openform)}}>Add Recipe</button>
+      <button className='addrecipe' onClick={()=>{setopenform(!openform)} }>Add Recipe</button>
       </div>
       <table className='table'>
         <thead>
