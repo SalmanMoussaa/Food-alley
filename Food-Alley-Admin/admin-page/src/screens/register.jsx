@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "../Styles/LoginPage.css"
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -47,21 +48,26 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" value={name} onChange={handleNameChange} required />
+    <div className='container'>
+      
 
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" value={email} onChange={handleEmailChange} required />
+      <form onSubmit={handleSubmit} className='rectangleParent'>
+      <img
+        className="appLogo1"
+      src={"https://firebasestorage.googleapis.com/v0/b/food-alley-46853.appspot.com/o/Salman_Moussa_FoodAlley%20(1).png?alt=media&token=3781d959-b52f-40bb-bebb-b0461c397954"}       
+      />
+      <h2 className="login1">Register</h2>
+        
+        <input type="text" id="name" value={name} onChange={handleNameChange} capture className='frameLayout'   placeholder="Username" required />
 
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" value={password} onChange={handlePasswordChange} required />
-        <label htmlFor="phone_number">Password</label>
-        <input type="phone_number" id="phone_number" value={phone_number} onChange={handlephonenumbercgange} required />
+        
+        <input type="email" id="email" value={email} onChange={handleEmailChange} className='frameLayout'           placeholder="Email"  required />
 
-        <button type="submit">Register</button>
+        <input type="password" id="password" value={password} onChange={handlePasswordChange} className='frameLayout'           placeholder="password"  required />
+        
+        <input type="phone_number" id="phone_number" value={phone_number} onChange={handlephonenumbercgange} className='frameLayout'           placeholder="Phone Number"   required />
+
+        <button type="submit" className="rectangleView">Register</button>
       </form>
       {error && <p>{error}</p>}
     </div>
