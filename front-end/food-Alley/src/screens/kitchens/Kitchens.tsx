@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType } from "react-native";
+import { View, Image, StyleSheet, Pressable, Text, Dimensions, SafeAreaView, ImageSourcePropType, ScrollView } from "react-native";
 import { FontFamily, Color, Border, FontSize } from "../components/GlobalStyles";
 import FoodItem, { Product } from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
@@ -65,6 +65,7 @@ const Kitchens = (Kitchen) => {
       <View >
         <Text style={styles.Kitchens}>Kitchens</Text>
       </View>
+      <ScrollView>
       <View style={styles.kitchenPageComp}>
         {kitchens.map((kitchen) => (
           <Pressable onPress={() => navigation.navigate("kitchen", { data: { id:  kitchen.id} })}>
@@ -73,6 +74,7 @@ const Kitchens = (Kitchen) => {
           
         ))}
       </View>
+      </ScrollView>
       <Bar />
     </View>
   );
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
   kitchenPageComp: {
     display: "flex",
     //flex: 2,
-    top:"1%",
+    top:"5%",
     flexDirection: "column",
     alignContent: "space-around",
     alignItems: "flex-start",
