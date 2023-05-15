@@ -4,7 +4,7 @@ import { FontFamily, Color, Border, FontSize } from "../components/GlobalStyles"
 import FoodItem from "../components/FoodItem";
 import Searchbarcomp from "../components/Searchbarcomp";
 import Discount from "../components/Discount";
-import Bar from "../components/bar";
+import Bar from "../components/bar"
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import axios from "axios";
