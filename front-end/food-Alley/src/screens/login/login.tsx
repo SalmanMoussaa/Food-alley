@@ -72,6 +72,7 @@ const Login: FC<Screen4Props> = (props) => {
     .then((response) => {
       console.log(JSON.stringify(response.data));
       setUserId(response.data.user_id)
+      AsyncStorage.setItem('@user_id', response.data.user_id)
         setUserToken(response.data.token)
         navigation.navigate("Home");
     })
