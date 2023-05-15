@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, Pressable, View, Text } from "react-native";
+import { Image, StyleSheet, Pressable, View, Text, ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useNavigation } from "@react-navigation/native";
 import { FontFamily, Color, FontSize, Border } from "../components/GlobalStyles";
@@ -20,12 +20,13 @@ const navigation = useNavigation();
 const [orderItems, setOrderItems] = useState([] as any[]); // Set initial state as an empty array
 const [products, setProducts] = useState([] as any[]); // Set initial state as an empty array
 const [cartTotal, setCartTotal] = useState(0);
-let totalPrice = 0;
+const [filteredProducts, setfilteredProducts]=useState([] as any[]);
+const [totalPrice, setTotalPrice] = useState(0);
 
 
   useEffect(() => {
     // Fetch the order items data and update the state
-    axios.get("http://10.0.2.2:8000/api/kitchens").then((response) => {
+    axios.get("http://10.0.2.2:8000/api/order_items").then((response) => {
       console.log(response.data);
       setOrderItems(response.data);
     });
@@ -34,36 +35,38 @@ let totalPrice = 0;
     axios.get("http://10.0.2.2:8000/api/recipes").then((response) => {
       console.log(response.data);
       setProducts(response.data);
+      
     });
   }, []);
 
   // Filter the products based on the order items
   
 
-  const filteredProducts = orderItems.length > 0
-  ? products.filter((product) =>
-      orderItems.some((item) => item.recipe_id === product.id && item.quantity > 0)
-    )
-  : [];
-  filteredProducts.map((product) => {
-    // Add the price of each product to the totalPrice
-    totalPrice += product.price;
-  
-    return (
-      <ProdcutinCart key={product.id} product={product} />
+  useEffect(() => {
+    setfilteredProducts(orderItems.length > 0
+      ? products.filter((product) =>
+          orderItems.some((item) => item.recepie_id === product.id)
+        )
+      : []
     );
-  });
+  }, [products, orderItems]);
 
-const totalPrices = filteredProducts.reduce((total, product) => {
-  const orderItem = orderItems.find((item) => item.recipe_id === product.id);
-  const productPrice = parseFloat(product.price);
-  const quantity = orderItem ? orderItem.quantity : 0;
-  return total + productPrice * quantity;
-}, 0);
+  useEffect(() => {
+const totalPrices = filteredProducts.reduce((total, products) => {
+  const orderItem = orderItems.find((item) => item.recepie_id === products.id);
+  const productPrice = Number.isNaN(parseFloat(products.price)) ? 0 : parseFloat(products.price);
+  console.log(productPrice)
 
-useEffect(() => {
-  setCartTotal(totalPrice);
-}, [totalPrice]);
+  return total + productPrice ;
+  
+
+},
+0);
+setTotalPrice(totalPrices)
+
+  
+  console.log(totalPrices);
+}, [filteredProducts]);
 
 useEffect(() => {
   // Fetch the product data and update the state
@@ -113,12 +116,17 @@ useEffect(() => {
           textStyle={styles.frameDropdownText}
         />
       </View>
+      <ScrollView >
       <View style={[styles.productsContainer]}>
       {filteredProducts.map((product) => (
+        
           <ProdcutinCart key={product.id} product={product} />
+         
         ))}
+         </View>
+        </ScrollView>
 
-      </View>
+      
       <Pressable  onPress={() => navigation.navigate("selectLocation")}>
 
       <Text style={[styles.chooseLocation]}>
@@ -136,7 +144,7 @@ useEffect(() => {
       <Text style={[styles.cartTotal, styles.text1Typo]}>Cart Total:</Text>
       <Text style={[styles.delivery, styles.taxTypo]}>Delivery:</Text>
       <Text style={[styles.tax, styles.taxTypo]}>Tax:</Text>
-      <Text style={[styles.text, styles.textTypo]}>52$</Text>
+      <Text style={[styles.text, styles.textTypo]}>{totalPrice+52+52}$</Text>
       <Text style={[styles.text1, styles.text1Typo]}>{totalPrice}$</Text>
       <Text style={[styles.text2, styles.textTypo]}>52$</Text>
       <Text style={[styles.text3, styles.textTypo]}>52$</Text>
@@ -155,12 +163,13 @@ const styles = StyleSheet.create({
         display:"flex",
         
         flexDirection:"column",
-        justifyContent:"space-between",
-        
-        alignContent:"flex-start",
-        backgroundColor:Color.black,
-        //top:"%",
-        left:"3%"
+        justifyContent:"space-between", 
+         marginTop:"30%",
+        alignContent:"space-around",
+         bottom:"-10%", 
+        left:"5%",
+       width:200,
+        height:"50%"
 
 
     },
