@@ -23,7 +23,7 @@
 <!-- Prototyping -->
 <img src="./readme/title3.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Food Alley using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
 | Login screen  | Register screen | Mood Test |
@@ -40,7 +40,7 @@
 <!-- Implementation -->
 <img src="./readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the Food Alley app with the following features:
 
 ### User Screens (Mobile)
 | Login screen  | Register screen | Home screen | kitchens screen |
